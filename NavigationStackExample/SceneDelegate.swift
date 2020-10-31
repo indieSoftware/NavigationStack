@@ -1,18 +1,35 @@
+import NavigationStack
 import SwiftUI
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var window: UIWindow?
 
+	let argumentViewMapping = [
+		"Experiment0": AnyView(Experiment0()),
+		"Experiment1": AnyView(Experiment1()),
+		"Experiment2": AnyView(Experiment2()),
+		"Experiment3": AnyView(Experiment3()),
+		"Experiment4": AnyView(Experiment4()),
+		"Experiment5": AnyView(Experiment5()),
+		"Experiment6": AnyView(Experiment6()),
+		"Experiment7": AnyView(Experiment7()),
+		"Experiment8": AnyView(Experiment8()),
+		"Experiment9": AnyView(Experiment9())
+	]
+
 	func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
-		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+		var contentView: AnyView?
+		if CommandLine.arguments.count >= 2 {
+			contentView = argumentViewMapping[CommandLine.arguments[1]]
+		}
+		if contentView == nil {
+			contentView = AnyView(
+				ContentView1()
+					.environmentObject(NavigationModel(throwExceptionOnError: false))
+			)
+		}
 
-		// Create the SwiftUI view that provides the window contents.
-		let contentView = ContentView()
-
-		// Use a UIHostingController as window root view controller.
 		if let windowScene = scene as? UIWindowScene {
 			let window = UIWindow(windowScene: windowScene)
 			window.rootViewController = UIHostingController(rootView: contentView)
