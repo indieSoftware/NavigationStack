@@ -1,0 +1,12 @@
+# https://github.com/nicklockwood/SwiftFormat
+
+# Rules
+# https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md
+--maxwidth 160
+--enable isEmpty
+--indent tab 
+--tabwidth 4
+--commas inline
+--wraparguments before-first
+--wrapparameters before-first
+#--wrapcollections before-first

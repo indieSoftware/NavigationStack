@@ -1,0 +1,19 @@
+# https://github.com/realm/SwiftLint
+# https://github.com/realm/SwiftLint/blob/master/Rules.md
+
+disabled_rules: # rule identifiers to exclude from running
+  - nesting
+  - todo
+  
+line_length: 160 # instead of 120
+
+type_name:
+  min_length:
+    error: 3 # error instead of warning
+  max_length:
+    error: 40 # error instead of warning
+identifier_name:
+  excluded:
+    - id
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
