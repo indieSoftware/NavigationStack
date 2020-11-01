@@ -10,18 +10,18 @@ struct ContentView2: View {
 				VStack(alignment: .leading, spacing: 20) {
 					Text("Content View 2")
 
-					// It's safe to query the `hasAlternativeContentShowing` state from the model, because it will be frozen by the button view.
-					// However, we could also just pass `true` because View2 is not the root view.
-					DismissTopContentButton(hasAlternativeContentShowing: navigationModel.hasAlternativeContentShowing)
+					// It's safe to query the `hasAlternativeViewShowing` state from the model, because it will be frozen by the button view.
+					// However, to be safe we could also just pass `true` because View2 is not the root view.
+					DismissTopContentButton(hasAlternativeViewShowing: navigationModel.hasAlternativeViewShowing)
 
 					Button(action: {
 						// Example of a reset transition via move, which is essentially a pop transition.
-						navigationModel.resetContent(
+						navigationModel.hideView(
 							"ContentView1",
 							animation: NavigationAnimation(
 								animation: .easeOut,
-								defaultContentTransition: .move(edge: .leading),
-								alternativeContentTransition: .move(edge: .trailing)
+								defaultViewTransition: .move(edge: .leading),
+								alternativeViewTransition: .move(edge: .trailing)
 							)
 						)
 					}, label: {
@@ -30,12 +30,12 @@ struct ContentView2: View {
 
 					Button(action: {
 						// Example of a combined reset transition.
-						navigationModel.resetContent(
+						navigationModel.hideView(
 							"ContentView1",
 							animation: NavigationAnimation(
 								animation: .easeOut,
-								defaultContentTransition: AnyTransition.scale(scale: 2).combined(with: .opacity),
-								alternativeContentTransition: AnyTransition.scale(scale: 0).combined(with: .opacity)
+								defaultViewTransition: AnyTransition.scale(scale: 2).combined(with: .opacity),
+								alternativeViewTransition: AnyTransition.scale(scale: 0).combined(with: .opacity)
 							)
 						)
 					}, label: {
@@ -44,12 +44,12 @@ struct ContentView2: View {
 
 					Button(action: {
 						// Example of a custom reset transition.
-						navigationModel.resetContent(
+						navigationModel.hideView(
 							"ContentView1",
 							animation: NavigationAnimation(
 								animation: Animation.easeOut.speed(0.25),
-								defaultContentTransition: .iris,
-								alternativeContentTransition: .iris
+								defaultViewTransition: .iris,
+								alternativeViewTransition: .iris
 							)
 						)
 					}, label: {
@@ -58,9 +58,9 @@ struct ContentView2: View {
 
 					Button(action: {
 						navigationModel.pushContent("ContentView2") {
-							// It's safe to query the `isAlternativeContentShowing` state from the model, because it will be frozen by View3.
-							// However, we could also just pass `true` because View2 is alreaydy showing when transitioning from View2 to View3.
-							ContentView3(isView2Showing: navigationModel.isAlternativeContentShowing("ContentView2"))
+							// It's safe to query the `isAlternativeViewShowing` state from the model, because it will be frozen by View3.
+							// However, to be sage we could also just pass `true` because View2 is alreaydy showing when transitioning from View2 to View3.
+							ContentView3(isView2Showing: navigationModel.isAlternativeViewShowing("ContentView2"))
 						}
 					}, label: {
 						Text("Push View 3")
@@ -68,7 +68,7 @@ struct ContentView2: View {
 
 					Button(action: {
 						navigationModel.presentContent("ContentView2") {
-							ContentView4(isPresented: navigationModel.contentShowingBinding("ContentView2"))
+							ContentView4(isPresented: navigationModel.viewShowingBinding("ContentView2"))
 						}
 					}, label: {
 						Text("Present View 4")

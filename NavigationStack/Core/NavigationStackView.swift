@@ -3,20 +3,20 @@ import SwiftUI
 public struct NavigationStackView: View {
 	@EnvironmentObject private var model: NavigationModel
 
-	private let name: String
-	private let defaultContent: ContentBuilder
+	let name: String
+	private let defaultView: AnyViewBuilder
 
-	public init<Content>(_ name: String, @ViewBuilder defaultContent: @escaping () -> Content) where Content: View {
+	public init<Content>(_ name: String, @ViewBuilder defaultView: @escaping () -> Content) where Content: View {
 		self.name = name
-		self.defaultContent = { AnyView(defaultContent()) }
+		self.defaultView = { AnyView(defaultView()) }
 	}
 
 	public var body: some View {
 		ZStack {
-			if model.isAlternativeContentShowingPrecede(name) { // `if-else` is necessary, see Experiment8
-				ContentViews(name: name, defaultContent: defaultContent)
+			if model.isAlternativeViewShowingPrecede(name) { // `if-else` is necessary, see Experiment8
+				ContentViews(name: name, defaultView: defaultView)
 			} else {
-				ContentViews(name: name, defaultContent: defaultContent)
+				ContentViews(name: name, defaultView: defaultView)
 			}
 		}
 	}
@@ -24,14 +24,16 @@ public struct NavigationStackView: View {
 
 private struct ContentViews: View {
 	@EnvironmentObject private var model: NavigationModel
+
 	let name: String
-	let defaultContent: ContentBuilder
+	let defaultView: AnyViewBuilder
+
 	var body: some View {
-		if !model.isAlternativeContentShowing(name) {
-			defaultContent().transition(model.defaultContentTransition(name)).zIndex(model.defaultContentZIndex(name))
+		if !model.isAlternativeViewShowing(name) {
+			defaultView().transition(model.defaultViewTransition(name)).zIndex(model.defaultViewZIndex(name))
 		} // No `else`, see Experiment2
-		if model.isAlternativeContentShowing(name), let alternativeContent = model.alternativeContent(name) {
-			alternativeContent().transition(model.alternativeContentTransition(name)).zIndex(model.alternativeContentZIndex(name))
+		if model.isAlternativeViewShowing(name), let alternativeView = model.alternativeView(name) {
+			alternativeView().transition(model.alternativeViewTransition(name)).zIndex(model.alternativeViewZIndex(name))
 		}
 	}
 }

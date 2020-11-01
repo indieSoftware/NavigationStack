@@ -3,7 +3,7 @@ import SwiftUI
 
 struct TransitionExamples: View {
 	static let rootContentName = "TransitionExamples"
-	static let transitionSpeed = 0.5
+	static let transitionSpeed = 0.75
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
@@ -13,7 +13,7 @@ struct TransitionExamples: View {
 				ScrollView {
 					VStack(alignment: .leading, spacing: 20) {
 						Button(action: {
-							navigationModel.resetTopContentWithReverseAnimation()
+							navigationModel.hideTopViewWithReverseAnimation()
 						}, label: {
 							Text("Dismiss Transition Examples")
 						})
@@ -40,12 +40,12 @@ struct TransitionExamples: View {
 
 	func transitionExample(name: String, transition: AnyTransition) -> some View {
 		Button(name) {
-			navigationModel.showContent(
+			navigationModel.showView(
 				TransitionExamples.rootContentName,
 				animation: NavigationAnimation(
 					animation: Animation.easeOut.speed(TransitionExamples.transitionSpeed),
-					defaultContentTransition: .static,
-					alternativeContentTransition: transition
+					defaultViewTransition: .static,
+					alternativeViewTransition: transition
 				)
 			) {
 				TransitionDestinationView()
@@ -60,7 +60,7 @@ struct TransitionDestinationView: View {
 
 	var body: some View {
 		Button(action: {
-			navigationModel.resetTopContentWithReverseAnimation()
+			navigationModel.hideTopViewWithReverseAnimation()
 		}, label: {
 			HStack(alignment: .center) {
 				Spacer()

@@ -11,14 +11,14 @@ struct SubviewExamples: View {
 		HStack {
 			VStack(alignment: .leading, spacing: 20) {
 				Button(action: {
-					navigationModel.resetTopContentWithReverseAnimation()
+					navigationModel.hideTopViewWithReverseAnimation()
 				}, label: {
 					Text("Back")
 				})
 					.accessibility(identifier: "BackButton")
 
 				Button(action: {
-					navigationModel.showContent("Subview1", animation: NavigationAnimation.push) {
+					navigationModel.showView("Subview1", animation: NavigationAnimation.push) {
 						ColoredSubview(color: .blue)
 					}
 				}, label: {
@@ -30,7 +30,7 @@ struct SubviewExamples: View {
 				}
 
 				Button(action: {
-					navigationModel.showContent("Subview2", animation: NavigationAnimation.push) {
+					navigationModel.showView("Subview2", animation: NavigationAnimation.push) {
 						ColoredSubview(color: .red)
 					}
 				}, label: {
@@ -42,7 +42,7 @@ struct SubviewExamples: View {
 				}
 
 				Button(action: {
-					navigationModel.resetContentWithReverseAnimation("Subview2")
+					navigationModel.hideViewWithReverseAnimation("Subview2")
 				}, label: {
 					Text("Reset Subview2")
 				})

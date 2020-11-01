@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		if contentView == nil {
 			contentView = AnyView(
 				ContentView1()
-					.environmentObject(NavigationModel(throwExceptionOnError: false))
+					.environmentObject(NavigationModel(silenceErrors: true))
 			)
 		}
 

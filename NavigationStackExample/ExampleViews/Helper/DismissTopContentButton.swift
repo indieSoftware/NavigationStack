@@ -4,23 +4,23 @@ import SwiftUI
 struct DismissTopContentButton: View {
 	@EnvironmentObject var navigationModel: NavigationModel
 
-	/// Freezes the state of `navigationModel.hasAlternativeContentShowing` to prevent transition animation glitches.
-	let hasAlternativeContentShowing: Bool
+	/// Freezes the state of `navigationModel.hasAlternativeViewShowing` to prevent transition animation glitches.
+	let hasAlternativeViewShowing: Bool
 
 	var body: some View {
 		HStack {
-			// Don't use `hasAlternativeContentShowing` from the model to show different sub-views because this will lead to animation glitches!
-			if !hasAlternativeContentShowing {
+			// Don't use `hasAlternativeViewShowing` from the model to show different sub-views because this will lead to animation glitches!
+			if !hasAlternativeViewShowing {
 				Text("Not possible: ")
 			}
-			// Dangerous access to `isAlternativeContentShowing` to show different sub-views, because this might lead to animation glitches.
+			// Dangerous access to `isAlternativeViewShowing` to show different sub-views, because this might lead to animation glitches.
 			// However, here it's fine because the access doesn't happen in the subview itself.
-			if navigationModel.isAlternativeContentShowing("Subview") {
+			if navigationModel.isAlternativeViewShowing("Subview") {
 				Text("Subview")
 					.transition(AnyTransition.move(edge: .leading).combined(with: .opacity))
 			}
 			Button(action: {
-				navigationModel.resetTopContentWithReverseAnimation()
+				navigationModel.hideTopViewWithReverseAnimation()
 			}, label: {
 				Text("Back")
 			})
@@ -30,7 +30,7 @@ struct DismissTopContentButton: View {
 
 struct DismissTopContentButton_Previews: PreviewProvider {
 	static var previews: some View {
-		DismissTopContentButton(hasAlternativeContentShowing: true)
+		DismissTopContentButton(hasAlternativeViewShowing: true)
 			.environmentObject(NavigationModel())
 	}
 }

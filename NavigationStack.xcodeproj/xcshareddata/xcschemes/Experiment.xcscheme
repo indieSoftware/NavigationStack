@@ -9,23 +9,9 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2680389E254D4563005FFB51"
-               BuildableName = "NavigationStackExampleUITests.xctest"
-               BlueprintName = "NavigationStackExampleUITests"
-               ReferencedContainer = "container:NavigationStack.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2680385B254D4275005FFB51"
@@ -42,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2680389E254D4563005FFB51"
-               BuildableName = "NavigationStackExampleUITests.xctest"
-               BlueprintName = "NavigationStackExampleUITests"
-               ReferencedContainer = "container:NavigationStack.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -76,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "Experiment1"
+            argument = "Experiment0"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -87,15 +63,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2680389E254D4563005FFB51"
-            BuildableName = "NavigationStackExampleUITests.xctest"
-            BlueprintName = "NavigationStackExampleUITests"
+            BlueprintIdentifier = "2680385B254D4275005FFB51"
+            BuildableName = "NavigationStackExample.app"
+            BlueprintName = "NavigationStackExample"
             ReferencedContainer = "container:NavigationStack.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

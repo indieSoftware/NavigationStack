@@ -2,169 +2,169 @@ import Combine
 import SwiftUI
 
 public class NavigationModel: ObservableObject {
-	let throwExceptionOnError: Bool
+	let silenceErrors: Bool
 
-	@Published private var contentNode: NavigationStackNode? {
+	@Published private var navigationStackNode: NavigationStackNode? {
 		didSet {
 			// Propagates any published state changes from the node to observers of this node and not only whether the node has been set or deleted.
-			contentNodeChangeCanceller = contentNode?.objectWillChange.sink(receiveValue: { [weak self] _ in
+			navigationStackNodeChangeCanceller = navigationStackNode?.objectWillChange.sink(receiveValue: { [weak self] _ in
 				self?.objectWillChange.send()
 			})
 		}
 	}
 
-	private var contentNodeChangeCanceller: AnyCancellable?
+	private var navigationStackNodeChangeCanceller: AnyCancellable?
 
-	public init(throwExceptionOnError: Bool = true) {
-		self.throwExceptionOnError = throwExceptionOnError
+	public init(silenceErrors: Bool = false) {
+		self.silenceErrors = silenceErrors
 	}
 
-	public func showContent<Content: View>(_ name: String, animation: NavigationAnimation? = nil, @ViewBuilder alternativeContent: @escaping () -> Content) {
-		let contentBuilder: ContentBuilder = { AnyView(alternativeContent()) }
+	public func showView<Content: View>(_ name: String, animation: NavigationAnimation? = nil, @ViewBuilder alternativeView: @escaping () -> Content) {
+		let viewBuilder: AnyViewBuilder = { AnyView(alternativeView()) }
 
-		let newNode = NavigationStackNode(name: name, alternativeContent: contentBuilder)
-		newNode.contentSwitchAnimation = animation
+		let newNode = NavigationStackNode(name: name, alternativeView: viewBuilder)
+		newNode.transitionAnimation = animation
 		enqueueNewNode(newNode)
 
-		showAlternativeContentForNode(newNode)
+		showAlternativeViewForNode(newNode)
 	}
 
 	private func enqueueNewNode(_ newNode: NavigationStackNode) {
 		cleanupNodeList()
 
-		if let contentNode = contentNode, contentNode.getNode(named: newNode.name) != nil {
-			if !throwExceptionOnError { return }
-			fatalError("Replacing switched content '\(newNode.name)' not allowed")
-		} else if let contentNode = contentNode, let node = contentNode.getLeafNode() {
-			node.nextNode = newNode
+		if let navigationStackNode = navigationStackNode, navigationStackNode.getNode(named: newNode.name) != nil {
+			if silenceErrors { return }
+			fatalError("Replacing showing navigation view '\(newNode.name)' not allowed")
+		} else if let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() {
+			leafNode.nextNode = newNode
 		} else {
-			contentNode = newNode
+			navigationStackNode = newNode
 		}
 	}
 
-	private func showAlternativeContentForNode(_ node: NavigationStackNode) {
-		node.isAlternativeContentShowingPrecede = true // Necessary, see Experiment7
+	private func showAlternativeViewForNode(_ node: NavigationStackNode) {
+		node.isAlternativeViewShowingPrecede = true // Necessary, see Experiment7
 
-		if let contentSwitchAnimation = node.contentSwitchAnimation {
-			withAnimation(contentSwitchAnimation.animation) {
-				node.isAlternativeContentShowing = true
+		if let transitionAnimation = node.transitionAnimation {
+			withAnimation(transitionAnimation.animation) {
+				node.isAlternativeViewShowing = true
 			}
 		} else {
-			node.isAlternativeContentShowing = true
+			node.isAlternativeViewShowing = true
 		}
 	}
 
 	/**
 	 Truncates the nextNode queue of the leaf node which is currently active.
 
-	 - Remark: This cannot be called in `resetContent(:,animation:)` after `withAnimation` because that will lead to animation glitches.
+	 - Remark: This cannot be called in `resetContent(:animation:)` after `withAnimation` because that will lead to animation glitches.
 	 */
 	private func cleanupNodeList() {
-		guard let contentNode = contentNode else { return }
+		guard let navigationStackNode = navigationStackNode else { return }
 
-		if !contentNode.isAlternativeContentShowing {
-			self.contentNode = nil
-		} else if let node = contentNode.getLeafNode() {
-			node.nextNode = nil
+		if !navigationStackNode.isAlternativeViewShowing {
+			self.navigationStackNode = nil
+		} else if let leafNode = navigationStackNode.getLeafNode() {
+			leafNode.nextNode = nil
 		}
 	}
 
-	public func resetTopContentWithReverseAnimation() {
-		guard let contentNode = contentNode, let node = contentNode.getLeafNode() else {
-			if !throwExceptionOnError { return }
-			fatalError("No top content available to reset")
+	public func hideTopViewWithReverseAnimation() {
+		guard let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() else {
+			if silenceErrors { return }
+			fatalError("No top navigation view available on the stack to reset")
 		}
 
-		hideAlternativeContentForNode(node)
+		hideAlternativeViewForNode(leafNode)
 	}
 
-	public func resetTopContent(animation: NavigationAnimation? = nil) {
-		guard let contentNode = contentNode, let node = contentNode.getLeafNode() else {
-			if !throwExceptionOnError { return }
-			fatalError("No top content available to reset")
+	public func hideTopView(animation: NavigationAnimation? = nil) {
+		guard let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() else {
+			if silenceErrors { return }
+			fatalError("No top navigation view available on the stack to reset")
 		}
 
-		node.contentSwitchAnimation = animation
-		hideAlternativeContentForNode(node)
+		leafNode.transitionAnimation = animation
+		hideAlternativeViewForNode(leafNode)
 	}
 
-	public func resetContent(_ name: String, animation: NavigationAnimation? = nil) {
-		guard let contentNode = contentNode, let node = contentNode.getNode(named: name) else {
-			if !throwExceptionOnError { return }
-			fatalError("No content with name '\(name)' available to reset")
+	public func hideView(_ name: String, animation: NavigationAnimation? = nil) {
+		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
+			if silenceErrors { return }
+			fatalError("No navigation view with name '\(name)' available on the stack to reset")
 		}
 
-		node.contentSwitchAnimation = animation
-		hideAlternativeContentForNode(node)
+		node.transitionAnimation = animation
+		hideAlternativeViewForNode(node)
 	}
 
-	public func resetContentWithReverseAnimation(_ name: String) {
-		guard let contentNode = contentNode, let node = contentNode.getNode(named: name) else {
-			if !throwExceptionOnError { return }
-			fatalError("No content with name '\(name)' available to reset")
+	public func hideViewWithReverseAnimation(_ name: String) {
+		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
+			if silenceErrors { return }
+			fatalError("No navigation view with name '\(name)' available on the stack to reset")
 		}
 
-		hideAlternativeContentForNode(node)
+		hideAlternativeViewForNode(node)
 	}
 
-	private func hideAlternativeContentForNode(_ node: NavigationStackNode) {
-		node.isAlternativeContentShowingPrecede = false // Necessary, see Experiment7
+	private func hideAlternativeViewForNode(_ node: NavigationStackNode) {
+		node.isAlternativeViewShowingPrecede = false // Necessary, see Experiment7
 
-		if let contentSwitchAnimation = node.contentSwitchAnimation {
-			withAnimation(contentSwitchAnimation.animation) {
-				node.isAlternativeContentShowing = false
+		if let transitionAnimation = node.transitionAnimation {
+			withAnimation(transitionAnimation.animation) {
+				node.isAlternativeViewShowing = false
 			}
 		} else {
-			node.isAlternativeContentShowing = false
+			node.isAlternativeViewShowing = false
 		}
 	}
 
 	/**
 	 - Warning: Using this method to show different views or sub-views without freezing the result will result in animation glitches!
 	 */
-	public var hasAlternativeContentShowing: Bool {
-		contentNode?.getLeafNode() != nil
+	public var hasAlternativeViewShowing: Bool {
+		navigationStackNode?.getLeafNode() != nil
 	}
 
 	/**
 	 - Warning: Using this method to show different views or sub-views without freezing the result will result in animation glitches!
 	 */
-	public func isAlternativeContentShowing(_ name: String) -> Bool {
-		guard let node = contentNode?.getNode(named: name) else {
+	public func isAlternativeViewShowing(_ name: String) -> Bool {
+		guard let node = navigationStackNode?.getNode(named: name) else {
 			return false
 		}
 
-		return node.isAlternativeContentShowing
+		return node.isAlternativeViewShowing
 	}
 
-	public func contentShowingBinding() -> Binding<Bool> {
-		guard let contentNode = contentNode, let node = contentNode.getLeafNode() else {
-			if !throwExceptionOnError { return .constant(false) }
-			fatalError("No top content available for binding")
+	public func topViewShowingBinding() -> Binding<Bool> {
+		guard let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() else {
+			if silenceErrors { return .constant(false) }
+			fatalError("No top navigation view available on the stack for binding")
 		}
 
-		return createBindingOfNode(node)
+		return createBindingForNode(leafNode)
 	}
 
-	public func contentShowingBinding(_ name: String) -> Binding<Bool> {
-		guard let contentNode = contentNode, let node = contentNode.getNode(named: name) else {
-			if !throwExceptionOnError { return .constant(false) }
-			fatalError("No content with name '\(name)' available for binding")
+	public func viewShowingBinding(_ name: String) -> Binding<Bool> {
+		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
+			if silenceErrors { return .constant(false) }
+			fatalError("No navigation view with name '\(name)' available on the stack for binding")
 		}
 
-		return createBindingOfNode(node)
+		return createBindingForNode(node)
 	}
 
-	private func createBindingOfNode(_ node: NavigationStackNode) -> Binding<Bool> {
+	private func createBindingForNode(_ node: NavigationStackNode) -> Binding<Bool> {
 		Binding<Bool>(
 			get: {
-				node.isAlternativeContentShowing
+				node.isAlternativeViewShowing
 			},
 			set: { presenting in
-				// This is a one-way toggle, meaning it can be set to false, but not back.
+				// This is an one-way toggle, meaning it can be set to false, but not back to true.
 				if !presenting {
-					node.isAlternativeContentShowingPrecede = false // Keep this in sync with the showing flag.
-					node.isAlternativeContentShowing = false
+					node.isAlternativeViewShowingPrecede = false // Keep this in sync with the showing flag.
+					node.isAlternativeViewShowing = false
 				}
 			}
 		)
@@ -174,31 +174,31 @@ public class NavigationModel: ObservableObject {
 // MARK: - Used by ContentSwitcher
 
 extension NavigationModel {
-	func isAlternativeContentShowingPrecede(_ name: String) -> Bool {
-		guard let node = contentNode?.getNode(named: name) else {
+	func isAlternativeViewShowingPrecede(_ name: String) -> Bool {
+		guard let node = navigationStackNode?.getNode(named: name) else {
 			return false
 		}
 
-		return node.isAlternativeContentShowingPrecede
+		return node.isAlternativeViewShowingPrecede
 	}
 
-	func alternativeContent(_ name: String) -> ContentBuilder? {
-		contentNode?.getNode(named: name)?.alternativeContent
+	func alternativeView(_ name: String) -> AnyViewBuilder? {
+		navigationStackNode?.getNode(named: name)?.alternativeView
 	}
 
-	func defaultContentTransition(_ name: String) -> AnyTransition {
-		contentNode?.getNode(named: name)?.contentSwitchAnimation?.defaultContentTransition ?? .identity
+	func defaultViewTransition(_ name: String) -> AnyTransition {
+		navigationStackNode?.getNode(named: name)?.transitionAnimation?.defaultViewTransition ?? .identity
 	}
 
-	func alternativeContentTransition(_ name: String) -> AnyTransition {
-		contentNode?.getNode(named: name)?.contentSwitchAnimation?.alternativeContentTransition ?? .identity
+	func alternativeViewTransition(_ name: String) -> AnyTransition {
+		navigationStackNode?.getNode(named: name)?.transitionAnimation?.alternativeViewTransition ?? .identity
 	}
 
-	func defaultContentZIndex(_ name: String) -> Double {
-		contentNode?.getNode(named: name)?.contentSwitchAnimation?.defaultContentZIndex ?? .zero
+	func defaultViewZIndex(_ name: String) -> Double {
+		navigationStackNode?.getNode(named: name)?.transitionAnimation?.defaultViewZIndex ?? .zero
 	}
 
-	func alternativeContentZIndex(_ name: String) -> Double {
-		contentNode?.getNode(named: name)?.contentSwitchAnimation?.alternativeContentZIndex ?? .zero
+	func alternativeViewZIndex(_ name: String) -> Double {
+		navigationStackNode?.getNode(named: name)?.transitionAnimation?.alternativeViewZIndex ?? .zero
 	}
 }

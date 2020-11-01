@@ -4,10 +4,10 @@ import SwiftUI
 class NavigationStackNode: ObservableObject {
 	let name: String
 
-	@Published var isAlternativeContentShowing = false
-	@Published var isAlternativeContentShowingPrecede = false
-	@Published var alternativeContent: ContentBuilder
-	@Published var contentSwitchAnimation: NavigationAnimation?
+	@Published var isAlternativeViewShowing = false
+	@Published var isAlternativeViewShowingPrecede = false
+	@Published var alternativeView: AnyViewBuilder
+	@Published var transitionAnimation: NavigationAnimation?
 
 	@Published var nextNode: NavigationStackNode? {
 		didSet {
@@ -20,9 +20,9 @@ class NavigationStackNode: ObservableObject {
 
 	private var nextNodeChangeCanceller: AnyCancellable?
 
-	init(name: String, alternativeContent: @escaping ContentBuilder) {
+	init(name: String, alternativeView: @escaping AnyViewBuilder) {
 		self.name = name
-		self.alternativeContent = alternativeContent
+		self.alternativeView = alternativeView
 	}
 
 	func getNode(named name: String) -> NavigationStackNode? {
@@ -30,7 +30,7 @@ class NavigationStackNode: ObservableObject {
 	}
 
 	func getLeafNode() -> NavigationStackNode? {
-		if !isAlternativeContentShowing {
+		if !isAlternativeViewShowing {
 			return nil
 		}
 		return nextNode?.getLeafNode() ?? self
