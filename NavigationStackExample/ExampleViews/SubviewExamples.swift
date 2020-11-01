@@ -5,6 +5,9 @@ import SwiftUI
 // However, this not really a navigation and leads to problems because the navigation is designed to hold a nested tree,
 // therefore, it's not recommended to use the navigation framework for switching sub-views.
 struct SubviewExamples: View {
+	let subview1Name = "Subview1"
+	let subview2Name = "Subview2"
+
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
@@ -18,31 +21,31 @@ struct SubviewExamples: View {
 					.accessibility(identifier: "BackButton")
 
 				Button(action: {
-					navigationModel.showView("Subview1", animation: NavigationAnimation.push) {
+					navigationModel.showView(subview1Name, animation: NavigationAnimation.push) {
 						ColoredSubview(color: .blue)
 					}
 				}, label: {
 					Text("Push Subview1")
 				})
 					.accessibility(identifier: "Subview1Button")
-				NavigationStackView("Subview1") {
+				NavigationStackView(subview1Name) {
 					ColoredSubview(color: .black)
 				}
 
 				Button(action: {
-					navigationModel.showView("Subview2", animation: NavigationAnimation.push) {
+					navigationModel.showView(subview2Name, animation: NavigationAnimation.push) {
 						ColoredSubview(color: .red)
 					}
 				}, label: {
 					Text("Push Subview2")
 				})
 					.accessibility(identifier: "Subview2Button")
-				NavigationStackView("Subview2") {
+				NavigationStackView(subview2Name) {
 					ColoredSubview(color: .black)
 				}
 
 				Button(action: {
-					navigationModel.hideViewWithReverseAnimation("Subview2")
+					navigationModel.hideViewWithReverseAnimation(subview2Name)
 				}, label: {
 					Text("Reset Subview2")
 				})

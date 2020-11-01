@@ -2,13 +2,13 @@ import NavigationStack
 import SwiftUI
 
 struct TransitionExamples: View {
-	static let rootContentName = "TransitionExamples"
+	static let navigationName = String(describing: Self.self)
 	static let transitionSpeed = 0.75
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
-		NavigationStackView(TransitionExamples.rootContentName) {
+		NavigationStackView(TransitionExamples.navigationName) {
 			HStack {
 				ScrollView {
 					VStack(alignment: .leading, spacing: 20) {
@@ -19,11 +19,14 @@ struct TransitionExamples: View {
 						})
 							.accessibility(identifier: "BackButton")
 
+						// SwiftUI transitions
 						transitionExample(name: "Move", transition: .move(edge: .trailing))
 						transitionExample(name: "Scale", transition: .scale(scale: 0.0, anchor: UnitPoint(x: 0.2, y: 0.2)))
 						transitionExample(name: "Offset", transition: .offset(x: 100, y: 100))
 						transitionExample(name: "Opacity", transition: .opacity)
 						transitionExample(name: "Slide", transition: .slide)
+
+						// Custom transitions
 						transitionExample(name: "Static", transition: .static)
 						transitionExample(name: "Iris", transition: .iris)
 						transitionExample(name: "Contrast", transition: .contrast(active: 0.0, identity: 1.0))
@@ -41,7 +44,7 @@ struct TransitionExamples: View {
 	func transitionExample(name: String, transition: AnyTransition) -> some View {
 		Button(name) {
 			navigationModel.showView(
-				TransitionExamples.rootContentName,
+				TransitionExamples.navigationName,
 				animation: NavigationAnimation(
 					animation: Animation.easeOut.speed(TransitionExamples.transitionSpeed),
 					defaultViewTransition: .static,

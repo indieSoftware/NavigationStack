@@ -7,7 +7,7 @@ struct ContentView4: View {
 	var body: some View {
 		HStack {
 			VStack(alignment: .leading, spacing: 20) {
-				Text("Content View 4")
+				Text("ContentView4")
 
 				Button(action: {
 					withAnimation(.easeOut) {
