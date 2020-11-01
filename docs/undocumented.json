@@ -1,0 +1,229 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 3,
+      "symbol": "NavigationModel",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 4,
+      "symbol": "NavigationModel",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 18,
+      "symbol": "NavigationModel.init(silenceErrors:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 22,
+      "symbol": "NavigationModel.showView(_:animation:alternativeView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 72,
+      "symbol": "NavigationModel.hideTopViewWithReverseAnimation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 81,
+      "symbol": "NavigationModel.hideTopView(animation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 91,
+      "symbol": "NavigationModel.hideView(_:animation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 101,
+      "symbol": "NavigationModel.hideViewWithReverseAnimation(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 140,
+      "symbol": "NavigationModel.topViewShowingBinding()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 149,
+      "symbol": "NavigationModel.viewShowingBinding(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 176,
+      "symbol": "NavigationModel",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 177,
+      "symbol": "NavigationModel.isAlternativeViewShowingPrecede(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 185,
+      "symbol": "NavigationModel.alternativeView(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 189,
+      "symbol": "NavigationModel.defaultViewTransition(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 193,
+      "symbol": "NavigationModel.alternativeViewTransition(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 197,
+      "symbol": "NavigationModel.defaultViewZIndex(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModel.swift",
+      "line": 201,
+      "symbol": "NavigationModel.alternativeViewZIndex(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModelConvenienceMethods.swift",
+      "line": 4,
+      "symbol": "NavigationModel.pushContent(_:alternativeView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModelConvenienceMethods.swift",
+      "line": 8,
+      "symbol": "NavigationModel.popContent(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModelConvenienceMethods.swift",
+      "line": 12,
+      "symbol": "NavigationModel.presentContent(_:alternativeView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModelConvenienceMethods.swift",
+      "line": 16,
+      "symbol": "NavigationModel.dismissContent(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModelConvenienceMethods.swift",
+      "line": 20,
+      "symbol": "NavigationModel.fadeInContent(_:alternativeView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationModelConvenienceMethods.swift",
+      "line": 24,
+      "symbol": "NavigationModel.fadeOutContent(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationStackView.swift",
+      "line": 3,
+      "symbol": "NavigationStackView",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Core/NavigationStackView.swift",
+      "line": 9,
+      "symbol": "NavigationStackView.init(_:defaultView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Contrast.swift",
+      "line": 4,
+      "symbol": "AnyTransition.contrast(active:identity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Contrast.swift",
+      "line": 9,
+      "symbol": "ContrastModifier",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Contrast.swift",
+      "line": 10,
+      "symbol": "ContrastModifier.contrast",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Iris.swift",
+      "line": 17,
+      "symbol": "ClipShapeModifier",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Iris.swift",
+      "line": 18,
+      "symbol": "ClipShapeModifier.shape",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Iris.swift",
+      "line": 25,
+      "symbol": "ScaledCircle",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/Static.swift",
+      "line": 4,
+      "symbol": "AnyTransition.static",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/sven/Work/Git/NavigationStack"
+}

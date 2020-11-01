@@ -1,0 +1,21 @@
+github_url: https://github.com/indieSoftware/NavigationStack
+author: Sven Korset
+theme: fullwidth
+title: NavigationStack
+clean: true
+output: ./docs
+readme: README.md
+skip_undocumented: false
+hide_documentation_coverage: false
+min_acl: public
+sdk: iphone
+objc: false
+swift_build_tool: xcodebuild
+xcodebuild_arguments:
+  - build
+  - -workspace
+  - NavigationStack.xcworkspace
+  - -scheme
+  - NavigationStack
+  - CODE_SIGN_IDENTITY=""
+  - CODE_SIGNING_REQUIRED=NO

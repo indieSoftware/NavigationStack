@@ -36,5 +36,5 @@ Thumbs.db
 xcuserdata/
 
 # CI
-Gemfile.lock
 reports
+build

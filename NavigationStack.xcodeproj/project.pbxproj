@@ -11,6 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 268038B0254D4578005FFB51 /* Build configuration list for PBXAggregateTarget "SwiftFormat" */;
 			buildPhases = (
+				26133F5D2557EEAE0099D3E6 /* Extract Swift Version Number */,
 				268038D9254D4D24005FFB51 /* SwiftFormat */,
 			);
 			dependencies = (
@@ -549,6 +550,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		26133F5D2557EEAE0099D3E6 /* Extract Swift Version Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Extract Swift Version Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd Tools\n./extractSwiftVersion.sh\ncd ..\n";
+		};
 		268038D5254D4C7C005FFB51 /* Install GitHooks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

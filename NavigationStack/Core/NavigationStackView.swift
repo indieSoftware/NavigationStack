@@ -29,11 +29,13 @@ private struct ContentViews: View {
 	let defaultView: AnyViewBuilder
 
 	var body: some View {
-		if !model.isAlternativeViewShowing(name) {
-			defaultView().transition(model.defaultViewTransition(name)).zIndex(model.defaultViewZIndex(name))
-		} // No `else`, see Experiment2
-		if model.isAlternativeViewShowing(name), let alternativeView = model.alternativeView(name) {
-			alternativeView().transition(model.alternativeViewTransition(name)).zIndex(model.alternativeViewZIndex(name))
+		ZStack {
+			if !model.isAlternativeViewShowing(name) {
+				defaultView().transition(model.defaultViewTransition(name)).zIndex(model.defaultViewZIndex(name))
+			} // No `else`, see Experiment2
+			if model.isAlternativeViewShowing(name), let alternativeView = model.alternativeView(name) {
+				alternativeView().transition(model.alternativeViewTransition(name)).zIndex(model.alternativeViewZIndex(name))
+			}
 		}
 	}
 }
