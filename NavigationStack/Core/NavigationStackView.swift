@@ -1,11 +1,28 @@
 import SwiftUI
 
+/// The navigation view used to switch content when applying a navigation transition.
+///
+/// This view works similar to SwiftUI's `NavigationView`.
+/// Place it as the view's root and provide the default content to show when no navigation transition has been applied.
+/// Use the `NavigationModel` to provide a destination view and transition animation to navigate to.
+///
+/// - Important:
+/// An instance of the `NavigationModel` has to be injected into the view hierarchy as an environment object:
+/// `MyRootView().environmentObject(NavigationModel())`
 public struct NavigationStackView: View {
 	@EnvironmentObject private var model: NavigationModel
 
+	/// This navigation stack view's name which works as an ID in the stack.
 	let name: String
+	/// The navigation stack view's default content to show when no navigation has been applied.
 	private let defaultView: AnyViewBuilder
 
+	/**
+	 Initializes the navigation stack view with a given name and its default content.
+
+	 - parameter name: The navigation stack view's name which works as its ID in the stack.
+	 This is the reference name to use when applying a navigation via the model and targeting this layer of stack.
+	 */
 	public init<Content>(_ name: String, @ViewBuilder defaultView: @escaping () -> Content) where Content: View {
 		self.name = name
 		self.defaultView = { AnyView(defaultView()) }

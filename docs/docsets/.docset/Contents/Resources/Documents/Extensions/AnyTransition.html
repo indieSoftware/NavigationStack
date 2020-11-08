@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           NavigationStack
         </a>
-         (44% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -70,19 +70,10 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/ClipShapeModifier.html">ClipShapeModifier</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/ContrastModifier.html">ContrastModifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/NavigationAnimation.html">NavigationAnimation</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/NavigationStackView.html">NavigationStackView</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/ScaledCircle.html">ScaledCircle</a>
               </li>
             </ul>
           </li>
@@ -91,10 +82,11 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             <h1>AnyTransition</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">AnyTransition</span></code></pre>
 
                 </div>
@@ -112,7 +104,7 @@
                     <code>
                     <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE8contrast6active8identityACSd_SdtFZ"></a>
                     <a name="//apple_ref/swift/Method/contrast(active:identity:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE8contrast6active8identityACSd_SdtFZ">contrast(active:identity:)</a>
+                    <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE8contrast6active8identityACSd_SdtFZ">contrast(active:<wbr>identity:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -120,24 +112,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A transition which changes the contrast of a view.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">contrast</span><span class="p">(</span><span class="nv">active</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">identity</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyTransition</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd"><a href="../Extensions/AnyTransition.html#/s:7SwiftUI13AnyTransitionV15NavigationStackE6staticACvpZ">static</a></span> <span class="kd">func</span> <span class="nf">contrast</span><span class="p">(</span><span class="nv">active</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">identity</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyTransition</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -153,24 +141,18 @@
                       <div class="abstract">
                         <p>A custom transition using a scaling circle to clip the view.</p>
 
-<p>Source by Paul Hudson: <a href="https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition">Hacking with Swift</a></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">var</span> <span class="nv">iris</span><span class="p">:</span> <span class="kt">AnyTransition</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd"><a href="../Extensions/AnyTransition.html#/s:7SwiftUI13AnyTransitionV15NavigationStackE6staticACvpZ">static</a></span> <span class="k">var</span> <span class="nv">iris</span><span class="p">:</span> <span class="kt">AnyTransition</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -184,7 +166,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A transition which doesn&rsquo;t apply any visible changes.
+This can be used for one view to remain unchanged while the counter-part view uses a visible transition animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -206,8 +189,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2020-11-07)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.12.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2020-11-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

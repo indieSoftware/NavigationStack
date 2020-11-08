@@ -1,9 +1,14 @@
 import Combine
 import SwiftUI
 
+/// The underlying `NavigationStackView`s model which can be manipulated to apply the navigation transitions.
+/// An instance of this model has to be injected into the view hierarchy as an environment object:
+/// `MyRootView().environmentObject(NavigationModel())`
 public class NavigationModel: ObservableObject {
-	let silenceErrors: Bool
+	/// Flag used to determine if errors are thrown or silently ignored.
+	public let silenceErrors: Bool
 
+	/// The node list used as stack of navigation steps. Logically each navigation enques a new node and each back-navigation removes one.
 	@Published private var navigationStackNode: NavigationStackNode? {
 		didSet {
 			// Propagates any published state changes from the node to observers of this node and not only whether the node has been set or deleted.
@@ -15,10 +20,24 @@ public class NavigationModel: ObservableObject {
 
 	private var navigationStackNodeChangeCanceller: AnyCancellable?
 
+	/**
+	 Initializes the model.
+	 - parameter silenceErrors: When set to true each error will be silently ignored, when false each error will result in an exception thrown.
+	 Defaults to false.
+	 */
 	public init(silenceErrors: Bool = false) {
 		self.silenceErrors = silenceErrors
 	}
 
+	/**
+	 Performs the navigation by showing a new view.
+	 This is typically used to navigate to a new view.
+
+	 - parameter name: The navigation stack view's name targeting by this navigation.
+	 The provided name will be used to determine which navigation stack view should replace its view with the provided one.
+	 - parameter animation: The transition animation to apply.
+	 - parameter alternativeView: The new view which should replace the navigation stack view's default view.
+	 */
 	public func showView<Content: View>(_ name: String, animation: NavigationAnimation? = nil, @ViewBuilder alternativeView: @escaping () -> Content) {
 		let viewBuilder: AnyViewBuilder = { AnyView(alternativeView()) }
 
@@ -69,6 +88,10 @@ public class NavigationModel: ObservableObject {
 		}
 	}
 
+	/**
+	 Navigates back to the previews view by using its reverse animation.
+	 This is typically used to execute a back navigation.
+	 */
 	public func hideTopViewWithReverseAnimation() {
 		guard let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() else {
 			if silenceErrors { return }
@@ -78,6 +101,12 @@ public class NavigationModel: ObservableObject {
 		hideAlternativeViewForNode(leafNode)
 	}
 
+	/**
+	 Navigates back to the previous view by using a provided a specific transition animation.
+	 This is typically used to navigate back, but with a specific animation which might not be known in advance.
+
+	 - parameter animation: The transition animation to use for this navigation. When nil is passed then no animation will be used.
+	 */
 	public func hideTopView(animation: NavigationAnimation? = nil) {
 		guard let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() else {
 			if silenceErrors { return }
@@ -88,6 +117,14 @@ public class NavigationModel: ObservableObject {
 		hideAlternativeViewForNode(leafNode)
 	}
 
+	/**
+	 Navigates back to a specific navigation stack view somewhere in the stack.
+	 This is typically used to navigate back multiple views.
+
+	 - parameter name: The navigation stack view's name targeting by this navigation.
+	 The provided name will be used to determine which navigation stack view should switch back to its default view.
+	 - parameter animation: The transition animation to use during this transition. When nil is passed then no animation will be used.
+	 */
 	public func hideView(_ name: String, animation: NavigationAnimation? = nil) {
 		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
 			if silenceErrors { return }
@@ -98,6 +135,13 @@ public class NavigationModel: ObservableObject {
 		hideAlternativeViewForNode(node)
 	}
 
+	/**
+	 Navigates back to a specific navigation stack view somewhere in the stack by using its reverse animation.
+	 This is typically used to execute a back navigation to a view farther down the stack, e.g. back to the root.
+
+	 - parameter name: The navigation stack view's name targeting by this navigation.
+	 The provided name will be used to determine which navigation stack view should switch back to its default view.
+	 */
 	public func hideViewWithReverseAnimation(_ name: String) {
 		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
 			if silenceErrors { return }
@@ -120,14 +164,21 @@ public class NavigationModel: ObservableObject {
 	}
 
 	/**
-	 - Warning: Using this method to show different views or sub-views without freezing the result will result in animation glitches!
+	 Returns whether there is a navigation view on the stack or not, meaning is it possible to navigate back or not.
+	 True when it's safe to navigate back, otherwise false.
+
+	 - Warning: Using this method to show different views or sub-views without freezing the result in a `let` variable will result in animation glitches!
 	 */
 	public var hasAlternativeViewShowing: Bool {
 		navigationStackNode?.getLeafNode() != nil
 	}
 
 	/**
-	 - Warning: Using this method to show different views or sub-views without freezing the result will result in animation glitches!
+	 Returns whether there is a navigation view with a specific name on the stack or not,
+	 meaning is it possible to navigate to the named navigation stack view or not.
+	 True when it's safe to navigate to the name, otherwise false.
+
+	 - Warning: Using this method to show different views or sub-views without freezing the result in a `let` variable will result in animation glitches!
 	 */
 	public func isAlternativeViewShowing(_ name: String) -> Bool {
 		guard let node = navigationStackNode?.getNode(named: name) else {
@@ -137,6 +188,12 @@ public class NavigationModel: ObservableObject {
 		return node.isAlternativeViewShowing
 	}
 
+	/**
+	 Creates and returns a binding for the top navigation stack view's showing flag.
+	 This binding can be used to pass it to the new view shown by the navigation so the new view can dismiss itself by toggling the binding's value.
+
+	 - returns: The binding bound to the top view on the navigation stack.
+	 */
 	public func topViewShowingBinding() -> Binding<Bool> {
 		guard let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() else {
 			if silenceErrors { return .constant(false) }
@@ -146,6 +203,11 @@ public class NavigationModel: ObservableObject {
 		return createBindingForNode(leafNode)
 	}
 
+	/**
+	 Creates and returns a binding for a named navigation stack view's showing flag.
+
+	 - returns: The binding bound to the named view on the navigation stack.
+	 */
 	public func viewShowingBinding(_ name: String) -> Binding<Bool> {
 		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
 			if silenceErrors { return .constant(false) }
@@ -171,7 +233,7 @@ public class NavigationModel: ObservableObject {
 	}
 }
 
-// MARK: - Used by ContentSwitcher
+// MARK: - Used by the NavigationStackView
 
 extension NavigationModel {
 	func isAlternativeViewShowingPrecede(_ name: String) -> Bool {

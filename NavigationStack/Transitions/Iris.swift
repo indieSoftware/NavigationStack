@@ -1,11 +1,7 @@
 import SwiftUI
 
 public extension AnyTransition {
-	/**
-	 A custom transition using a scaling circle to clip the view.
-
-	 Source by Paul Hudson: [Hacking with Swift]( https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition )
-	 */
+	/// A custom transition using a scaling circle to clip the view.
 	static var iris: AnyTransition {
 		.modifier(
 			active: ClipShapeModifier(shape: ScaledCircle(animatableData: 0)),
@@ -14,7 +10,7 @@ public extension AnyTransition {
 	}
 }
 
-public struct ClipShapeModifier<T: Shape>: ViewModifier {
+struct ClipShapeModifier<T: Shape>: ViewModifier {
 	public let shape: T
 
 	public func body(content: Content) -> some View {
@@ -22,7 +18,8 @@ public struct ClipShapeModifier<T: Shape>: ViewModifier {
 	}
 }
 
-public struct ScaledCircle: Shape {
+/// Source by Paul Hudson: [Hacking with Swift]( https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition )
+struct ScaledCircle: Shape {
 	public var animatableData: CGFloat
 
 	public func path(in rect: CGRect) -> Path {
