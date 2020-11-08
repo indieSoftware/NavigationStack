@@ -566,7 +566,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd Tools\n./extractSwiftVersion.sh\ncd ..\n";
+			shellScript = ". Scripts/extractSwiftVersion.sh\n";
 		};
 		268038D5254D4C7C005FFB51 /* Install GitHooks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -584,7 +584,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd Tools\n./copyGitHooks.sh\ncd ..\n";
+			shellScript = "cd Scripts\n. copyGitHooks.sh\ncd ..\n";
 		};
 		268038D6254D4C88005FFB51 /* Install GitHooks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -602,7 +602,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd Tools\n./copyGitHooks.sh\ncd ..\n";
+			shellScript = "cd Scripts\n. copyGitHooks.sh\ncd ..\n";
 		};
 		268038D7254D4CC1005FFB51 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -656,7 +656,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". Tools/swiftFormatCodePaths.sh\n\"Pods/SwiftFormat/CommandLineTool/swiftformat\" ${swiftFormatCodePaths[*]}\n";
+			shellScript = ". Scripts/swiftFormatCodePaths.sh\n\"Pods/SwiftFormat/CommandLineTool/swiftformat\" ${swiftFormatCodePaths[*]}\n";
 		};
 		6C77AD80C335F2AFD38AEFA9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -972,11 +972,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H6T8HJZGHY;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = "$(DYLIB_CURRENT_VERSION)";
+				DYLIB_CURRENT_VERSION = 3;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NavigationStack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1006,11 +1006,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H6T8HJZGHY;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = "$(DYLIB_CURRENT_VERSION)";
+				DYLIB_CURRENT_VERSION = 3;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NavigationStack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

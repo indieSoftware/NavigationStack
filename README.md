@@ -1,7 +1,7 @@
 ![iOS Version](https://img.shields.io/badge/iOS-13.0+-brightgreen)
 [![Build Status](https://travis-ci.com/indieSoftware/NavigationStack.svg?branch=master)](https://travis-ci.com/indieSoftware/NavigationStack)
 [![Code Coverage](https://codecov.io/gh/indieSoftware/NavigationStack/branch/master/graph/badge.svg)](https://codecov.io/gh/indieSoftware/NavigationStack)
-[![Documentation Coverage](https://github.com/indieSoftware/NavigationStack/tree/gh-pages/docs/badge.svg)](https://indiesoftware.github.io/NavigationStack)
+[![Documentation Coverage](docs/badge.svg)](https://indiesoftware.github.io/NavigationStack)
 [![License](https://img.shields.io/github/license/indieSoftware/NavigationStack)](https://github.com/indieSoftware/NavigationStack/blob/master/LICENSE)
 [![GitHub Tag](https://img.shields.io/github/v/tag/indieSoftware/NavigationStack?label=version)](https://github.com/indieSoftware/NavigationStack)
 [![CocoaPods](https://img.shields.io/cocoapods/v/SwiftUINavigationStack.svg)](https://cocoapods.org/pods/SwiftUINavigationStack)
@@ -24,3 +24,7 @@ Compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modif
 - Define the back transition animation right before transitioning back, not when transitioning forward
 
 ## Usage
+
+## Documentation
+
+**[https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)**
