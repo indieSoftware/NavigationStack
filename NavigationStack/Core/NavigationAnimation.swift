@@ -2,9 +2,9 @@ import SwiftUI
 
 /// A data struct with information for a transition animation used by the `NavigationStackView`.
 public struct NavigationAnimation {
-	/// The Z-Index to use by content which should be shown behind the other.
+	/// The Z-Index to use by content which should be shown behind the other. Set to `-1`.
 	public static let zIndexOfBehind = -1.0
-	/// The Z-Index to use by content which should be shown in front of the other.
+	/// The Z-Index to use by content which should be shown in front of the other. Set to `1`.
 	public static let zIndexOfInFront = 1.0
 
 	/// The animation curve to use when animating a transition.
