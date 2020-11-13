@@ -12,6 +12,7 @@ struct DismissTopContentButton: View {
 			// Don't use `hasAlternativeViewShowing` from the model to show different sub-views because this will lead to animation glitches!
 			if !hasAlternativeViewShowing {
 				Text("Not possible: ")
+					.accessibility(identifier: "NotPossibleLabel")
 			}
 			// Dangerous access to `isAlternativeViewShowing` to show different sub-views, because this might lead to animation glitches.
 			// However, here it's fine because the access doesn't happen in the subview itself.
@@ -24,6 +25,7 @@ struct DismissTopContentButton: View {
 			}, label: {
 				Text("Back")
 			})
+				.accessibility(identifier: "Back")
 		}
 	}
 }

@@ -8,6 +8,42 @@ class ExperimentTests: XCTestCase {
 		app = XCUIApplication()
 	}
 
+	private func launchExperiment(_ number: Int) {
+		app.launchArguments = ["Experiment\(number)"]
+		app.launch()
+
+		// Push alternative content
+		tapToggleContent()
+		// Pop back to default
+		tapToggleContent()
+
+		// Switch transition to Scale
+		tapPicker(1, segment: 1)
+
+		// Show alternative content with a scale transition
+		tapToggleContent()
+
+		// Switch transition back to Move
+		tapPicker(1, segment: 0)
+
+		// Transition back to the default content
+		tapToggleContent()
+	}
+
+	private func tapToggleContent() {
+		app.buttons["ToggleContentButton"].tap()
+		sleep(1)
+	}
+
+	private func tapPicker(_ index: Int, segment: Int) {
+		let picker = app.segmentedControls["Picker_\(index)"]
+		let button = picker.buttons.element(boundBy: segment)
+		button.tap()
+		sleep(1)
+	}
+
+	// MARK: - Tests
+
 	// This experiment includes knowledge from experiment 2 to 5 to get the transition animation working as expected.
 	func testExperiment1() throws {
 		launchExperiment(1)
@@ -54,39 +90,5 @@ class ExperimentTests: XCTestCase {
 	// This experiment builds on top of Experiment8, but solves the ordering of the overlapping content views.
 	func testExperiment9() throws {
 		launchExperiment(9)
-	}
-
-	private func launchExperiment(_ number: Int) {
-		app.launchArguments = ["Experiment\(number)"]
-		app.launch()
-
-		// Push alternative content
-		tapToggleContent()
-		// Pop back to default
-		tapToggleContent()
-
-		// Switch transition to Scale
-		tapPicker(1, segment: 1)
-
-		// Show alternative content with a scale transition
-		tapToggleContent()
-
-		// Switch transition back to Move
-		tapPicker(1, segment: 0)
-
-		// Transition back to the default content
-		tapToggleContent()
-	}
-
-	private func tapToggleContent() {
-		app.buttons["ToggleContentButton"].tap()
-		sleep(1)
-	}
-
-	private func tapPicker(_ index: Int, segment: Int) {
-		let picker = app.segmentedControls["Picker_\(index)"]
-		let button = picker.buttons.element(boundBy: segment)
-		button.tap()
-		sleep(1)
 	}
 }

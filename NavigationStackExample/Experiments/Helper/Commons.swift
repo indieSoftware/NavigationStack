@@ -1,6 +1,6 @@
 import SwiftUI
 
-let experimentAnimationSpeedFactor = 0.5
+let experimentAnimationSpeedFactor = 0.75
 let contentBackgroundOpacity = 1.0
 
 struct DefaultContent: View {

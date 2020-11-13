@@ -16,12 +16,14 @@ struct ContentView4: View {
 				}, label: {
 					Text("Dismiss View 4 w/ animation")
 				})
+					.accessibility(identifier: "DismissView4Animated")
 
 				Button(action: {
 					isPresented.toggle()
 				}, label: {
 					Text("Dismiss View 4 w/o animation")
 				})
+					.accessibility(identifier: "DismissView4NoAnimation")
 
 				Spacer()
 			}

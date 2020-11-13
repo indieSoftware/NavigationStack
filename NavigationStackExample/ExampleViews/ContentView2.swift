@@ -29,6 +29,7 @@ struct ContentView2: View {
 					}, label: {
 						Text("Pop to View 1")
 					})
+						.accessibility(identifier: "PopToView1")
 
 					Button(action: {
 						// Example of a combined reset transition.
@@ -43,6 +44,7 @@ struct ContentView2: View {
 					}, label: {
 						Text("Scale down to View 1")
 					})
+						.accessibility(identifier: "ScaleDownToView1")
 
 					Button(action: {
 						// Example of a custom reset transition.
@@ -57,6 +59,7 @@ struct ContentView2: View {
 					}, label: {
 						Text("Double Iris to View 1")
 					})
+						.accessibility(identifier: "DoubleIrisToView1")
 
 					Button(action: {
 						navigationModel.pushContent(ContentView2.navigationName) {
@@ -67,6 +70,7 @@ struct ContentView2: View {
 					}, label: {
 						Text("Push View 3")
 					})
+						.accessibility(identifier: "PushView3")
 
 					Button(action: {
 						navigationModel.presentContent(ContentView2.navigationName) {
@@ -75,6 +79,7 @@ struct ContentView2: View {
 					}, label: {
 						Text("Present View 4")
 					})
+						.accessibility(identifier: "PresentView4")
 
 					Spacer()
 				}

@@ -26,6 +26,7 @@ struct ContentView3: View {
 						}, label: {
 							Text("Pop to root (View 1)")
 						})
+							.accessibility(identifier: "PopToRoot")
 
 						// Using isAlternativeViewShowing from the model to show different sub-views will lead to animation glitches,
 						// therefore use the frozen `isView2Showing` value.
@@ -36,6 +37,7 @@ struct ContentView3: View {
 							}, label: {
 								Text("Pop to View 2 (w/ animation)")
 							})
+								.accessibility(identifier: "PopToView2Animated")
 						}
 
 						Button(action: {
@@ -51,6 +53,7 @@ struct ContentView3: View {
 								Text("Pop to View 2 (not available)")
 							}
 						})
+							.accessibility(identifier: "PopToView2NoAnimation")
 
 						Button(action: {
 							navigationModel.presentContent(ContentView3.navigationName) {
@@ -59,6 +62,7 @@ struct ContentView3: View {
 						}, label: {
 							Text("Present View 4")
 						})
+							.accessibility(identifier: "PresentView4")
 					}
 
 					Spacer()

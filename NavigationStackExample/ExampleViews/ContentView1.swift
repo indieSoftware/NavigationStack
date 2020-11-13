@@ -33,6 +33,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Push View 2")
 						})
+							.accessibility(identifier: "PushView2")
 
 						Button(action: {
 							// Example of a combined transition usage, here scale is combined with opacity.
@@ -49,13 +50,14 @@ struct ContentView1: View {
 						}, label: {
 							Text("Scale up to View 2")
 						})
+							.accessibility(identifier: "ScaleUpToView2")
 
 						Button(action: {
 							// Example of a custom transition usage, here an iris effect is used to show the alternative content.
 							navigationModel.showView(
 								ContentView1.navigationName,
 								animation: NavigationAnimation(
-									animation: Animation.easeOut.speed(0.25),
+									animation: Animation.easeOut.speed(0.5),
 									defaultViewTransition: .static,
 									alternativeViewTransition: .iris
 								)
@@ -65,6 +67,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Single Iris to View 2")
 						})
+							.accessibility(identifier: "SingleIrisToView2")
 
 						Button(action: {
 							// Example of a horizontal move transition via shortcut naming.
@@ -76,6 +79,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Push View 3")
 						})
+							.accessibility(identifier: "PushView3")
 					}
 					Group {
 						Button(action: {
@@ -86,6 +90,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Present View 4 (View 4 in front of View 1)")
 						})
+							.accessibility(identifier: "PresentView4InFront")
 
 						Button(action: {
 							// Example of how to change the zIndex of views, showing here View4 behind View1.
@@ -104,6 +109,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Present View 4 (View 4 behind View 1)")
 						})
+							.accessibility(identifier: "PresentView4Behind")
 
 						Button(action: {
 							// Example of a fade transition via shortcut naming.
@@ -113,6 +119,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Present View 4 via fading")
 						})
+							.accessibility(identifier: "PresentView4Fading")
 
 						Button(action: {
 							navigationModel.presentContent(ContentView1.navigationName) {
@@ -121,6 +128,7 @@ struct ContentView1: View {
 						}, label: {
 							Text("Show Transition Examples")
 						})
+							.accessibility(identifier: "TransitionExamplesButton")
 
 						Button(action: {
 							navigationModel.presentContent(ContentView1.navigationName) {

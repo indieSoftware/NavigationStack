@@ -63,6 +63,8 @@
 		268039C3254E16C4005FFB51 /* Experiment4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268039B1254E16C4005FFB51 /* Experiment4.swift */; };
 		268039CE254E17B8005FFB51 /* ExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268039CC254E17B8005FFB51 /* ExperimentTests.swift */; };
 		268039CF254E17B8005FFB51 /* SubviewExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268039CD254E17B8005FFB51 /* SubviewExampleTests.swift */; };
+		2681A3DD255E70AF00FC740E /* TransitionExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A3DC255E70AF00FC740E /* TransitionExampleTests.swift */; };
+		2681A3E3255E727E00FC740E /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A3E2255E727E00FC740E /* ContentViewTests.swift */; };
 		6364FD39926129A955D231DB /* Pods_NavigationStackExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771420FE8C3240E2892674B1 /* Pods_NavigationStackExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +153,8 @@
 		268039B1254E16C4005FFB51 /* Experiment4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experiment4.swift; sourceTree = "<group>"; };
 		268039CC254E17B8005FFB51 /* ExperimentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentTests.swift; sourceTree = "<group>"; };
 		268039CD254E17B8005FFB51 /* SubviewExampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewExampleTests.swift; sourceTree = "<group>"; };
+		2681A3DC255E70AF00FC740E /* TransitionExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExampleTests.swift; sourceTree = "<group>"; };
+		2681A3E2255E727E00FC740E /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		428938A0AA561D3C1E8DDA17 /* Pods_NavigationStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NavigationStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E7F27EF3D92D75A15CC08D /* Pods-NavigationStackExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NavigationStackExample.release.xcconfig"; path = "Target Support Files/Pods-NavigationStackExample/Pods-NavigationStackExample.release.xcconfig"; sourceTree = "<group>"; };
 		771420FE8C3240E2892674B1 /* Pods_NavigationStackExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NavigationStackExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,8 +288,10 @@
 			isa = PBXGroup;
 			children = (
 				268038A3254D4563005FFB51 /* Info.plist */,
+				2681A3E2255E727E00FC740E /* ContentViewTests.swift */,
 				268039CC254E17B8005FFB51 /* ExperimentTests.swift */,
 				268039CD254E17B8005FFB51 /* SubviewExampleTests.swift */,
+				2681A3DC255E70AF00FC740E /* TransitionExampleTests.swift */,
 			);
 			path = NavigationStackExampleUITests;
 			sourceTree = "<group>";
@@ -763,6 +769,8 @@
 			files = (
 				268039CF254E17B8005FFB51 /* SubviewExampleTests.swift in Sources */,
 				268039CE254E17B8005FFB51 /* ExperimentTests.swift in Sources */,
+				2681A3E3255E727E00FC740E /* ContentViewTests.swift in Sources */,
+				2681A3DD255E70AF00FC740E /* TransitionExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
