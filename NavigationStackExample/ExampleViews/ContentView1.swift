@@ -59,7 +59,7 @@ struct ContentView1: View {
 								animation: NavigationAnimation(
 									animation: Animation.easeOut.speed(0.5),
 									defaultViewTransition: .static,
-									alternativeViewTransition: .iris
+									alternativeViewTransition: .circleShape
 								)
 							) {
 								ContentView2()

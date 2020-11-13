@@ -52,8 +52,8 @@ struct ContentView2: View {
 							ContentView1.navigationName,
 							animation: NavigationAnimation(
 								animation: Animation.easeOut.speed(0.25),
-								defaultViewTransition: .iris,
-								alternativeViewTransition: .iris
+								defaultViewTransition: .circleShape,
+								alternativeViewTransition: .circleShape
 							)
 						)
 					}, label: {

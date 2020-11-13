@@ -9,8 +9,8 @@ struct TransitionExamples: View {
 
 	var body: some View {
 		NavigationStackView(TransitionExamples.navigationName) {
-			HStack {
-				ScrollView {
+			ScrollView {
+				HStack {
 					VStack(alignment: .leading, spacing: 20) {
 						Button(action: {
 							navigationModel.hideTopViewWithReverseAnimation()
@@ -29,21 +29,33 @@ struct TransitionExamples: View {
 							transitionExample(name: "Identity", transition: .identity)
 						}
 
-						// Custom transitions
+						// Identity replacement
+						transitionExample(name: "Static", transition: .static)
+
+						// Transitions with SwiftUI effects
 						Group {
-							transitionExample(name: "Static", transition: .static)
-							transitionExample(name: "Iris", transition: .iris)
 							transitionExample(name: "Blur", transition: .blur(radius: 100))
 							transitionExample(name: "Brightness", transition: .brightness())
 							transitionExample(name: "Contrast", transition: .contrast(-1))
-							transitionExample(name: "Saturation", transition: .saturation())
 							transitionExample(name: "HueRotation", transition: .hueRotation(.degrees(360)))
+							transitionExample(name: "Saturation", transition: .saturation())
+						}
+
+						// Custom transitions
+						Group {
+							transitionExample(name: "TiltAndFly", transition: .tiltAndFly)
+							transitionExample(name: "CircleShape", transition: .circleShape)
+							transitionExample(name: "RectangleShape", transition: .rectangleShape)
+							transitionExample(name: "StripesHorizontalDown", transition: .stripes(stripes: 5, horizontal: true))
+							transitionExample(name: "StripesHorizontalUp", transition: .stripes(stripes: 5, horizontal: true, inverted: true))
+							transitionExample(name: "StripesVerticalRight", transition: .stripes(stripes: 5, horizontal: false))
+							transitionExample(name: "StripesVerticalLeft", transition: .stripes(stripes: 5, horizontal: false, inverted: true))
 						}
 
 						Spacer()
 					}
+					Spacer()
 				}
-				Spacer()
 			}
 			.padding()
 			.background(Color(UIColor.green).opacity(1.0))

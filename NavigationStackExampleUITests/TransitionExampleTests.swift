@@ -29,11 +29,19 @@ class TransitionExampleTests: XCTestCase {
 		playTransition("Identity")
 
 		playTransition("Static")
-		playTransition("Iris")
+
 		playTransition("Blur")
 		playTransition("Brightness")
 		playTransition("Contrast")
-		playTransition("Saturation")
 		playTransition("HueRotation")
+		playTransition("Saturation")
+
+		playTransition("TiltAndFly")
+		playTransition("CircleShape")
+		playTransition("RectangleShape")
+		playTransition("StripesHorizontalDown")
+		playTransition("StripesHorizontalUp")
+		playTransition("StripesVerticalRight")
+		playTransition("StripesVerticalLeft")
 	}
 }

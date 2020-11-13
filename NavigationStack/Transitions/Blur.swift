@@ -11,7 +11,7 @@ public extension AnyTransition {
 	 - returns: The constructed transition.
 	 */
 	static func blur(radius: Double) -> AnyTransition {
-		.modifier(active: BlurModifier(radius: (CGFloat)(radius), opaque: false), identity: BlurModifier(radius: 0, opaque: false))
+		.modifier(active: BlurModifier(radius: radius, opaque: false), identity: BlurModifier(radius: 0, opaque: false))
 	}
 }
 
@@ -22,10 +22,10 @@ public extension AnyTransition {
  */
 public struct BlurModifier: ViewModifier {
 	/// The radial size of the blur.
-	public let radius: CGFloat
+	public let radius: Double
 	/// A Boolean value that indicates whether the blur renderer permits transparency in the blur output.
 	public let opaque: Bool
 	public func body(content: Content) -> some View {
-		content.blur(radius: radius, opaque: opaque)
+		content.blur(radius: (CGFloat)(radius), opaque: opaque)
 	}
 }
