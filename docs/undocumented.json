@@ -1,6 +1,33 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/ClipShape.swift",
+      "line": 115,
+      "symbol": "StripesShape.insertion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/ClipShape.swift",
+      "line": 116,
+      "symbol": "StripesShape.stripes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/ClipShape.swift",
+      "line": 117,
+      "symbol": "StripesShape.horizontal",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sven/Work/Git/NavigationStack/NavigationStack/Transitions/ClipShape.swift",
+      "line": 118,
+      "symbol": "StripesShape.inverted",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/sven/Work/Git/NavigationStack"
 }
