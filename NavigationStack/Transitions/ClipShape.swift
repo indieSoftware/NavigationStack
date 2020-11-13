@@ -112,9 +112,14 @@ public struct RectangleShape: Shape {
  Source by [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
  */
 public struct StripesShape: Shape {
+	/// When true the animation will enlarge the view, when false the animation will shrink the view.
 	public let insertion: Bool
+	/// The number of stripes to use.
 	public let stripes: Int
+	/// When true then the stripes will be layed horizontally, otherwise vertically.
 	public let horizontal: Bool
+	/// When false then the horizontal animation is intended to the bottom, when true then to the top.
+	/// When false then the vertical animation is intended to the right, when true then to the left.
 	public let inverted: Bool
 
 	public var animatableData: CGFloat
