@@ -65,6 +65,10 @@
 		268039CF254E17B8005FFB51 /* SubviewExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268039CD254E17B8005FFB51 /* SubviewExampleTests.swift */; };
 		2681A3DD255E70AF00FC740E /* TransitionExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A3DC255E70AF00FC740E /* TransitionExampleTests.swift */; };
 		2681A3E3255E727E00FC740E /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A3E2255E727E00FC740E /* ContentViewTests.swift */; };
+		2681A3ED255E92D500FC740E /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A3EC255E92D500FC740E /* Blur.swift */; };
+		2681A3F3255E9CE600FC740E /* Brightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A3F2255E9CE600FC740E /* Brightness.swift */; };
+		2681A401255E9E8000FC740E /* Saturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A400255E9E8000FC740E /* Saturation.swift */; };
+		2681A40B255EA05400FC740E /* HueRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A40A255EA05400FC740E /* HueRotation.swift */; };
 		6364FD39926129A955D231DB /* Pods_NavigationStackExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771420FE8C3240E2892674B1 /* Pods_NavigationStackExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +159,10 @@
 		268039CD254E17B8005FFB51 /* SubviewExampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewExampleTests.swift; sourceTree = "<group>"; };
 		2681A3DC255E70AF00FC740E /* TransitionExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExampleTests.swift; sourceTree = "<group>"; };
 		2681A3E2255E727E00FC740E /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
+		2681A3EC255E92D500FC740E /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		2681A3F2255E9CE600FC740E /* Brightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brightness.swift; sourceTree = "<group>"; };
+		2681A400255E9E8000FC740E /* Saturation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saturation.swift; sourceTree = "<group>"; };
+		2681A40A255EA05400FC740E /* HueRotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueRotation.swift; sourceTree = "<group>"; };
 		428938A0AA561D3C1E8DDA17 /* Pods_NavigationStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NavigationStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E7F27EF3D92D75A15CC08D /* Pods-NavigationStackExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NavigationStackExample.release.xcconfig"; path = "Target Support Files/Pods-NavigationStackExample/Pods-NavigationStackExample.release.xcconfig"; sourceTree = "<group>"; };
 		771420FE8C3240E2892674B1 /* Pods_NavigationStackExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NavigationStackExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,9 +307,13 @@
 		26803942254E10DE005FFB51 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				2681A3EC255E92D500FC740E /* Blur.swift */,
+				2681A3F2255E9CE600FC740E /* Brightness.swift */,
 				26803945254E10DE005FFB51 /* Contrast.swift */,
 				26803944254E10DE005FFB51 /* Iris.swift */,
+				2681A400255E9E8000FC740E /* Saturation.swift */,
 				26803943254E10DE005FFB51 /* Static.swift */,
+				2681A40A255EA05400FC740E /* HueRotation.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -742,12 +754,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2681A3ED255E92D500FC740E /* Blur.swift in Sources */,
 				26803948254E10DE005FFB51 /* NavigationAnimation.swift in Sources */,
 				2680394B254E10DE005FFB51 /* NavigationStackView.swift in Sources */,
 				2680394D254E10DE005FFB51 /* Iris.swift in Sources */,
+				2681A3F3255E9CE600FC740E /* Brightness.swift in Sources */,
 				2680394A254E10DE005FFB51 /* Types.swift in Sources */,
 				2680398B254E1354005FFB51 /* NavigationAnimations.swift in Sources */,
 				26803950254E10DE005FFB51 /* NavigationModelConvenienceMethods.swift in Sources */,
+				2681A40B255EA05400FC740E /* HueRotation.swift in Sources */,
+				2681A401255E9E8000FC740E /* Saturation.swift in Sources */,
 				26803949254E10DE005FFB51 /* NavigationStackNode.swift in Sources */,
 				2680394C254E10DE005FFB51 /* Static.swift in Sources */,
 				2680394E254E10DE005FFB51 /* Contrast.swift in Sources */,

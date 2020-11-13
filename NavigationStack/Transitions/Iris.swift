@@ -1,7 +1,9 @@
 import SwiftUI
 
 public extension AnyTransition {
-	/// A custom transition using a scaling circle to clip the view.
+	/**
+	 A custom transition using a scaling circle to clip the view.
+	 */
 	static var iris: AnyTransition {
 		.modifier(
 			active: ClipShapeModifier(shape: ScaledCircle(animatableData: 0)),

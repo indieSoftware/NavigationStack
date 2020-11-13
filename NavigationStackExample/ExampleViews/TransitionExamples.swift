@@ -20,16 +20,25 @@ struct TransitionExamples: View {
 							.accessibility(identifier: "BackButton")
 
 						// SwiftUI transitions
-						transitionExample(name: "Move", transition: .move(edge: .trailing))
-						transitionExample(name: "Scale", transition: .scale(scale: 0.0, anchor: UnitPoint(x: 0.2, y: 0.2)))
-						transitionExample(name: "Offset", transition: .offset(x: 100, y: 100))
-						transitionExample(name: "Opacity", transition: .opacity)
-						transitionExample(name: "Slide", transition: .slide)
+						Group {
+							transitionExample(name: "Move", transition: .move(edge: .trailing))
+							transitionExample(name: "Scale", transition: .scale(scale: 0.0, anchor: UnitPoint(x: 0.2, y: 0.2)))
+							transitionExample(name: "Offset", transition: .offset(x: 100, y: 100))
+							transitionExample(name: "Opacity", transition: .opacity)
+							transitionExample(name: "Slide", transition: .slide)
+							transitionExample(name: "Identity", transition: .identity)
+						}
 
 						// Custom transitions
-						transitionExample(name: "Static", transition: .static)
-						transitionExample(name: "Iris", transition: .iris)
-						transitionExample(name: "Contrast", transition: .contrast(active: 0.0, identity: 1.0))
+						Group {
+							transitionExample(name: "Static", transition: .static)
+							transitionExample(name: "Iris", transition: .iris)
+							transitionExample(name: "Blur", transition: .blur(radius: 100))
+							transitionExample(name: "Brightness", transition: .brightness())
+							transitionExample(name: "Contrast", transition: .contrast(-1))
+							transitionExample(name: "Saturation", transition: .saturation())
+							transitionExample(name: "HueRotation", transition: .hueRotation(.degrees(360)))
+						}
 
 						Spacer()
 					}

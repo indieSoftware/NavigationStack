@@ -26,9 +26,14 @@ class TransitionExampleTests: XCTestCase {
 		playTransition("Offset")
 		playTransition("Opacity")
 		playTransition("Slide")
+		playTransition("Identity")
 
 		playTransition("Static")
 		playTransition("Iris")
+		playTransition("Blur")
+		playTransition("Brightness")
 		playTransition("Contrast")
+		playTransition("Saturation")
+		playTransition("HueRotation")
 	}
 }
