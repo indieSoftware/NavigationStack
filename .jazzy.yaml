@@ -17,3 +17,25 @@ xcodebuild_arguments:
   - NavigationStack.xcworkspace
   - -scheme
   - NavigationStack
+custom_categories: 
+  - name: NavigationStack
+    children:
+      - NavigationModel
+      - NavigationStackView
+      - NavigationAnimation
+  - name: Transition Animations
+    children:
+      - AnyTransition
+  - name: Modifier Structs
+    children:
+      - BlurModifier
+      - BrightnessModifier
+      - ClipShapeModifier
+      - ContrastModifier
+      - HueRotationModifier
+      - SaturationModifier
+  - name: Shapes usable by ClipShapeModifier
+    children:
+      - CircleShape
+      - RectangleShape
+      - StripesShape

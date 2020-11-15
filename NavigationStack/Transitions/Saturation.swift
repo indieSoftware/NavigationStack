@@ -4,7 +4,7 @@ public extension AnyTransition {
 	/**
 	 A transition which uses a brighness effect.
 
-	 See also: [SwiftUI doc](https://developer.apple.com/documentation/swiftui/emptyview/saturation(_:))
+	 See also: [SwiftUI doc for saturation](https://developer.apple.com/documentation/swiftui/emptyview/saturation(_:))
 
 	 - parameter amount: A value between 0 (no saturation = gray) and 1 (full saturation = full color) that represents the amount of saturation to apply.
 	 Defaults to 0. Should not be 1.

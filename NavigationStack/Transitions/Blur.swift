@@ -4,7 +4,7 @@ public extension AnyTransition {
 	/**
 	 A transition which uses a blurring effect.
 
-	 See also: [SwiftUI doc](https://developer.apple.com/documentation/swiftui/emptyview/blur(radius:opaque:))
+	 See also: [SwiftUI doc for blur](https://developer.apple.com/documentation/swiftui/emptyview/blur(radius:opaque:))
 
 	 - parameter radius: The radial size of the blur. A blur is more diffuse when its radius is large.
 	 Noticable values are greater than 1. Should not be 0.

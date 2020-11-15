@@ -16,15 +16,29 @@ NavigationStack is a custom SwiftUI solution for navigating between views. It's 
 Compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modifier:
 
 - Use different transition animations (not only a horizontal push/pop or a vertical present/dismiss)
-- Use a full-screen present transition also on iOS 13
+- Use one of the various transition animations included
+- Or create your own custom transition animations
 - Navigate even without any transition animation at all if you want
-- Use your own custom transition animations
-- Or use one of the various included
+- Define the back transition animation right before transitioning back, not in advance when transitioning forward
 - Navigate back multiple screens at once, not only to the previous
-- Define the back transition animation right before transitioning back, not when transitioning forward
+- Use a full-screen present transition also on iOS 13
+
+## Installation
+
+### CocoaPods
+
+**TODO**
 
 ## Usage
 
 ## Documentation
 
 **[https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)**
+
+
+## Trouble shooting
+
+#### Fatal error: No ObservableObject of type NavigationModel found. A View.environmentObject(_:) for NavigationModel may be missing as an ancestor of this view.
+
+Add a navigation model to the view hierarchy, e.g.  `MyRootView().environmentObject(NavigationModel())`.
+

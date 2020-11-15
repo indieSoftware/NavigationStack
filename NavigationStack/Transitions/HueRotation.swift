@@ -4,7 +4,7 @@ public extension AnyTransition {
 	/**
 	 A transition which uses a brighness effect.
 
-	 See also: [SwiftUI doc](https://developer.apple.com/documentation/swiftui/emptyview/huerotation(_:))
+	 See also: [SwiftUI doc for huerotation](https://developer.apple.com/documentation/swiftui/emptyview/huerotation(_:))
 
 	 - parameter degree: The hue rotation angle to apply to the colors in this view. 0° means no shift and 180° a total shift.
 	 Defaults to 180°. Should not be zero.

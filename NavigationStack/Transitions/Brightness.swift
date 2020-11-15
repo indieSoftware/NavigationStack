@@ -4,7 +4,7 @@ public extension AnyTransition {
 	/**
 	 A transition which uses a brighness effect.
 
-	 See also: [SwiftUI doc](https://developer.apple.com/documentation/swiftui/emptyview/brightness(_:))
+	 See also: [SwiftUI doc for brightness](https://developer.apple.com/documentation/swiftui/emptyview/brightness(_:))
 
 	 - parameter amount: A value between 0 (no effect) and 1 (full white brightening) that represents the intensity of the brightness effect.
 	 Defaults to 1. Should not be 0.

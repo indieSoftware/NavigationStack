@@ -56,7 +56,7 @@ public extension AnyTransition {
 /**
  The modifier wrapper for the corresponding SwiftUI function.
 
- See: [SwiftUI doc](https://developer.apple.com/documentation/swiftui/emptyview/clipshape(_:style:))
+ See: [SwiftUI doc for clipshape](https://developer.apple.com/documentation/swiftui/emptyview/clipshape(_:style:))
  */
 public struct ClipShapeModifier<S: Shape>: ViewModifier {
 	/// The clipping shape to use for this view. The shape fills the view’s frame, while maintaining its aspect ratio.
@@ -71,19 +71,21 @@ public struct ClipShapeModifier<S: Shape>: ViewModifier {
 /**
  A circle shape which size can be animated.
 
- Source by [Paul Hudson: Hacking with Swift](https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition)
+ Source inspired by
+ - [Paul Hudson: Hacking with Swift](https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition)
+ - [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
  */
 public struct CircleShape: Shape {
 	public var animatableData: CGFloat
 
 	public func path(in rect: CGRect) -> Path {
-		let maximumCircleRadius = sqrt(rect.width * rect.width + rect.height * rect.height)
-		let circleRadius = maximumCircleRadius * animatableData
+		let maximumCircleDiameter = sqrt(rect.width * rect.width + rect.height * rect.height)
+		let circleDiameter = maximumCircleDiameter * animatableData
 
-		let posX = rect.midX - circleRadius / 2
-		let posY = rect.midY - circleRadius / 2
+		let posX = rect.midX - circleDiameter / 2.0
+		let posY = rect.midY - circleDiameter / 2.0
 
-		let circleRect = CGRect(x: posX, y: posY, width: circleRadius, height: circleRadius)
+		let circleRect = CGRect(x: posX, y: posY, width: circleDiameter, height: circleDiameter)
 
 		return Circle().path(in: circleRect)
 	}
@@ -92,7 +94,7 @@ public struct CircleShape: Shape {
 /**
  A rectangle shape which size can be animated.
 
- Source by [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
+ Source inspired by [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
  */
 public struct RectangleShape: Shape {
 	public var animatableData: CGFloat
@@ -109,7 +111,7 @@ public struct RectangleShape: Shape {
 /**
  A slicing pattern consisting of multiple rectangle shapes.
 
- Source by [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
+ Source inspired by [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
  */
 public struct StripesShape: Shape {
 	/// When true the animation will enlarge the view, when false the animation will shrink the view.
