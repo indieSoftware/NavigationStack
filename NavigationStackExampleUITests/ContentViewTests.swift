@@ -18,6 +18,8 @@ class ContentViewTests: XCTestCase {
 		XCTAssertNotEqual(app.staticTexts[name].exists, expectedInvertedResult, file: file, line: line)
 	}
 
+	// MARK: - Tests
+
 	func testBackOnRoot() throws {
 		assureViewIsShowing("NotPossibleLabel")
 		assureViewIsShowing("ContentView1")

@@ -19,6 +19,8 @@ class TransitionExampleTests: XCTestCase {
 		sleep(1)
 	}
 
+	// MARK: - Tests
+
 	// Plays all transition animations of the TransitionExample view in sequence.
 	func testTransitionAnimations() throws {
 		playTransition("Move")

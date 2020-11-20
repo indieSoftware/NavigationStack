@@ -17,6 +17,8 @@ class SubviewExampleTests: XCTestCase {
 		sleep(1)
 	}
 
+	// MARK: - Tests
+
 	// This shows the sub-view navigation how it works when used in the correct order.
 	func testSubviewWorking() throws {
 		pressButton("Subview1Button")

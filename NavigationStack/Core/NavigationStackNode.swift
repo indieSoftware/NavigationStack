@@ -11,13 +11,13 @@ import SwiftUI
 class NavigationStackNode: ObservableObject {
 	/// The navigation stack view's name which this node represents.
 	let name: String
+	/// The content view which should be shown when the navigation is active.
+	let alternativeView: AnyViewBuilder
 
 	/// True whether the navigation has been applied and the alternative view is visible, otherwise false.
 	@Published var isAlternativeViewShowing = false
 	/// The same as `isAlternativeViewShowing`, but as a precede value. See Experiment8.
 	@Published var isAlternativeViewShowingPrecede = false
-	/// The content view which should be shown when the navigation is active.
-	@Published var alternativeView: AnyViewBuilder
 	/// The transition animation to apply.
 	@Published var transitionAnimation: NavigationAnimation?
 
@@ -31,6 +31,7 @@ class NavigationStackNode: ObservableObject {
 		}
 	}
 
+	/// Combine's sink bag for `nexNode`.
 	private var nextNodeChangeCanceller: AnyCancellable?
 
 	/**
