@@ -46,4 +46,30 @@ class TransitionExampleTests: XCTestCase {
 		playTransition("StripesVerticalRight")
 		playTransition("StripesVerticalLeft")
 	}
+
+	func testSwiftUiTransitions() throws {
+		playTransition("Move")
+		playTransition("Scale")
+		playTransition("Offset")
+		playTransition("Opacity")
+		playTransition("Slide")
+	}
+
+	func testAnimationTransitions() throws {
+		playTransition("Blur")
+		playTransition("Brightness")
+		playTransition("Contrast")
+		playTransition("HueRotation")
+		playTransition("Saturation")
+	}
+
+	func testCustomTransitions() throws {
+		playTransition("TiltAndFly")
+		playTransition("CircleShape")
+		playTransition("RectangleShape")
+		playTransition("StripesHorizontalDown")
+		playTransition("StripesHorizontalUp")
+		playTransition("StripesVerticalRight")
+		playTransition("StripesVerticalLeft")
+	}
 }
