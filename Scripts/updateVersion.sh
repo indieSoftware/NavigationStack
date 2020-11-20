@@ -15,5 +15,3 @@ fi
 agvtool next-version
 # Sets the lib's marketing version to the value passed as argument.
 agvtool new-marketing-version $1
-# Generate the lib's documentation.
-bundle exec jazzy
