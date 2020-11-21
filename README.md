@@ -6,6 +6,8 @@
 [![GitHub Tag](https://img.shields.io/github/v/tag/indieSoftware/NavigationStack?label=version)](https://github.com/indieSoftware/NavigationStack)
 [![CocoaPods](https://img.shields.io/cocoapods/v/SwiftUINavigationStack.svg)](https://cocoapods.org/pods/SwiftUINavigationStack)
 
+[GitHub Page](https://github.com/indieSoftware/NavigationStack)
+
 # NavigationStack for SwiftUI
 
 NavigationStack is a custom SwiftUI solution for navigating between views. It's a more flexible alternative to SwiftUI's own navigation.
@@ -152,8 +154,7 @@ Just keep in mind that SwiftUI will only animate transitions if any value change
 
 ### Documentation
 
-- API: [https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)
-- GitHub Page: [GitHub Page](https://github.com/indieSoftware/NavigationStack)
+API: [https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)
 
 
 ### Examples

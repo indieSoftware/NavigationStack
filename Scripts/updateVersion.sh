@@ -15,3 +15,7 @@ fi
 agvtool next-version
 # Sets the lib's marketing version to the value passed as argument.
 agvtool new-marketing-version $1
+# Replace the 3rd line in the podspec to update the version number.
+sed -i '' "3s/.*/	spec.version = \"$1\"/" NavStack.podspec
+# Lint podspec to be sure everything is still valid.
+pod lib lint

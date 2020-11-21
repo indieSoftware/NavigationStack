@@ -4,9 +4,11 @@
 # The current branch is the master branch and the code has been pushed.
 
 # Get the lib's marketing version.
-libVersionNumber=$(agvtool what-marketing-version -terse1)
-echo "Releasing v$libVersionNumber"
+LIB_VERSION=$(agvtool what-marketing-version -terse1)
+echo "Releasing v$LIB_VERSION"
 # Create a new git tag with the lib's version.
-git tag $libVersionNumber
+git tag $LIB_VERSION
 # Push tags.
 git push --tags
+# Update pod.
+pod trunk push
