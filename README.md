@@ -4,7 +4,7 @@
 [![Documentation Coverage](https://indiesoftware.github.io/NavigationStack/badge.svg)](https://indiesoftware.github.io/NavigationStack)
 [![License](https://img.shields.io/github/license/indieSoftware/NavigationStack)](https://github.com/indieSoftware/NavigationStack/blob/master/LICENSE)
 [![GitHub Tag](https://img.shields.io/github/v/tag/indieSoftware/NavigationStack?label=version)](https://github.com/indieSoftware/NavigationStack)
-[![CocoaPods](https://img.shields.io/cocoapods/v/SwiftUINavigationStack.svg)](https://cocoapods.org/pods/SwiftUINavigationStack)
+[![CocoaPods](https://img.shields.io/cocoapods/v/NavStack.svg)](https://cocoapods.org/pods/NavStack)
 
 [GitHub Page](https://github.com/indieSoftware/NavigationStack)
 
