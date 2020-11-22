@@ -14,4 +14,5 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "13.0"
   spec.source       = { :git => "https://github.com/indieSoftware/NavigationStack.git", :tag => "#{spec.version}" }
   spec.source_files  = "NavigationStack", "NavigationStack/**/*.{swift}"
+  spec.module_name   = 'NavigationStack'
 end
