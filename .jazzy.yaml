@@ -2,6 +2,7 @@ github_url: https://github.com/indieSoftware/NavigationStack
 author: Sven Korset
 theme: fullwidth
 title: NavigationStack
+module: NavigationStack
 clean: true
 output: ./docs
 readme: README.md

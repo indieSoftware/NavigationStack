@@ -1,6 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "NavStack"
-	spec.version = "1.0.0"
+	spec.version = "1.0.1" # auto-generated
+	spec.swift_version = "5.3" # auto-generated
   spec.summary      = "A custom SwiftUI navigation framework."
   spec.description  = <<-DESC
   NavigationStack is a custom SwiftUI solution for navigating between views. It's a more flexible alternative to SwiftUI's own navigation.
@@ -12,6 +13,5 @@ Pod::Spec.new do |spec|
   spec.author             = { "Sven Korset" => "sven.korset@indie-software.de" }
   spec.ios.deployment_target = "13.0"
   spec.source       = { :git => "https://github.com/indieSoftware/NavigationStack.git", :tag => "#{spec.version}" }
-  spec.swift_version = "5.3"
   spec.source_files  = "NavigationStack", "NavigationStack/**/*.{swift}"
 end

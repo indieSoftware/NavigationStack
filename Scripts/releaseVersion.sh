@@ -11,4 +11,4 @@ git tag $LIB_VERSION
 # Push tags.
 git push --tags
 # Update pod.
-pod trunk push
+pod trunk push NavStack.podspec

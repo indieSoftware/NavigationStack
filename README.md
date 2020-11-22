@@ -28,15 +28,15 @@ Compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modif
 
 Use SwiftUI's default transitions:
 
-![SwiftUI transitions](img/swiftuiTransitions.gif)
+![SwiftUI transitions](https://github.com/indieSoftware/NavigationStack/blob/master/img/swiftuiTransitions.gif?raw=true)
 
 Or use some default view animations for transitioning:
 
-![animation transitions](img/animationTransitions.gif)
+![animation transitions](https://github.com/indieSoftware/NavigationStack/blob/master/img/animationTransitions.gif?raw=true)
 
 Or write your own custom transitions:
 
-![custom transitions](img/customTransitions.gif)
+![custom transitions](https://github.com/indieSoftware/NavigationStack/blob/master/img/customTransitions.gif?raw=true)
 
 ## Installation
 

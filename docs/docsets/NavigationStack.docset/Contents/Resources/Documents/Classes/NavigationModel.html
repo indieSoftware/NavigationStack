@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NavigationModel Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/NavigationModel" class="dashAnchor"></a>
+
+    <a title="NavigationModel Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          NavigationStack
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/indieSoftware/NavigationStack">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">NavigationStack Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      NavigationModel Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../NavigationStack.html">NavigationStack</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/NavigationModel.html">NavigationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/NavigationStackView.html">NavigationStackView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/NavigationAnimation.html">NavigationAnimation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Transition%20Animations.html">Transition Animations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/AnyTransition.html">AnyTransition</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Modifier%20Structs.html">Modifier Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BlurModifier.html">BlurModifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BrightnessModifier.html">BrightnessModifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ClipShapeModifier.html">ClipShapeModifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ContrastModifier.html">ContrastModifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/HueRotationModifier.html">HueRotationModifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/SaturationModifier.html">SaturationModifier</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Shapes%20usable%20by%20ClipShapeModifier.html">Shapes usable by ClipShapeModifier</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CircleShape.html">CircleShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RectangleShape.html">RectangleShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/StripesShape.html">StripesShape</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>NavigationModel</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NavigationModel</span> <span class="p">:</span> <span class="kt">ObservableObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>The underlying <code><a href="../Structs/NavigationStackView.html">NavigationStackView</a></code>s model which can be manipulated to apply the navigation transitions.</p>
+
+<p>An instance of this model has to be injected into the view hierarchy as an environment object:
+<code>MyRootView().environmentObject(NavigationModel())</code>
+Even when using multiple navigation stack views in a view hierarchy there has to be always only one instance of <code>NavigationModel</code>.
+The model can be used with names/IDs to target specific navigation stack views.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC13silenceErrorsSbvp"></a>
+                    <a name="//apple_ref/swift/Property/silenceErrors" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC13silenceErrorsSbvp">silenceErrors</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Flag used to determine if errors are thrown or silently ignored.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">silenceErrors</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC13silenceErrorsACSb_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(silenceErrors:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC13silenceErrorsACSb_tcfc">init(silenceErrors:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">silenceErrors</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>silenceErrors</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When set to true each error will be silently ignored, when false each error will result in an exception thrown.
+Defaults to false.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC8showView_9animation011alternativeE0ySS_AA0A9AnimationVSgxyct7SwiftUI0E0RzlF"></a>
+                    <a name="//apple_ref/swift/Method/showView(_:animation:alternativeView:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC8showView_9animation011alternativeE0ySS_AA0A9AnimationVSgxyct7SwiftUI0E0RzlF">showView(_:<wbr>animation:<wbr>alternativeView:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs the navigation by showing a new view.</p>
+
+<p>This is typically used to navigate to a new view.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>It&rsquo;s not possible to navigate to a new view while a navigation for the same stack view is already active,
+i.e. tying to push View3 on View1 when there is already View2 pushed on View1 will result in an error.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">showView</span><span class="o">&lt;</span><span class="kt">Content</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">animation</span><span class="p">:</span> <span class="kt"><a href="../Structs/NavigationAnimation.html">NavigationAnimation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="kd">@ViewBuilder</span> <span class="nv">alternativeView</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Content</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Content</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name targeting by this navigation.
+The provided name will be used to determine which navigation stack view should replace its view with the provided one.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The transition animation to apply.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alternativeView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new view which should replace the navigation stack view&rsquo;s default view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC31hideTopViewWithReverseAnimationyyF"></a>
+                    <a name="//apple_ref/swift/Method/hideTopViewWithReverseAnimation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC31hideTopViewWithReverseAnimationyyF">hideTopViewWithReverseAnimation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Navigates back to the previews view by using its reverse animation.
+This is typically used to execute a back navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hideTopViewWithReverseAnimation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC11hideTopView9animationyAA0A9AnimationVSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/hideTopView(animation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC11hideTopView9animationyAA0A9AnimationVSg_tF">hideTopView(animation:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Navigates back to the previous view by using a provided a specific transition animation.
+This is typically used to navigate back, but with a specific animation which might not be known in advance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hideTopView</span><span class="p">(</span><span class="nv">animation</span><span class="p">:</span> <span class="kt"><a href="../Structs/NavigationAnimation.html">NavigationAnimation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The transition animation to use for this navigation. When nil is passed then no animation will be used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC8hideView_9animationySS_AA0A9AnimationVSgtF"></a>
+                    <a name="//apple_ref/swift/Method/hideView(_:animation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC8hideView_9animationySS_AA0A9AnimationVSgtF">hideView(_:<wbr>animation:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Navigates back to a specific navigation stack view somewhere in the stack.
+This is typically used to navigate back multiple views.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hideView</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">animation</span><span class="p">:</span> <span class="kt"><a href="../Structs/NavigationAnimation.html">NavigationAnimation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name targeting by this navigation.
+The provided name will be used to determine which navigation stack view should switch back to its default view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The transition animation to use during this transition. When nil is passed then no animation will be used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC28hideViewWithReverseAnimationyySSF"></a>
+                    <a name="//apple_ref/swift/Method/hideViewWithReverseAnimation(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC28hideViewWithReverseAnimationyySSF">hideViewWithReverseAnimation(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Navigates back to a specific navigation stack view somewhere in the stack by using its reverse animation.
+This is typically used to execute a back navigation to a view farther down the stack, e.g. back to the root.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hideViewWithReverseAnimation</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name targeting by this navigation.
+The provided name will be used to determine which navigation stack view should switch back to its default view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC25hasAlternativeViewShowingSbvp"></a>
+                    <a name="//apple_ref/swift/Property/hasAlternativeViewShowing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC25hasAlternativeViewShowingSbvp">hasAlternativeViewShowing</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns whether there is a navigation view on the stack or not, meaning is it possible to navigate back or not.</p>
+
+<p>True when it&rsquo;s safe to navigate back, otherwise false.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Using this method to show different views or sub-views without freezing the result in a <code>let</code> variable will result in animation glitches!
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hasAlternativeViewShowing</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC24isAlternativeViewShowingySbSSF"></a>
+                    <a name="//apple_ref/swift/Method/isAlternativeViewShowing(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC24isAlternativeViewShowingySbSSF">isAlternativeViewShowing(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns whether there is a navigation view with a specific name on the stack or not,
+meaning is it possible to navigate to the named navigation stack view or not.</p>
+
+<p>True when it&rsquo;s safe to navigate to the name, otherwise false.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Using this method to show different views or sub-views without freezing the result in a <code>let</code> variable will result in animation glitches!
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isAlternativeViewShowing</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC21topViewShowingBinding7SwiftUI0G0VySbGyF"></a>
+                    <a name="//apple_ref/swift/Method/topViewShowingBinding()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC21topViewShowingBinding7SwiftUI0G0VySbGyF">topViewShowingBinding()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns a binding for the top navigation stack view&rsquo;s showing flag.</p>
+
+<p>This binding can be used to pass it to the new view shown by the navigation so the new view can dismiss itself by toggling the binding&rsquo;s value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">topViewShowingBinding</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The binding bound to the top view on the navigation stack.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC18viewShowingBindingy7SwiftUI0F0VySbGSSF"></a>
+                    <a name="//apple_ref/swift/Method/viewShowingBinding(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC18viewShowingBindingy7SwiftUI0F0VySbGSSF">viewShowingBinding(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns a binding for a named navigation stack view&rsquo;s showing flag.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">viewShowingBinding</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The binding bound to the named view on the navigation stack.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC11pushContent_15alternativeViewySS_xyct7SwiftUI0G0RzlF"></a>
+                    <a name="//apple_ref/swift/Method/pushContent(_:alternativeView:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC11pushContent_15alternativeViewySS_xyct7SwiftUI0G0RzlF">pushContent(_:<wbr>alternativeView:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience method to navigate to a new view with a push transition animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">pushContent</span><span class="o">&lt;</span><span class="kt">Content</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd">@ViewBuilder</span> <span class="nv">alternativeView</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Content</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Content</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name on which to push.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alternativeView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The content view to push.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC10popContentyySSF"></a>
+                    <a name="//apple_ref/swift/Method/popContent(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC10popContentyySSF">popContent(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience method to navigate back to a previous view with a pop transition animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">popContent</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name on which to pop back.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC14presentContent_15alternativeViewySS_xyct7SwiftUI0G0RzlF"></a>
+                    <a name="//apple_ref/swift/Method/presentContent(_:alternativeView:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC14presentContent_15alternativeViewySS_xyct7SwiftUI0G0RzlF">presentContent(_:<wbr>alternativeView:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience method to navigate to a new view with a present transition animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">presentContent</span><span class="o">&lt;</span><span class="kt">Content</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd">@ViewBuilder</span> <span class="nv">alternativeView</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Content</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Content</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name on which to present.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alternativeView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The content view to present.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC14dismissContentyySSF"></a>
+                    <a name="//apple_ref/swift/Method/dismissContent(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC14dismissContentyySSF">dismissContent(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience method to navigate back to a previous view with a dismiss transition animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">dismissContent</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name on which to dismiss.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC13fadeInContent_15alternativeViewySS_xyct7SwiftUI0H0RzlF"></a>
+                    <a name="//apple_ref/swift/Method/fadeInContent(_:alternativeView:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC13fadeInContent_15alternativeViewySS_xyct7SwiftUI0H0RzlF">fadeInContent(_:<wbr>alternativeView:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience method to navigate to a new view with a fade-in transition animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">fadeInContent</span><span class="o">&lt;</span><span class="kt">Content</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd">@ViewBuilder</span> <span class="nv">alternativeView</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Content</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Content</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name on which to fade-in.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alternativeView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The content view to fade-in.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5ModelC14fadeOutContentyySSF"></a>
+                    <a name="//apple_ref/swift/Method/fadeOutContent(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5ModelC14fadeOutContentyySSF">fadeOutContent(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience method to navigate back to a previous view with a fade-out transition animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fadeOutContent</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The navigation stack view&rsquo;s name on which to fade-out.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2020-11-22)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
