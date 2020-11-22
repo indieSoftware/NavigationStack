@@ -42,10 +42,26 @@ Or write your own custom transitions:
 
 ### CocoaPods
 
-To include this lib via [CocoaPods](https://cocoapods.org) into your project, simply add to your pod file:
+To include this lib via [CocoaPods](https://cocoapods.org) into a project, add to the `Podfile`:
 
 ```
 pod 'NavStack'
+```
+
+### Carthage
+
+To include this lib via [Carthage](https://github.com/Carthage/Carthage) into a project, add to the `Cartfile`:
+
+```
+github "indieSoftware/NavigationStack"
+```
+
+### SPM
+
+To include the lib via SwiftPackageManager into a project, add the repository:
+
+```
+https://github.com/indieSoftware/NavigationStack.git
 ```
 
 ## Usage

@@ -4,6 +4,5 @@ xcodeproj: NavigationStack.xcodeproj
 scheme: NavigationStack
 output_directory: reports
 ignore:
-  - NavigationStackExample/*
-  - NavigationStackExampleUITests/*
-  - NavigationStackTests/*
+  - Sources/NavigationStackExample/*
+  - Tests/*
