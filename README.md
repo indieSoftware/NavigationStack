@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/github/license/indieSoftware/NavigationStack)](https://github.com/indieSoftware/NavigationStack/blob/master/LICENSE)
 [![GitHub Tag](https://img.shields.io/github/v/tag/indieSoftware/NavigationStack?label=version)](https://github.com/indieSoftware/NavigationStack)
 [![CocoaPods](https://img.shields.io/cocoapods/v/NavStack.svg)](https://cocoapods.org/pods/NavStack)
+[![carthage compatible](https://img.shields.io/badge/carthage-compatible-success.svg)](https://github.com/Carthage/Carthage)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-success.svg)](https://github.com/apple/swift-package-manager)
 
 [GitHub Page](https://github.com/indieSoftware/NavigationStack)
 
@@ -42,7 +44,7 @@ Or write your own custom transitions:
 
 ### CocoaPods
 
-To include this lib via [CocoaPods](https://cocoapods.org) into a project, add to the `Podfile`:
+To include via [CocoaPods](https://cocoapods.org) add to the `Podfile`:
 
 ```
 pod 'NavStack'
@@ -50,7 +52,7 @@ pod 'NavStack'
 
 ### Carthage
 
-To include this lib via [Carthage](https://github.com/Carthage/Carthage) into a project, add to the `Cartfile`:
+To include via [Carthage](https://github.com/Carthage/Carthage) add to the `Cartfile`:
 
 ```
 github "indieSoftware/NavigationStack"
@@ -58,7 +60,7 @@ github "indieSoftware/NavigationStack"
 
 ### SPM
 
-To include the lib via SwiftPackageManager into a project, add the repository:
+To include via [SwiftPackageManager](https://swift.org/package-manager) add the repository:
 
 ```
 https://github.com/indieSoftware/NavigationStack.git
@@ -110,7 +112,7 @@ That's all what's needed!
 
 ### Additional Information
 
-Every view which should provide a possibility to transition to a different view should contain a `NavigationStackView` with a unique name.
+Every view which should provide a possibility to transition to a different view needs to contain a `NavigationStackView` with a unique name.
 
 When a view where you navigated to now wants to navigate back to a specific view, just tell the `NavigationModel` to which one to navigate back:
 
