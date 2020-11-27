@@ -33,6 +33,46 @@ class NavigationModelPublishedTests: XCTestCase {
 		waitForExpectations(timeout: 1)
 	}
 
+	// Test navigating to a view a second time after first going back triggers an observer.
+	func testShowNestedViewAgainAfterHidePublished() throws {
+		let viewName1 = "Foo"
+		let viewName2 = "Bar"
+		model.showView(viewName1) { EmptyView() }
+		model.showView(viewName2) { EmptyView() }
+		model.hideView(viewName2)
+		setupModelPublishExpectation()
+
+		model.showView(viewName2) { EmptyView() }
+
+		waitForExpectations(timeout: 1)
+	}
+
+	// Test navigating to the same screen doesn't work.
+	func testShowViewTwiceFails() throws {
+		let viewName1 = "Foo"
+		model.showView(viewName1) { EmptyView() }
+		setupModelPublishExpectation()
+
+		model.showView(viewName1) { EmptyView() }
+
+		waitForExpectations(timeout: 1)
+	}
+
+	// Test navigating two screens and going back and then navigating again two screens still works.
+	func testShowRootViewAgainAfterNestedHidePublished() throws {
+		let viewName1 = "Foo"
+		let viewName2 = "Bar"
+		model.showView(viewName1) { EmptyView() }
+		model.showView(viewName2) { EmptyView() }
+		model.hideView(viewName1)
+		model.showView(viewName1) { EmptyView() }
+		setupModelPublishExpectation()
+
+		model.showView(viewName2) { EmptyView() }
+
+		waitForExpectations(timeout: 1)
+	}
+
 	// Test calling the method invokes an update-notification to observers.
 	func testHideTopViewWithReverseAnimationPublished() throws {
 		model.showView("Foo") { EmptyView() }
