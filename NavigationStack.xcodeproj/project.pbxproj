@@ -75,6 +75,8 @@
 		2615D5DC256A7A230009A477 /* TransitionExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D5D8256A7A230009A477 /* TransitionExampleTests.swift */; };
 		2615D5DD256A7A230009A477 /* SubviewExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D5D9256A7A230009A477 /* SubviewExampleTests.swift */; };
 		2615D5DE256A7A230009A477 /* ExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D5DA256A7A230009A477 /* ExperimentTests.swift */; };
+		263FA92625718E8800C802DF /* NavigationModelConvenienceMethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263FA92525718E8800C802DF /* NavigationModelConvenienceMethodsTests.swift */; };
+		263FA9302571925F00C802DF /* NavigationModelStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263FA92F2571925F00C802DF /* NavigationModelStub.swift */; };
 		26803884254D4503005FFB51 /* NavigationStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2680387B254D4503005FFB51 /* NavigationStack.framework */; };
 		26803890254D4503005FFB51 /* NavigationStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2680387B254D4503005FFB51 /* NavigationStack.framework */; };
 		26803891254D4503005FFB51 /* NavigationStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2680387B254D4503005FFB51 /* NavigationStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -180,6 +182,8 @@
 		2615D5D8256A7A230009A477 /* TransitionExampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionExampleTests.swift; sourceTree = "<group>"; };
 		2615D5D9256A7A230009A477 /* SubviewExampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewExampleTests.swift; sourceTree = "<group>"; };
 		2615D5DA256A7A230009A477 /* ExperimentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentTests.swift; sourceTree = "<group>"; };
+		263FA92525718E8800C802DF /* NavigationModelConvenienceMethodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModelConvenienceMethodsTests.swift; sourceTree = "<group>"; };
+		263FA92F2571925F00C802DF /* NavigationModelStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModelStub.swift; sourceTree = "<group>"; };
 		2680385C254D4275005FFB51 /* NavigationStackExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationStackExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2680387B254D4503005FFB51 /* NavigationStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NavigationStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26803883254D4503005FFB51 /* NavigationStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,10 +436,12 @@
 		2615D5B0256A79F10009A477 /* NavigationModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				263FA92525718E8800C802DF /* NavigationModelConvenienceMethodsTests.swift */,
 				2615D5B1256A79F10009A477 /* NavigationModelInitTests.swift */,
 				2615D5B3256A79F10009A477 /* NavigationModelPublishedTests.swift */,
 				2615D5B4256A79F10009A477 /* NavigationModelStackViewCallTests.swift */,
 				2615D5B2256A79F10009A477 /* NavigationModelStateTests.swift */,
+				263FA92F2571925F00C802DF /* NavigationModelStub.swift */,
 			);
 			path = NavigationModelTests;
 			sourceTree = "<group>";
@@ -899,9 +905,11 @@
 				2615D5C9256A79F10009A477 /* NavigationStackNodeInitTests.swift in Sources */,
 				2615D5C6256A79F10009A477 /* NavigationStackNodeGetLeafNodeTests.swift in Sources */,
 				2615D5BF256A79F10009A477 /* NavigationModelInitTests.swift in Sources */,
+				263FA92625718E8800C802DF /* NavigationModelConvenienceMethodsTests.swift in Sources */,
 				2615D5C8256A79F10009A477 /* NavigationStackNodeGetNodeTests.swift in Sources */,
 				2615D5C1256A79F10009A477 /* NavigationModelPublishedTests.swift in Sources */,
 				2615D5C0256A79F10009A477 /* NavigationModelStateTests.swift in Sources */,
+				263FA9302571925F00C802DF /* NavigationModelStub.swift in Sources */,
 				2615D5C3256A79F10009A477 /* NavigationAnimationInitTests.swift in Sources */,
 				2615D5C2256A79F10009A477 /* NavigationModelStackViewCallTests.swift in Sources */,
 				2615D5C7256A79F10009A477 /* NavigationStackNodePublishedTests.swift in Sources */,
