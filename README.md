@@ -10,6 +10,8 @@
 
 [GitHub Page](https://github.com/indieSoftware/NavigationStack)
 
+[Documentation](https://indiesoftware.github.io/NavigationStack)
+
 # NavigationStack for SwiftUI
 
 NavigationStack is a custom SwiftUI solution for navigating between views. It's a more flexible alternative to SwiftUI's own navigation.
@@ -23,7 +25,7 @@ Compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modif
 - Or create your own custom transition animations
 - Navigate even without any transition animation at all if you want
 - Define the back transition animation right before transitioning back, not in advance when transitioning forward
-- Navigate back multiple screens at once, not only to the previous
+- Navigate back multiple screens at once, not only to the previous one
 - Use a full-screen present transition also on iOS 13
 
 ### Transition Examples
@@ -73,44 +75,46 @@ https://github.com/indieSoftware/NavigationStack.git
 3. Use the `NavigationStackView` as a root stack view of your view and give it a unique name to reference it.
 4. Use the `NavigationModel` object to perform any transitions, i.e. a push or pop. Provide the `NavigationStackView`'s name to define which `NavigationStackView` in the hierachy should switch its content.
 
-```
-import NavigationStack
+	```
+	import NavigationStack // 1
 
-struct MyRootView: View {
-	@EnvironmentObject var navigationModel: NavigationModel
+	struct MyRootView: View {
+		@EnvironmentObject var navigationModel: NavigationModel // 2
 
-	var body: some View {
-		NavigationStackView("MyRootView") {
-			Button(action: {
-				navigationModel.pushContent("MyRootView") {
-					MyDetailView()
-				}
-			}, label: {
-				Text("Push MyDetailView")
-			})
+		var body: some View {
+			NavigationStackView("MyRootView") { // 3
+				Button(action: {
+					navigationModel.pushContent("MyRootView") { // 4
+						MyDetailView()
+					}
+				}, label: {
+					Text("Push MyDetailView")
+				})
+			}
 		}
 	}
-}
-```
+	```
 
-Because of the reference to the `NavigationModel` instance you need of couse to attach one as an environement object to the view hierachy, e.g. in the `SceneDelegate`:
+5. Because of the reference to the `NavigationModel` instance you need of couse to attach one as an environement object to the view hierachy, e.g. in the `SceneDelegate`:
 
-```
+	```
 	func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
 		if let windowScene = scene as? UIWindowScene {
 			let window = UIWindow(windowScene: windowScene)
 			let myRootView = MyRootView()
-				.environmentObject(NavigationModel())
+				.environmentObject(NavigationModel()) // 5
 			window.rootViewController = UIHostingController(rootView: myRootView)
 			self.window = window
 			window.makeKeyAndVisible()
 		}
 	}
-```
+	```
 
 That's all what's needed!
 
-### Additional Information
+## Additional Information
+
+### The `NavigationStackView`'s Name
 
 Every view which should provide a possibility to transition to a different view needs to contain a `NavigationStackView` with a unique name.
 
@@ -132,9 +136,39 @@ struct MyDetailView: View {
 }
 ```
 
-Alternatively you can also use one of the other model methods which suit your current situation better, e.g. `hideTopViewWithReverseAnimation()`. There are many convenience methods, just look at the documentation for the [NavigationModel](the https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html).
+With the `NavigationStackView`'s reference name you can also navigate back multiple screens at once, just provide the name of one screen further down the hierarchy.
 
-The convenience methods all rely on the `hideView(_ name:, animation:)` method which takes an animation as argument. You can use this method to create own transition animations by providing different parameters:
+To avoid hard-coded strings for the `NavigationStackView` names, just define a static constant in each view which then can be referenced instead.
+
+```
+struct ContentView1: View {
+	static let navigationName = String(describing: Self.self)
+	@EnvironmentObject var navigationModel: NavigationModel
+
+	var body: some View {
+		NavigationStackView(ContentView1.navigationName) {
+			Button(action: {
+				navigationModel.pushContent(ContentView1.navigationName) {
+					ContentView2()
+				}
+			}, label: {
+				Text("Push ContentView2")
+			})
+		}
+	}
+}	
+```
+
+### Convenience Navigation Methods
+
+You can also use one of the other model methods which might suit your current situation better, e.g. `hideTopViewWithReverseAnimation()` to just transition back to the previous screen with the reverse-animation provided when transitioning to the screen. 
+
+There are some convenience methods to express specific transitions more appropriate, e.g. `pushContent`, `popContent`, `presentContent` and `dismissContent`. Just look at the documentation for the [NavigationModel](the https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html).
+
+### Transition Animations
+
+The convenience navigation methods all rely on the `showView(_ name:, animation:, alternativeView:)` and `hideView(_ name:, animation:)` methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. `NavigationAnimation`'s `push`, `pop`, `present` and `dismiss`). However, you can also create your own transition animations by providing different parameters for the animation curve and the transitions types. Then you can use the show and hide methods to create transitions with your own animations:
+
 
 ```
 let myAnimation = NavigationAnimation(
@@ -145,11 +179,12 @@ let myAnimation = NavigationAnimation(
 navigationModel.hideView("MyRootView", animation: myAnimation)
 ```
 
+**Important:**
 For views which shouldn't animate during a transition, e.g. staying statically visible while the other view does its animation, you have to provide a `.static` transition rather than SwiftUI's `.identity`.
 
 A list of all provided transitions by the lib can be found in the lib's documentation for [AnyTransition Extensions](https://indiesoftware.github.io/NavigationStack/Extensions/AnyTransition.html).
 
-### Own Transition Animations
+### Custom Transitions
 
 To create own transition animations simply create a custom `ViewModifier` and optionally extend `AnyTransition` for creating a convenience method:
 
@@ -168,18 +203,36 @@ public extension AnyTransition {
 }
 ```
 
-Just keep in mind that SwiftUI will only animate transitions if any value changes, e.g. when providing a brightness transition with a brighness value of 0 you won't see any animation and the transition for that view gets skipped. That's because the identity has also a brightness value of 0 and thus both states the identity and the active state are equal.
+**Important**
+Please keep in mind that SwiftUI will only animate transitions if any value changes, e.g. when providing a brightness transition with a brighness value of 0 you won't see any animation and the transition for that view gets skipped. That's because the identity has also a brightness value of 0 and thus both states, the identity and the active state, are equal.
 
-### Documentation
+For further information, please look at the lib's API documentation: [https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)
 
-API: [https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)
+### Example Code
 
+The project includes an example target (`NavigationStackExample`) which shows how to use the library. Just clone the repo, open the workspace and switch to the same named scheme. The example app shows how to push multiple views, how to pop back even directly to the root, how to simulate a modal presentation and shows the different transition animations available out-of-the-box. The example views are well commented and provided in the `Sources/NavigationStackExample/ExampleViews` group.
 
-### Examples
+You can also run the example's UI tests to run sepcific or all transitions automatically.
 
-Clone the repo and open the workspace. The project includes an example target (`NavigationStackExample`) which shows how to use the library. The example app shows how to push multiple views, how to pop back even directly to the root, how simulate a modal presentation and shows the different transition animations available out-of-the-box. The example views are well commented and provided in the `NavigationStackExample/ExampleViews` group.
+The example project includes some experiments where each describes a problem or the attempt to solve a problem. They are kind of a documentation how to solve some strange behaviors of SwiftUI, but they are not important for users of the library, but maybe for those who wants to understand and improve it. So, feel free to skip these. However, to run the experiments simply pass the experiment's name as launch agrument, e.g. "Experiment1" to run `Experiment1.swift`.
 
-The example project also includes some experiments where each describes a problem or the attempt to solve a problem. They are kind of a documentation how to solve some strange behaviors of SwiftUI, but they are not important for users of the library, but maybe for those who want's to understand and improve it. To run the experiments simply pass the experiment's name as launch agrument, e.g. "Experiment1" to run `Experiment1.swift`.
+## Known limitations
+
+### Manual full-screen
+
+`NavigationStackView` is just another stack view. What you put into this stack view is up to you, however, you should make the content fill out the whole screen. Otherwise you might risk to trigger sub-view transitions, but even if not so it might look kind of awkward when the screen's transition is not full-screen.
+
+### No sub-view transitions
+
+Technically you are not forced to add the `NavigationStackView` to the root level of your view's body. Even when added to the root of your custom view you might also add this custom view as a sub-view to a bigger view. This is actually unproblematic as long as the views are full-screen.
+
+However, when the view's to navigate to are not full-screen the user might transition from one screen which already has transitioned to a different view. And that might lead to problems, because the lib uses a linear stack to keep the navigation transitions. When trying to branch off from the middle of the stack then this won't work as expected.
+
+There is a `SubviewExample` in the examples and a `SubviewExampleTests` to show this problem.
+
+### No real modal
+
+SwiftUI's `sheet` modifier actually triggers a real modal transition. This lib doesn't do this, instead the `NavigationStackView` relies on a single-page architecture, meaning there is always only a single view visible, but its content will be replaced when transitioning. I'm not sure if this is really a limitation but it's something to keep in mind.
 
 ## Trouble shooting
 
