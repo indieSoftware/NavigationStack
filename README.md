@@ -163,7 +163,7 @@ struct ContentView1: View {
 
 You can also use one of the other model methods which might suit your current situation better, e.g. `hideTopViewWithReverseAnimation()` to just transition back to the previous screen with the reverse-animation provided when transitioning to the screen. 
 
-There are some convenience methods to express specific transitions more appropriate, e.g. `pushContent`, `popContent`, `presentContent` and `dismissContent`. Just look at the documentation for the [NavigationModel](the https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html).
+There are some convenience methods to express specific transitions more appropriate, e.g. `pushContent`, `popContent`, `presentContent` and `dismissContent`. Just look at the documentation for the [NavigationModel](https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html).
 
 ### Transition Animations
 
@@ -226,7 +226,7 @@ The example project includes some experiments where each describes a problem or 
 
 Technically you are not forced to add the `NavigationStackView` to the root level of your view's body. Even when added to the root of your custom view you might also add this custom view as a sub-view to a bigger view. This is actually unproblematic as long as the views are full-screen.
 
-However, when the view's to navigate to are not full-screen the user might transition from one screen which already has transitioned to a different view. And that might lead to problems, because the lib uses a linear stack to keep the navigation transitions. When trying to branch off from the middle of the stack then this won't work as expected.
+However, when the views to navigate to are not full-screen the user might transition from one screen which already has transitioned to a different view. And that might lead to problems, because the lib uses a linear stack to keep the navigation transitions. When trying to branch off from the middle of the stack then this won't work as expected.
 
 There is a `SubviewExample` in the examples and a `SubviewExampleTests` to show this problem.
 
