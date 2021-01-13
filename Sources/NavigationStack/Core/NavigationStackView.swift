@@ -7,54 +7,54 @@ import SwiftUI
 /// Use the `NavigationModel` to provide a destination view and transition animation to navigate to.
 ///
 /// - Important:
-/// An single instance of the `NavigationModel` has to be injected into the view hierarchy as an environment object:
+/// A single instance of the `NavigationModel` has to be injected into the view hierarchy as an environment object:
 /// `MyRootView().environmentObject(NavigationModel())`
-public struct NavigationStackView: View {
-	@EnvironmentObject private var model: NavigationModel
+public struct NavigationStackView<IdentifierType>: View where IdentifierType: Equatable {
+	@EnvironmentObject private var model: NavigationStackModel<IdentifierType>
 
-	/// This navigation stack view's name which works as an ID in the stack.
-	let name: String
+	/// This navigation stack view's ID.
+	let identifier: IdentifierType
 	/// The navigation stack view's default content to show when no navigation has been applied.
 	private let defaultView: AnyViewBuilder
 
 	/**
-	 Initializes the navigation stack view with a given name and its default content.
+	 Initializes the navigation stack view with a given ID and its default content.
 
-	 - parameter name: The navigation stack view's name which works as its ID in the stack.
-	 This is the reference name to use when applying a navigation via the model and targeting this layer of stack.
+	 - parameter identifier: The navigation stack view's ID.
+	 This is the reference ID to use when applying a navigation via the model and targeting this layer of stack.
 	 - parameter defaultView: The content view to show when no navigation has been applied.
 	 */
-	public init<Content>(_ name: String, @ViewBuilder defaultView: @escaping () -> Content) where Content: View {
-		self.name = name
+	public init<Content>(_ identifier: IdentifierType, @ViewBuilder defaultView: @escaping () -> Content) where Content: View {
+		self.identifier = identifier
 		self.defaultView = { AnyView(defaultView()) }
 	}
 
 	public var body: some View {
 		ZStack {
-			if model.isAlternativeViewShowingPrecede(name) { // `if-else` and the precede-call are necessary, see Experiment8
-				ContentViews(name: name, defaultView: defaultView)
+			if model.isAlternativeViewShowingPrecede(identifier) { // `if-else` and the precede-call are necessary, see Experiment8
+				ContentViews(identifier: identifier, defaultView: defaultView)
 			} else {
-				ContentViews(name: name, defaultView: defaultView)
+				ContentViews(identifier: identifier, defaultView: defaultView)
 			}
 		}
 	}
 }
 
-private struct ContentViews: View {
-	@EnvironmentObject private var model: NavigationModel
+private struct ContentViews<IdentifierType>: View where IdentifierType: Equatable {
+	@EnvironmentObject private var model: NavigationStackModel<IdentifierType>
 
-	/// This navigation stack view's name.
-	let name: String
+	/// This navigation stack view's ID.
+	let identifier: IdentifierType
 	/// The navigation stack view's default content.
 	let defaultView: AnyViewBuilder
 
 	var body: some View {
 		ZStack {
-			if !model.isAlternativeViewShowing(name) {
-				defaultView().transition(model.defaultViewTransition(name)).zIndex(model.defaultViewZIndex(name))
+			if !model.isAlternativeViewShowing(identifier) {
+				defaultView().transition(model.defaultViewTransition(identifier)).zIndex(model.defaultViewZIndex(identifier))
 			} // No `else`, see Experiment2
-			if model.isAlternativeViewShowing(name), let alternativeView = model.alternativeView(name) {
-				alternativeView().transition(model.alternativeViewTransition(name)).zIndex(model.alternativeViewZIndex(name))
+			if model.isAlternativeViewShowing(identifier), let alternativeView = model.alternativeView(identifier) {
+				alternativeView().transition(model.alternativeViewTransition(identifier)).zIndex(model.alternativeViewZIndex(identifier))
 			}
 		}
 	}

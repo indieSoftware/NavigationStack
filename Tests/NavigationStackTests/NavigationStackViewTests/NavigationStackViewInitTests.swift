@@ -7,9 +7,9 @@ class NavigationStackViewInitTests: XCTestCase {
 
 	// Test that the provided name is set.
 	func testName() throws {
-		let name = "Foo"
-		let result = NavigationStackView(name) { EmptyView() }
+		let identifier = "Foo"
+		let result = NavigationStackView(identifier) { EmptyView() }
 
-		XCTAssertEqual(name, result.name)
+		XCTAssertEqual(identifier, result.identifier)
 	}
 }

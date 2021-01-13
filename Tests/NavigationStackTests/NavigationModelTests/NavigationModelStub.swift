@@ -3,15 +3,17 @@ import SwiftUI
 import XCTest
 
 class NavigationModelStub: NavigationModel {
-	var showViewStub: (_ name: String, _ animation: NavigationAnimation?) -> Void = { _, _ in XCTFail() }
+	var showViewStub: (_ identifier: String, _ animation: NavigationAnimation?) -> Void = { _, _ in XCTFail() }
 
-	override func showView<Content>(_ name: String, animation: NavigationAnimation? = nil, alternativeView _: @escaping () -> Content) where Content: View {
-		showViewStub(name, animation)
+	override func showView<Content>(_ identifier: String, animation: NavigationAnimation? = nil, alternativeView _: @escaping () -> Content)
+		where Content: View
+	{
+		showViewStub(identifier, animation)
 	}
 
-	var hideViewStub: (_ name: String, _ animation: NavigationAnimation?) -> Void = { _, _ in XCTFail() }
+	var hideViewStub: (_ identifier: String, _ animation: NavigationAnimation?) -> Void = { _, _ in XCTFail() }
 
-	override func hideView(_ name: String, animation: NavigationAnimation? = nil) {
-		hideViewStub(name, animation)
+	override func hideView(_ identifier: String, animation: NavigationAnimation? = nil) {
+		hideViewStub(identifier, animation)
 	}
 }

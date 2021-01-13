@@ -8,9 +8,9 @@ import SwiftUI
  The node holds the navigation state's data and propagates any changes to the model.
  Each node belongs to a navigation stack view, but a node only exists when that view also has a navigation applied.
  */
-class NavigationStackNode: ObservableObject {
-	/// The navigation stack view's name which this node represents.
-	let name: String
+class NavigationStackNode<IdentifierType>: ObservableObject where IdentifierType: Equatable {
+	/// The navigation stack view's ID which this node represents.
+	let identifer: IdentifierType
 	/// The content view which should be shown when the navigation is active.
 	let alternativeView: AnyViewBuilder
 
@@ -37,22 +37,22 @@ class NavigationStackNode: ObservableObject {
 	/**
 	 Initializes the node.
 
-	 - parameter name: The representing navigation stack view's ID.
+	 - parameter identifier: The representing navigation stack view's ID.
 	 - parameter alternativeView: The content to show when this node's navigation is active, meaning `isAlternativeViewShowing` is true.
 	 */
-	init(name: String, alternativeView: @escaping AnyViewBuilder) {
-		self.name = name
+	init(identifier: IdentifierType, alternativeView: @escaping AnyViewBuilder) {
+		identifer = identifier
 		self.alternativeView = alternativeView
 	}
 
 	/**
-	 Retrieves recursively the node in the hiarachy with a given name.
+	 Retrieves recursively the node in the hiarachy with a given ID.
 
-	 - parameter name: The node's name which to retrieve.
-	 - returns: The first node in the linked list with the given name.
+	 - parameter identifier: The node's ID which to retrieve.
+	 - returns: The first node in the linked list with the given ID.
 	 */
-	func getNode(named name: String) -> NavigationStackNode? {
-		self.name == name ? self : nextNode?.getNode(named: name)
+	func getNode(_ identifier: IdentifierType) -> NavigationStackNode? {
+		identifer == identifier ? self : nextNode?.getNode(identifier)
 	}
 
 	/**

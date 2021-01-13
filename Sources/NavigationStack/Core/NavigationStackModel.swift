@@ -2,19 +2,23 @@ import Combine
 import SwiftUI
 
 /**
- The underlying `NavigationStackView`s model which can be manipulated to apply the navigation transitions.
+ The underlying `NavigationStackView`'s model which can be manipulated to apply the navigation transitions.
+
+ This class is the generic version of a navigation model.
+ Generally you want to bound its identifier type to a concrete equatable type like a string.
+ For this just use `NavigationModel`.
 
  An instance of this model has to be injected into the view hierarchy as an environment object:
  `MyRootView().environmentObject(NavigationModel())`
  Even when using multiple navigation stack views in a view hierarchy there has to be always only one instance of `NavigationModel`.
- The model can be used with names/IDs to target specific navigation stack views.
+ The model can be used with identifiers to target specific navigation stack views.
  */
-public class NavigationModel: ObservableObject {
+public class NavigationStackModel<IdentifierType>: ObservableObject where IdentifierType: Equatable {
 	/// Flag used to determine if errors are thrown or silently ignored.
 	public let silenceErrors: Bool
 
 	/// The node list used as stack of navigation steps. Logically each navigation enques a new node and each back-navigation removes one.
-	@Published private var navigationStackNode: NavigationStackNode? {
+	@Published private var navigationStackNode: NavigationStackNode<IdentifierType>? {
 		didSet {
 			// Propagates any published state changes from the node to observers of this node and not only whether the node has been set or deleted.
 			navigationStackNodeChangeCanceller = navigationStackNode?.objectWillChange.sink(receiveValue: { [weak self] _ in
@@ -43,15 +47,19 @@ public class NavigationModel: ObservableObject {
 	 - Warning: It's not possible to navigate to a new view while a navigation for the same stack view is already active,
 	 i.e. tying to push View3 on View1 when there is already View2 pushed on View1 will result in an error.
 
-	 - parameter name: The navigation stack view's name targeting by this navigation.
-	 The provided name will be used to determine which navigation stack view should replace its view with the provided one.
+	 - parameter identifier: The navigation stack view's identifier targeting by this navigation.
+	 The provided ID will be used to determine which navigation stack view should replace its view with the provided one.
 	 - parameter animation: The transition animation to apply.
 	 - parameter alternativeView: The new view which should replace the navigation stack view's default view.
 	 */
-	public func showView<Content: View>(_ name: String, animation: NavigationAnimation? = nil, @ViewBuilder alternativeView: @escaping () -> Content) {
+	public func showView<Content: View>(
+		_ identifier: IdentifierType,
+		animation: NavigationAnimation? = nil,
+		@ViewBuilder alternativeView: @escaping () -> Content
+	) {
 		let viewBuilder: AnyViewBuilder = { AnyView(alternativeView()) }
 
-		let newNode = NavigationStackNode(name: name, alternativeView: viewBuilder)
+		let newNode = NavigationStackNode(identifier: identifier, alternativeView: viewBuilder)
 		newNode.transitionAnimation = animation
 		enqueueNewNode(newNode)
 
@@ -65,12 +73,12 @@ public class NavigationModel: ObservableObject {
 
 	 - parameter newNode: The node to add to the stack.
 	 */
-	private func enqueueNewNode(_ newNode: NavigationStackNode) {
+	private func enqueueNewNode(_ newNode: NavigationStackNode<IdentifierType>) {
 		cleanupNodeList()
 
-		if let navigationStackNode = navigationStackNode, navigationStackNode.getNode(named: newNode.name) != nil {
+		if let navigationStackNode = navigationStackNode, navigationStackNode.getNode(newNode.identifer) != nil {
 			if silenceErrors { return }
-			fatalError("Replacing showing navigation view '\(newNode.name)' not allowed")
+			fatalError("Replacing showing navigation view '\(newNode.identifer)' not allowed")
 		} else if let navigationStackNode = navigationStackNode, let leafNode = navigationStackNode.getLeafNode() {
 			leafNode.nextNode = newNode
 		} else {
@@ -83,7 +91,7 @@ public class NavigationModel: ObservableObject {
 
 	 - parameter node: The stack view's node on which to activate the navigation.
 	 */
-	private func showAlternativeViewForNode(_ node: NavigationStackNode) {
+	private func showAlternativeViewForNode(_ node: NavigationStackNode<IdentifierType>) {
 		node.isAlternativeViewShowingPrecede = true // Necessary, see Experiment7
 
 		if let transitionAnimation = node.transitionAnimation {
@@ -143,14 +151,14 @@ public class NavigationModel: ObservableObject {
 	 Navigates back to a specific navigation stack view somewhere in the stack.
 	 This is typically used to navigate back multiple views.
 
-	 - parameter name: The navigation stack view's name targeting by this navigation.
-	 The provided name will be used to determine which navigation stack view should switch back to its default view.
+	 - parameter identifier: The navigation stack view's identifier targeting by this navigation.
+	 The provided ID will be used to determine which navigation stack view should switch back to its default view.
 	 - parameter animation: The transition animation to use during this transition. When nil is passed then no animation will be used.
 	 */
-	public func hideView(_ name: String, animation: NavigationAnimation? = nil) {
-		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
+	public func hideView(_ identifier: IdentifierType, animation: NavigationAnimation? = nil) {
+		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(identifier) else {
 			if silenceErrors { return }
-			fatalError("No navigation view with name '\(name)' available on the stack to reset")
+			fatalError("No navigation view with identifier '\(identifier)' available on the stack to reset")
 		}
 
 		node.transitionAnimation = animation
@@ -161,13 +169,13 @@ public class NavigationModel: ObservableObject {
 	 Navigates back to a specific navigation stack view somewhere in the stack by using its reverse animation.
 	 This is typically used to execute a back navigation to a view farther down the stack, e.g. back to the root.
 
-	 - parameter name: The navigation stack view's name targeting by this navigation.
-	 The provided name will be used to determine which navigation stack view should switch back to its default view.
+	 - parameter identifier: The navigation stack view's identifier targeting by this navigation.
+	 The provided ID will be used to determine which navigation stack view should switch back to its default view.
 	 */
-	public func hideViewWithReverseAnimation(_ name: String) {
-		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
+	public func hideViewWithReverseAnimation(_ identifier: IdentifierType) {
+		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(identifier) else {
 			if silenceErrors { return }
-			fatalError("No navigation view with name '\(name)' available on the stack to reset")
+			fatalError("No navigation view with identifier '\(identifier)' available on the stack to reset")
 		}
 
 		hideAlternativeViewForNode(node)
@@ -178,7 +186,7 @@ public class NavigationModel: ObservableObject {
 
 	 - parameter node: The stack view's node on which to deactivate the navigation.
 	 */
-	private func hideAlternativeViewForNode(_ node: NavigationStackNode) {
+	private func hideAlternativeViewForNode(_ node: NavigationStackNode<IdentifierType>) {
 		node.isAlternativeViewShowingPrecede = false // Necessary, see Experiment7
 
 		if let transitionAnimation = node.transitionAnimation {
@@ -202,15 +210,16 @@ public class NavigationModel: ObservableObject {
 	}
 
 	/**
-	 Returns whether there is a navigation view with a specific name on the stack or not,
-	 meaning is it possible to navigate to the named navigation stack view or not.
+	 Returns whether there is a navigation view with a specific ID on the stack or not,
+	 meaning is it possible to navigate to the navigation stack view or not.
 
-	 True when it's safe to navigate to the name, otherwise false.
+	 - parameter identifier: The navigation stack view's identifier to query for its existence in the stack.
+	 - returns: True when it's safe to navigate to the ID, otherwise false.
 
 	 - Warning: Using this method to show different views or sub-views without freezing the result in a `let` variable will result in animation glitches!
 	 */
-	public func isAlternativeViewShowing(_ name: String) -> Bool {
-		guard let node = navigationStackNode?.getNode(named: name) else {
+	public func isAlternativeViewShowing(_ identifier: IdentifierType) -> Bool {
+		guard let node = navigationStackNode?.getNode(identifier) else {
 			return false
 		}
 
@@ -234,14 +243,15 @@ public class NavigationModel: ObservableObject {
 	}
 
 	/**
-	 Creates and returns a binding for a named navigation stack view's showing flag.
+	 Creates and returns a binding for a navigation stack view's showing flag.
 
-	 - returns: The binding bound to the named view on the navigation stack.
+	 - identifier: The navigation stack view's identifier for which to create a binding.
+	 - returns: The binding bound to the view on the navigation stack.
 	 */
-	public func viewShowingBinding(_ name: String) -> Binding<Bool> {
-		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(named: name) else {
+	public func viewShowingBinding(_ identifier: IdentifierType) -> Binding<Bool> {
+		guard let navigationStackNode = navigationStackNode, let node = navigationStackNode.getNode(identifier) else {
 			if silenceErrors { return .constant(false) }
-			fatalError("No navigation view with name '\(name)' available on the stack for binding")
+			fatalError("No navigation view with identifier '\(identifier)' available on the stack for binding")
 		}
 
 		return createBindingForNode(node)
@@ -253,7 +263,7 @@ public class NavigationModel: ObservableObject {
 	 - parameter node: The navigation stack view's node for which to create the binding.
 	 - returns: The created binding ready to pass to a SwiftUI view.
 	 */
-	private func createBindingForNode(_ node: NavigationStackNode) -> Binding<Bool> {
+	private func createBindingForNode(_ node: NavigationStackNode<IdentifierType>) -> Binding<Bool> {
 		Binding<Bool>(
 			get: {
 				node.isAlternativeViewShowing
@@ -271,15 +281,15 @@ public class NavigationModel: ObservableObject {
 
 // MARK: - Used by the NavigationStackView
 
-extension NavigationModel {
+extension NavigationStackModel {
 	/**
 	 Returns the safe state of whether a navigation switch has been applied.
 
-	 - parameter name: The navigation stack view's ID.
+	 - parameter identifier: The navigation stack view's ID.
 	 - returns: True if the alternative view is showing, otherwise false.
 	 */
-	func isAlternativeViewShowingPrecede(_ name: String) -> Bool {
-		guard let node = navigationStackNode?.getNode(named: name) else {
+	func isAlternativeViewShowingPrecede(_ identifier: IdentifierType) -> Bool {
+		guard let node = navigationStackNode?.getNode(identifier) else {
 			return false
 		}
 
@@ -287,52 +297,52 @@ extension NavigationModel {
 	}
 
 	/**
-	 Returns the alternative view for a given navigation's name / ID.
+	 Returns the alternative view for a given navigation's identifier.
 
-	 - parameter name: The navigation stack view's ID.
+	 - parameter identifier: The navigation stack view's ID.
 	 - returns: The content view if any.
 	 */
-	func alternativeView(_ name: String) -> AnyViewBuilder? {
-		navigationStackNode?.getNode(named: name)?.alternativeView
+	func alternativeView(_ identifier: IdentifierType) -> AnyViewBuilder? {
+		navigationStackNode?.getNode(identifier)?.alternativeView
 	}
 
 	/**
 	 The transition for the default content view.
 
-	 - parameter name: The navigation stack view's ID.
+	 - parameter identifier: The navigation stack view's ID.
 	 - returns: The transition.
 	 */
-	func defaultViewTransition(_ name: String) -> AnyTransition {
-		navigationStackNode?.getNode(named: name)?.transitionAnimation?.defaultViewTransition ?? .identity
+	func defaultViewTransition(_ identifier: IdentifierType) -> AnyTransition {
+		navigationStackNode?.getNode(identifier)?.transitionAnimation?.defaultViewTransition ?? .identity
 	}
 
 	/**
 	 The transition for the alternative view.
 
-	 - parameter name: The navigation stack view's ID.
+	 - parameter identifier: The navigation stack view's ID.
 	 - returns: The transition.
 	 */
-	func alternativeViewTransition(_ name: String) -> AnyTransition {
-		navigationStackNode?.getNode(named: name)?.transitionAnimation?.alternativeViewTransition ?? .identity
+	func alternativeViewTransition(_ identifier: IdentifierType) -> AnyTransition {
+		navigationStackNode?.getNode(identifier)?.transitionAnimation?.alternativeViewTransition ?? .identity
 	}
 
 	/**
 	 The default view's z-index during a transition.
 
-	 - parameter name: The navigation stack view's ID.
+	 - parameter identifier: The navigation stack view's ID.
 	 - returns: The z-index to apply.
 	 */
-	func defaultViewZIndex(_ name: String) -> Double {
-		navigationStackNode?.getNode(named: name)?.transitionAnimation?.defaultViewZIndex ?? .zero
+	func defaultViewZIndex(_ identifier: IdentifierType) -> Double {
+		navigationStackNode?.getNode(identifier)?.transitionAnimation?.defaultViewZIndex ?? .zero
 	}
 
 	/**
 	 The alternative view's z-index during a transition.
 
-	 - parameter name: The navigation stack view's ID.
+	 - parameter identifier: The navigation stack view's ID.
 	 - returns: The z-index to apply.
 	 */
-	func alternativeViewZIndex(_ name: String) -> Double {
-		navigationStackNode?.getNode(named: name)?.transitionAnimation?.alternativeViewZIndex ?? .zero
+	func alternativeViewZIndex(_ identifier: IdentifierType) -> Double {
+		navigationStackNode?.getNode(identifier)?.transitionAnimation?.alternativeViewZIndex ?? .zero
 	}
 }

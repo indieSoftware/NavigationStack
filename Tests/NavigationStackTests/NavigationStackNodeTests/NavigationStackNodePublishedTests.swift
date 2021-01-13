@@ -4,11 +4,11 @@ import SwiftUI
 import XCTest
 
 class NavigationStackNodePublishedTests: XCTestCase {
-	var node: NavigationStackNode!
+	var node: NavigationStackNode<String>!
 	var nodeDisposal: AnyCancellable!
 
 	override func setUp() {
-		node = NavigationStackNode(name: "Foo", alternativeView: { AnyView(EmptyView()) })
+		node = NavigationStackNode(identifier: "Foo", alternativeView: { AnyView(EmptyView()) })
 	}
 
 	private func setupNodePublishExpectation() {
@@ -56,7 +56,7 @@ class NavigationStackNodePublishedTests: XCTestCase {
 	func testNextNodeAssignPublished() throws {
 		setupNodePublishExpectation()
 
-		node.nextNode = NavigationStackNode(name: "Bar", alternativeView: { AnyView(EmptyView()) })
+		node.nextNode = NavigationStackNode(identifier: "Bar", alternativeView: { AnyView(EmptyView()) })
 
 		waitForExpectations(timeout: 1)
 		XCTAssertNotNil(node.nextNode)
@@ -64,7 +64,7 @@ class NavigationStackNodePublishedTests: XCTestCase {
 
 	// Test that changing a nextNode's property will result in an update-notification to observers of the node itself.
 	func testNextNodeChangedPropertyPublished() throws {
-		let nextNode = NavigationStackNode(name: "Bar", alternativeView: { AnyView(EmptyView()) })
+		let nextNode = NavigationStackNode(identifier: "Bar", alternativeView: { AnyView(EmptyView()) })
 		node.nextNode = nextNode
 		XCTAssertFalse(nextNode.isAlternativeViewShowing)
 

@@ -27,9 +27,9 @@
 		2615D53F256A798C0009A477 /* NavigationAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4DA256A79560009A477 /* NavigationAnimations.swift */; };
 		2615D540256A798C0009A477 /* NavigationStackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D8256A79560009A477 /* NavigationStackNode.swift */; };
 		2615D541256A798C0009A477 /* NavigationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D4256A79560009A477 /* NavigationAnimation.swift */; };
-		2615D542256A798C0009A477 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D5256A79560009A477 /* NavigationModel.swift */; };
+		2615D542256A798C0009A477 /* NavigationStackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D5256A79560009A477 /* NavigationStackModel.swift */; };
 		2615D543256A798C0009A477 /* NavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D6256A79560009A477 /* NavigationStackView.swift */; };
-		2615D544256A798C0009A477 /* NavigationModelConvenienceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D7256A79560009A477 /* NavigationModelConvenienceMethods.swift */; };
+		2615D544256A798C0009A477 /* NavigationStackModelConvenienceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4D7256A79560009A477 /* NavigationStackModelConvenienceMethods.swift */; };
 		2615D54D256A79930009A477 /* TiltAndFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4DF256A79560009A477 /* TiltAndFly.swift */; };
 		2615D54E256A79930009A477 /* Saturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4E2256A79560009A477 /* Saturation.swift */; };
 		2615D54F256A79930009A477 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D4E3256A79560009A477 /* Blur.swift */; };
@@ -128,9 +128,9 @@
 		2615D4BE256A78C60009A477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2615D4C0256A78C60009A477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2615D4D4256A79560009A477 /* NavigationAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAnimation.swift; sourceTree = "<group>"; };
-		2615D4D5256A79560009A477 /* NavigationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
+		2615D4D5256A79560009A477 /* NavigationStackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackModel.swift; sourceTree = "<group>"; };
 		2615D4D6256A79560009A477 /* NavigationStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackView.swift; sourceTree = "<group>"; };
-		2615D4D7256A79560009A477 /* NavigationModelConvenienceMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationModelConvenienceMethods.swift; sourceTree = "<group>"; };
+		2615D4D7256A79560009A477 /* NavigationStackModelConvenienceMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackModelConvenienceMethods.swift; sourceTree = "<group>"; };
 		2615D4D8256A79560009A477 /* NavigationStackNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackNode.swift; sourceTree = "<group>"; };
 		2615D4D9256A79560009A477 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		2615D4DA256A79560009A477 /* NavigationAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAnimations.swift; sourceTree = "<group>"; };
@@ -309,8 +309,8 @@
 			children = (
 				2615D4D4256A79560009A477 /* NavigationAnimation.swift */,
 				2615D4DA256A79560009A477 /* NavigationAnimations.swift */,
-				2615D4D5256A79560009A477 /* NavigationModel.swift */,
-				2615D4D7256A79560009A477 /* NavigationModelConvenienceMethods.swift */,
+				2615D4D5256A79560009A477 /* NavigationStackModel.swift */,
+				2615D4D7256A79560009A477 /* NavigationStackModelConvenienceMethods.swift */,
 				2615D4D8256A79560009A477 /* NavigationStackNode.swift */,
 				2615D4D6256A79560009A477 /* NavigationStackView.swift */,
 				2615D4D9256A79560009A477 /* Types.swift */,
@@ -888,11 +888,11 @@
 				2615D54E256A79930009A477 /* Saturation.swift in Sources */,
 				2615D53F256A798C0009A477 /* NavigationAnimations.swift in Sources */,
 				2615D553256A79930009A477 /* Contrast.swift in Sources */,
-				2615D542256A798C0009A477 /* NavigationModel.swift in Sources */,
+				2615D542256A798C0009A477 /* NavigationStackModel.swift in Sources */,
 				2615D53E256A798C0009A477 /* Types.swift in Sources */,
 				2615D554256A79930009A477 /* Brightness.swift in Sources */,
 				2615D550256A79930009A477 /* ClipShape.swift in Sources */,
-				2615D544256A798C0009A477 /* NavigationModelConvenienceMethods.swift in Sources */,
+				2615D544256A798C0009A477 /* NavigationStackModelConvenienceMethods.swift in Sources */,
 				2615D54D256A79930009A477 /* TiltAndFly.swift in Sources */,
 				2615D540256A798C0009A477 /* NavigationStackNode.swift in Sources */,
 			);

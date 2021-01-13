@@ -3,12 +3,12 @@ import SwiftUI
 import XCTest
 
 class NavigationStackNodeGetLeafNodeTests: XCTestCase {
-	var node: NavigationStackNode!
+	var node: NavigationStackNode<String>!
 
 	let nodeName = "Foo"
 
 	override func setUp() {
-		node = NavigationStackNode(name: nodeName, alternativeView: { AnyView(EmptyView()) })
+		node = NavigationStackNode(identifier: nodeName, alternativeView: { AnyView(EmptyView()) })
 	}
 
 	// MARK: - Tests
@@ -22,7 +22,7 @@ class NavigationStackNodeGetLeafNodeTests: XCTestCase {
 
 	// Returns nil when the stack has no active node.
 	func testNoActiveNodeInStack() throws {
-		node.nextNode = NavigationStackNode(name: "Bar", alternativeView: { AnyView(EmptyView()) })
+		node.nextNode = NavigationStackNode(identifier: "Bar", alternativeView: { AnyView(EmptyView()) })
 
 		let result = node.getLeafNode()
 
@@ -31,7 +31,7 @@ class NavigationStackNodeGetLeafNodeTests: XCTestCase {
 
 	// Returns nil when the first node in the stack is not active, but one down might be.
 	func testNoActiveRootNodeInStack() throws {
-		let nextNode = NavigationStackNode(name: "Bar", alternativeView: { AnyView(EmptyView()) })
+		let nextNode = NavigationStackNode(identifier: "Bar", alternativeView: { AnyView(EmptyView()) })
 		nextNode.isAlternativeViewShowing = true
 		node.nextNode = nextNode
 
@@ -42,7 +42,7 @@ class NavigationStackNodeGetLeafNodeTests: XCTestCase {
 
 	// Returns the root node if this is the only one active in the stack.
 	func testActiveRootNode() throws {
-		let nextNode = NavigationStackNode(name: "Bar", alternativeView: { AnyView(EmptyView()) })
+		let nextNode = NavigationStackNode(identifier: "Bar", alternativeView: { AnyView(EmptyView()) })
 		node.nextNode = nextNode
 		node.isAlternativeViewShowing = true
 
@@ -53,7 +53,7 @@ class NavigationStackNodeGetLeafNodeTests: XCTestCase {
 
 	// Returns the last node of the stack if all nodes are active.
 	func testActiveLeafNode() throws {
-		let nextNode = NavigationStackNode(name: "Bar", alternativeView: { AnyView(EmptyView()) })
+		let nextNode = NavigationStackNode(identifier: "Bar", alternativeView: { AnyView(EmptyView()) })
 		nextNode.isAlternativeViewShowing = true
 		node.nextNode = nextNode
 		node.isAlternativeViewShowing = true
