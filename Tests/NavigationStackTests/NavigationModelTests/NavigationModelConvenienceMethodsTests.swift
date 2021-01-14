@@ -13,8 +13,8 @@ class NavigationModelConvenienceMethodsTests: XCTestCase {
 
 	func testPushContent() throws {
 		let modelExpectation = expectation(description: "Model")
-		model.showViewStub = { name, _ in
-			XCTAssertEqual("Foo", name)
+		model.showViewStub = { id, _ in
+			XCTAssertEqual("Foo", id)
 			modelExpectation.fulfill()
 		}
 
@@ -25,8 +25,8 @@ class NavigationModelConvenienceMethodsTests: XCTestCase {
 
 	func testPopContent() throws {
 		let modelExpectation = expectation(description: "Model")
-		model.hideViewStub = { name, _ in
-			XCTAssertEqual("Foo", name)
+		model.hideViewStub = { id, _ in
+			XCTAssertEqual("Foo", id)
 			modelExpectation.fulfill()
 		}
 
@@ -37,8 +37,8 @@ class NavigationModelConvenienceMethodsTests: XCTestCase {
 
 	func testPresentContent() throws {
 		let modelExpectation = expectation(description: "Model")
-		model.showViewStub = { name, _ in
-			XCTAssertEqual("Foo", name)
+		model.showViewStub = { id, _ in
+			XCTAssertEqual("Foo", id)
 			modelExpectation.fulfill()
 		}
 
@@ -49,8 +49,8 @@ class NavigationModelConvenienceMethodsTests: XCTestCase {
 
 	func testDismissContent() throws {
 		let modelExpectation = expectation(description: "Model")
-		model.hideViewStub = { name, _ in
-			XCTAssertEqual("Foo", name)
+		model.hideViewStub = { id, _ in
+			XCTAssertEqual("Foo", id)
 			modelExpectation.fulfill()
 		}
 
@@ -61,8 +61,8 @@ class NavigationModelConvenienceMethodsTests: XCTestCase {
 
 	func testFadeInContent() throws {
 		let modelExpectation = expectation(description: "Model")
-		model.showViewStub = { name, _ in
-			XCTAssertEqual("Foo", name)
+		model.showViewStub = { id, _ in
+			XCTAssertEqual("Foo", id)
 			modelExpectation.fulfill()
 		}
 
@@ -73,8 +73,8 @@ class NavigationModelConvenienceMethodsTests: XCTestCase {
 
 	func testFadeOutContent() throws {
 		let modelExpectation = expectation(description: "Model")
-		model.hideViewStub = { name, _ in
-			XCTAssertEqual("Foo", name)
+		model.hideViewStub = { id, _ in
+			XCTAssertEqual("Foo", id)
 			modelExpectation.fulfill()
 		}
 

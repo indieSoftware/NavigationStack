@@ -5,10 +5,10 @@ import XCTest
 class NavigationStackNodeGetLeafNodeTests: XCTestCase {
 	var node: NavigationStackNode<String>!
 
-	let nodeName = "Foo"
+	let nodeId = "Foo"
 
 	override func setUp() {
-		node = NavigationStackNode(identifier: nodeName, alternativeView: { AnyView(EmptyView()) })
+		node = NavigationStackNode(identifier: nodeId, alternativeView: { AnyView(EmptyView()) })
 	}
 
 	// MARK: - Tests

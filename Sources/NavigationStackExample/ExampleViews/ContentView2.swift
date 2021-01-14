@@ -2,15 +2,15 @@ import NavigationStack
 import SwiftUI
 
 struct ContentView2: View {
-	static let navigationName = String(describing: Self.self)
+	static let id = String(describing: Self.self)
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
-		NavigationStackView(ContentView2.navigationName) {
+		NavigationStackView(ContentView2.id) {
 			HStack {
 				VStack(alignment: .leading, spacing: 20) {
-					Text(ContentView2.navigationName)
+					Text(ContentView2.id)
 
 					// It's safe to query the `hasAlternativeViewShowing` state from the model, because it will be frozen by the button view.
 					// However, to be safe we could also just pass `true` because View2 is not the root view.
@@ -19,7 +19,7 @@ struct ContentView2: View {
 					Button(action: {
 						// Example of a reset transition via move, which is essentially a pop transition.
 						navigationModel.hideView(
-							ContentView1.navigationName,
+							ContentView1.id,
 							animation: NavigationAnimation(
 								animation: .easeOut,
 								defaultViewTransition: .move(edge: .leading),
@@ -34,7 +34,7 @@ struct ContentView2: View {
 					Button(action: {
 						// Example of a combined reset transition.
 						navigationModel.hideView(
-							ContentView1.navigationName,
+							ContentView1.id,
 							animation: NavigationAnimation(
 								animation: .easeOut,
 								defaultViewTransition: AnyTransition.scale(scale: 2).combined(with: .opacity),
@@ -49,7 +49,7 @@ struct ContentView2: View {
 					Button(action: {
 						// Example of a custom reset transition.
 						navigationModel.hideView(
-							ContentView1.navigationName,
+							ContentView1.id,
 							animation: NavigationAnimation(
 								animation: Animation.easeOut.speed(0.25),
 								defaultViewTransition: .circleShape,
@@ -62,10 +62,10 @@ struct ContentView2: View {
 						.accessibility(identifier: "DoubleIrisToView1")
 
 					Button(action: {
-						navigationModel.pushContent(ContentView2.navigationName) {
+						navigationModel.pushContent(ContentView2.id) {
 							// It's safe to query the `isAlternativeViewShowing` state from the model, because it will be frozen by View3.
 							// However, to be sage we could also just pass `true` because View2 is alreaydy showing when transitioning from View2 to View3.
-							ContentView3(isView2Showing: navigationModel.isAlternativeViewShowing(ContentView2.navigationName))
+							ContentView3(isView2Showing: navigationModel.isAlternativeViewShowing(ContentView2.id))
 						}
 					}, label: {
 						Text("Push View 3")
@@ -73,8 +73,8 @@ struct ContentView2: View {
 						.accessibility(identifier: "PushView3")
 
 					Button(action: {
-						navigationModel.presentContent(ContentView2.navigationName) {
-							ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView2.navigationName))
+						navigationModel.presentContent(ContentView2.id) {
+							ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView2.id))
 						}
 					}, label: {
 						Text("Present View 4")

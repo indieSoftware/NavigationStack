@@ -2,15 +2,15 @@ import NavigationStack
 import SwiftUI
 
 struct ContentView1: View {
-	static let navigationName = String(describing: Self.self)
+	static let id = String(describing: Self.self)
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
-		NavigationStackView(ContentView1.navigationName) {
+		NavigationStackView(ContentView1.id) {
 			HStack {
 				VStack(alignment: .leading, spacing: 20) {
-					Text(ContentView1.navigationName)
+					Text(ContentView1.id)
 
 					// It's safe to query the `hasAlternativeViewShowing` state from the model, because it will be frozen by the button view.
 					// However, to be safe we could also just pass `false` because View1 is the root view.
@@ -20,7 +20,7 @@ struct ContentView1: View {
 						Button(action: {
 							// Example of a simple move transition which could also be replaced by `NavigationAnimation.push`.
 							navigationModel.showView(
-								ContentView1.navigationName,
+								ContentView1.id,
 								// animation: NavigationAnimation.push
 								animation: NavigationAnimation(
 									animation: .easeOut,
@@ -38,7 +38,7 @@ struct ContentView1: View {
 						Button(action: {
 							// Example of a combined transition usage, here scale is combined with opacity.
 							navigationModel.showView(
-								ContentView1.navigationName,
+								ContentView1.id,
 								animation: NavigationAnimation(
 									animation: .easeOut,
 									defaultViewTransition: AnyTransition.scale(scale: 2).combined(with: .opacity),
@@ -55,7 +55,7 @@ struct ContentView1: View {
 						Button(action: {
 							// Example of a custom transition usage, here an iris effect is used to show the alternative content.
 							navigationModel.showView(
-								ContentView1.navigationName,
+								ContentView1.id,
 								animation: NavigationAnimation(
 									animation: Animation.easeOut.speed(0.5),
 									defaultViewTransition: .static,
@@ -71,10 +71,10 @@ struct ContentView1: View {
 
 						Button(action: {
 							// Example of a horizontal move transition via shortcut naming.
-							navigationModel.pushContent(ContentView1.navigationName) {
+							navigationModel.pushContent(ContentView1.id) {
 								// It's safe to query the `isAlternativeViewShowing` state from the model, because it will be frozen by View3.
 								// However, to be safe we could also just pass `false` because View2 will not be shown when transitioning from View1 to View3 directly.
-								ContentView3(isView2Showing: navigationModel.isAlternativeViewShowing(ContentView2.navigationName))
+								ContentView3(isView2Showing: navigationModel.isAlternativeViewShowing(ContentView2.id))
 							}
 						}, label: {
 							Text("Push View 3")
@@ -84,8 +84,8 @@ struct ContentView1: View {
 					Group {
 						Button(action: {
 							// Example of a vertical move transition via shortcut naming.
-							navigationModel.presentContent(ContentView1.navigationName) {
-								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView1.navigationName))
+							navigationModel.presentContent(ContentView1.id) {
+								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView1.id))
 							}
 						}, label: {
 							Text("Present View 4 (View 4 in front of View 1)")
@@ -95,7 +95,7 @@ struct ContentView1: View {
 						Button(action: {
 							// Example of how to change the zIndex of views, showing here View4 behind View1.
 							navigationModel.showView(
-								ContentView1.navigationName,
+								ContentView1.id,
 								animation: NavigationAnimation(
 									animation: .easeOut,
 									defaultViewTransition: .static,
@@ -104,7 +104,7 @@ struct ContentView1: View {
 									alternativeViewZIndex: NavigationAnimation.zIndexOfBehind
 								)
 							) {
-								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView1.navigationName))
+								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView1.id))
 							}
 						}, label: {
 							Text("Present View 4 (View 4 behind View 1)")
@@ -113,8 +113,8 @@ struct ContentView1: View {
 
 						Button(action: {
 							// Example of a fade transition via shortcut naming.
-							navigationModel.fadeInContent(ContentView1.navigationName) {
-								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView1.navigationName))
+							navigationModel.fadeInContent(ContentView1.id) {
+								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView1.id))
 							}
 						}, label: {
 							Text("Present View 4 via fading")
@@ -122,7 +122,7 @@ struct ContentView1: View {
 							.accessibility(identifier: "PresentView4Fading")
 
 						Button(action: {
-							navigationModel.presentContent(ContentView1.navigationName) {
+							navigationModel.presentContent(ContentView1.id) {
 								TransitionExamples()
 							}
 						}, label: {
@@ -131,7 +131,7 @@ struct ContentView1: View {
 							.accessibility(identifier: "TransitionExamplesButton")
 
 						Button(action: {
-							navigationModel.presentContent(ContentView1.navigationName) {
+							navigationModel.presentContent(ContentView1.id) {
 								SubviewExamples()
 							}
 						}, label: {

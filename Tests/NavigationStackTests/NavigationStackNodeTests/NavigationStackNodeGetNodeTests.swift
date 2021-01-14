@@ -5,10 +5,10 @@ import XCTest
 class NavigationStackNodeGetNodeTests: XCTestCase {
 	var node: NavigationStackNode<String>!
 
-	let nodeName = "Foo"
+	let nodeId = "Foo"
 
 	override func setUp() {
-		node = NavigationStackNode(identifier: nodeName, alternativeView: { AnyView(EmptyView()) })
+		node = NavigationStackNode(identifier: nodeId, alternativeView: { AnyView(EmptyView()) })
 	}
 
 	// MARK: - Tests
@@ -31,17 +31,17 @@ class NavigationStackNodeGetNodeTests: XCTestCase {
 
 	// The searched node is the node on which the call was invoced.
 	func testThisNode() throws {
-		let result = node.getNode(nodeName)
+		let result = node.getNode(nodeId)
 
 		XCTAssertTrue(result === node)
 	}
 
 	// The first node with the same name in the list is found.
 	func testFistNode() throws {
-		let nextNode = NavigationStackNode(identifier: nodeName, alternativeView: { AnyView(EmptyView()) })
+		let nextNode = NavigationStackNode(identifier: nodeId, alternativeView: { AnyView(EmptyView()) })
 		node.nextNode = nextNode
 
-		let result = node.getNode(nodeName)
+		let result = node.getNode(nodeId)
 
 		XCTAssertTrue(result === node)
 	}

@@ -2,13 +2,13 @@ import NavigationStack
 import SwiftUI
 
 struct TransitionExamples: View {
-	static let navigationName = String(describing: Self.self)
+	static let id = String(describing: Self.self)
 	static let transitionSpeed = 0.75
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
-		NavigationStackView(TransitionExamples.navigationName) {
+		NavigationStackView(TransitionExamples.id) {
 			ScrollView {
 				HStack {
 					VStack(alignment: .leading, spacing: 20) {
@@ -65,7 +65,7 @@ struct TransitionExamples: View {
 	func transitionExample(name: String, transition: AnyTransition) -> some View {
 		Button(name) {
 			navigationModel.showView(
-				TransitionExamples.navigationName,
+				TransitionExamples.id,
 				animation: NavigationAnimation(
 					animation: Animation.easeOut.speed(TransitionExamples.transitionSpeed),
 					defaultViewTransition: .static,

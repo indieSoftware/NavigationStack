@@ -73,7 +73,7 @@ https://github.com/indieSoftware/NavigationStack.git
 1. Import the lib to your view's source file.
 2. Include the `NavigationModel` to your view as an environment object.
 3. Use the `NavigationStackView` as a root stack view of your view and give it a unique name to reference it.
-4. Use the `NavigationModel` object to perform any transitions, i.e. a push or pop. Provide the `NavigationStackView`'s name to define which `NavigationStackView` in the hierachy should switch its content.
+4. Use the `NavigationModel` object to perform any transitions, i.e. a push or pop. Provide the `NavigationStackView`'s identifier to define which `NavigationStackView` in the hierachy should switch its content.
 
 	```
 	import NavigationStack // 1
@@ -114,9 +114,9 @@ That's all what's needed!
 
 ## Additional Information
 
-### The `NavigationStackView`'s Name
+### The `NavigationStackView`'s Identifier
 
-Every view which should provide a possibility to transition to a different view needs to contain a `NavigationStackView` with a unique name.
+Every view which should provide a possibility to transition to a different view needs to contain a `NavigationStackView` with a unique identifier.
 
 When a view where you navigated to now wants to navigate back to a specific view, just tell the `NavigationModel` to which one to navigate back:
 
@@ -136,19 +136,19 @@ struct MyDetailView: View {
 }
 ```
 
-With the `NavigationStackView`'s reference name you can also navigate back multiple screens at once, just provide the name of one screen further down the hierarchy.
+With the `NavigationStackView`'s reference identifier you can also navigate back multiple screens at once, just provide the ID of one screen further down the hierarchy.
 
-To avoid hard-coded strings for the `NavigationStackView` names, just define a static constant in each view which then can be referenced instead.
+To avoid hard-coded strings for the `NavigationStackView` IDs, just define a static constant in each view which then can be referenced instead.
 
 ```
 struct ContentView1: View {
-	static let navigationName = String(describing: Self.self)
+	static let id = String(describing: Self.self)
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
-		NavigationStackView(ContentView1.navigationName) {
+		NavigationStackView(ContentView1.id) {
 			Button(action: {
-				navigationModel.pushContent(ContentView1.navigationName) {
+				navigationModel.pushContent(ContentView1.id) {
 					ContentView2()
 				}
 			}, label: {
@@ -167,7 +167,7 @@ There are some convenience methods to express specific transitions more appropri
 
 ### Transition Animations
 
-The convenience navigation methods all rely on the `showView(_ name:, animation:, alternativeView:)` and `hideView(_ name:, animation:)` methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. `NavigationAnimation`'s `push`, `pop`, `present` and `dismiss`). However, you can also create your own transition animations by providing different parameters for the animation curve and the transitions types. Then you can use the show and hide methods to create transitions with your own animations:
+The convenience navigation methods all rely on the `showView(_ identifier:, animation:, alternativeView:)` and `hideView(_ identifier:, animation:)` methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. `NavigationAnimation`'s `push`, `pop`, `present` and `dismiss`). However, you can also create your own transition animations by providing different parameters for the animation curve and the transitions types. Then you can use the show and hide methods to create transitions with your own animations:
 
 
 ```
@@ -178,6 +178,8 @@ let myAnimation = NavigationAnimation(
 )
 navigationModel.hideView("MyRootView", animation: myAnimation)
 ```
+
+With "defaultView" the source view is meant, which is the one from which to navigate while "alternativeView" means the destination view, the one where to navigate to. By providing different transitions for both views it's possible to define one transition animation for the leaving view and a different one for the appearing view.
 
 **Important:**
 For views which shouldn't animate during a transition, e.g. staying statically visible while the other view does its animation, you have to provide a `.static` transition rather than SwiftUI's `.identity`.
@@ -204,7 +206,7 @@ public extension AnyTransition {
 ```
 
 **Important**
-Please keep in mind that SwiftUI will only animate transitions if any value changes, e.g. when providing a brightness transition with a brighness value of 0 you won't see any animation and the transition for that view gets skipped. That's because the identity has also a brightness value of 0 and thus both states, the identity and the active state, are equal.
+Please keep in mind that SwiftUI will only animate transitions if a value changes, e.g. when providing a brightness transition with a brighness value of 0 you won't see any animation and the transition for that view gets skipped. That's because the identity has also a brightness value of 0 and thus both states, the identity and the active state, are equal.
 
 For further information, please look at the lib's API documentation: [https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)
 
@@ -214,7 +216,7 @@ The project includes an example target (`NavigationStackExample`) which shows ho
 
 You can also run the example's UI tests to run sepcific or all transitions automatically.
 
-The example project includes some experiments where each describes a problem or the attempt to solve a problem. They are kind of a documentation how to solve some strange behaviors of SwiftUI, but they are not important for users of the library, but maybe for those who wants to understand and improve it. So, feel free to skip these. However, to run the experiments simply pass the experiment's name as launch agrument, e.g. "Experiment1" to run `Experiment1.swift`.
+The example project includes some experiments where each describes a problem or the attempt to solve a problem. They are kind of a documentation how to solve some strange behaviors of SwiftUI. They are not important for users of the library, but maybe for those who want to understand and improve it. So, feel free to skip these. However, to run the experiments simply pass the experiment's name in the scheme as launch agrument, i.e. "Experiment1" to run `Experiment1.swift`.
 
 ## Known limitations
 

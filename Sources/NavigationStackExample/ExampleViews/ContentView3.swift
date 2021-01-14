@@ -2,7 +2,7 @@ import NavigationStack
 import SwiftUI
 
 struct ContentView3: View {
-	static let navigationName = String(describing: Self.self)
+	static let id = String(describing: Self.self)
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
@@ -10,10 +10,10 @@ struct ContentView3: View {
 	let isView2Showing: Bool
 
 	var body: some View {
-		NavigationStackView(ContentView3.navigationName) {
+		NavigationStackView(ContentView3.id) {
 			HStack {
 				VStack(alignment: .leading, spacing: 20) {
-					Text(ContentView3.navigationName)
+					Text(ContentView3.id)
 
 					// It's safe to query the `hasAlternativeViewShowing` state from the model, because it will be frozen by the button view.
 					// However, to be safe we could also just pass `true` because View3 is not the root view.
@@ -22,7 +22,7 @@ struct ContentView3: View {
 					Group {
 						Button(action: {
 							// Example of the shortcut pop transition, which is a move transition.
-							navigationModel.popContent(ContentView1.navigationName)
+							navigationModel.popContent(ContentView1.id)
 						}, label: {
 							Text("Pop to root (View 1)")
 						})
@@ -33,7 +33,7 @@ struct ContentView3: View {
 						// if navigationModel.isAlternativeViewShowing("ContentView2") {
 						if isView2Showing {
 							Button(action: {
-								navigationModel.popContent(ContentView2.navigationName)
+								navigationModel.popContent(ContentView2.id)
 							}, label: {
 								Text("Pop to View 2 (w/ animation)")
 							})
@@ -42,7 +42,7 @@ struct ContentView3: View {
 
 						Button(action: {
 							// Example of a simple hide transition without animation.
-							navigationModel.hideView(ContentView2.navigationName)
+							navigationModel.hideView(ContentView2.id)
 						}, label: {
 							// Using isAlternativeViewShowing from the model to show different sub-views will lead to animation glitches,
 							// therefore use the frozen `isView2Showing` value.
@@ -56,8 +56,8 @@ struct ContentView3: View {
 							.accessibility(identifier: "PopToView2NoAnimation")
 
 						Button(action: {
-							navigationModel.presentContent(ContentView3.navigationName) {
-								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView3.navigationName))
+							navigationModel.presentContent(ContentView3.id) {
+								ContentView4(isPresented: navigationModel.viewShowingBinding(ContentView3.id))
 							}
 						}, label: {
 							Text("Present View 4")
