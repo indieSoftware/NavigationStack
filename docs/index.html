@@ -53,13 +53,16 @@
             <a class="nav-group-name-link" href="NavigationStack.html">NavigationStack</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/NavigationModel.html">NavigationModel</a>
+                <a class="nav-group-task-link" href="Structs/NavigationAnimation.html">NavigationAnimation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/NavigationStackModel.html">NavigationStackModel</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/NavigationStackView.html">NavigationStackView</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/NavigationAnimation.html">NavigationAnimation</a>
               </li>
             </ul>
           </li>
@@ -72,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Modifier%20Structs.html">Modifier Structs</a>
+            <a class="nav-group-name-link" href="ViewModifiers.html">ViewModifiers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/BlurModifier.html">BlurModifier</a>
@@ -95,7 +98,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Shapes%20usable%20by%20ClipShapeModifier.html">Shapes usable by ClipShapeModifier</a>
+            <a class="nav-group-name-link" href="ClipShapeModifier%20Shapes.html">ClipShapeModifier Shapes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/CircleShape.html">CircleShape</a>
@@ -121,9 +124,13 @@
 <a href="https://indiesoftware.github.io/NavigationStack"><img src="https://indiesoftware.github.io/NavigationStack/badge.svg" alt="Documentation Coverage"></a>
 <a href="https://github.com/indieSoftware/NavigationStack/blob/master/LICENSE"><img src="https://img.shields.io/github/license/indieSoftware/NavigationStack" alt="License"></a>
 <a href="https://github.com/indieSoftware/NavigationStack"><img src="https://img.shields.io/github/v/tag/indieSoftware/NavigationStack?label=version" alt="GitHub Tag"></a>
-<a href="https://cocoapods.org/pods/NavStack"><img src="https://img.shields.io/cocoapods/v/NavStack.svg" alt="CocoaPods"></a></p>
+<a href="https://cocoapods.org/pods/NavStack"><img src="https://img.shields.io/cocoapods/v/NavStack.svg" alt="CocoaPods"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-success.svg" alt="carthage compatible"></a>
+<a href="https://github.com/apple/swift-package-manager"><img src="https://img.shields.io/badge/SPM-compatible-success.svg" alt="SPM compatible"></a></p>
 
 <p><a href="https://github.com/indieSoftware/NavigationStack">GitHub Page</a></p>
+
+<p><a href="https://indiesoftware.github.io/NavigationStack">Documentation</a></p>
 <h1 id='navigationstack-for-swiftui' class='heading'>NavigationStack for SwiftUI</h1>
 
 <p>NavigationStack is a custom SwiftUI solution for navigating between views. It&rsquo;s a more flexible alternative to SwiftUI&rsquo;s own navigation.</p>
@@ -137,7 +144,7 @@
 <li>Or create your own custom transition animations</li>
 <li>Navigate even without any transition animation at all if you want</li>
 <li>Define the back transition animation right before transitioning back, not in advance when transitioning forward</li>
-<li>Navigate back multiple screens at once, not only to the previous</li>
+<li>Navigate back multiple screens at once, not only to the previous one</li>
 <li>Use a full-screen present transition also on iOS 13</li>
 </ul>
 <h3 id='transition-examples' class='heading'>Transition Examples</h3>
@@ -156,36 +163,35 @@
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
-<p>To include this lib via <a href="https://cocoapods.org">CocoaPods</a> into a project, add to the <code>Podfile</code>:</p>
+<p>To include via <a href="https://cocoapods.org">CocoaPods</a> add to the <code>Podfile</code>:</p>
 <pre class="highlight plaintext"><code>pod 'NavStack'
 </code></pre>
 <h3 id='carthage' class='heading'>Carthage</h3>
 
-<p>To include this lib via <a href="https://github.com/Carthage/Carthage">Carthage</a> into a project, add to the <code>Cartfile</code>:</p>
+<p>To include via <a href="https://github.com/Carthage/Carthage">Carthage</a> add to the <code>Cartfile</code>:</p>
 <pre class="highlight plaintext"><code>github "indieSoftware/NavigationStack"
 </code></pre>
 <h3 id='spm' class='heading'>SPM</h3>
 
-<p>To include the lib via SwiftPackageManager into a project, add the repository:</p>
+<p>To include via <a href="https://swift.org/package-manager">SwiftPackageManager</a> add the repository:</p>
 <pre class="highlight plaintext"><code>https://github.com/indieSoftware/NavigationStack.git
 </code></pre>
 <h2 id='usage' class='heading'>Usage</h2>
 
 <ol>
 <li>Import the lib to your view&rsquo;s source file.</li>
-<li>Include the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> to your view as an environment object.</li>
+<li>Include the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> to your view as an environment object.</li>
 <li>Use the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> as a root stack view of your view and give it a unique name to reference it.</li>
-<li>Use the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> object to perform any transitions, i.e. a push or pop. Provide the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code>&lsquo;s name to define which <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> in the hierachy should switch its content.</li>
-</ol>
-<pre class="highlight plaintext"><code>import NavigationStack
+<li><p>Use the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> object to perform any transitions, i.e. a push or pop. Provide the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code>&lsquo;s identifier to define which <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> in the hierachy should switch its content.</p>
+<pre class="highlight plaintext"><code>import NavigationStack // 1
 
 struct MyRootView: View {
-    @EnvironmentObject var navigationModel: NavigationModel
+    @EnvironmentObject var navigationModel: NavigationModel // 2
 
     var body: some View {
-        NavigationStackView("MyRootView") {
+        NavigationStackView("MyRootView") { // 3
             Button(action: {
-                navigationModel.pushContent("MyRootView") {
+                navigationModel.pushContent("MyRootView") { // 4
                     MyDetailView()
                 }
             }, label: {
@@ -194,27 +200,28 @@ struct MyRootView: View {
         }
     }
 }
-</code></pre>
-
-<p>Because of the reference to the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> instance you need of couse to attach one as an environement object to the view hierachy, e.g. in the <code>SceneDelegate</code>:</p>
-<pre class="highlight plaintext"><code>    func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            let myRootView = MyRootView()
-                .environmentObject(NavigationModel())
-            window.rootViewController = UIHostingController(rootView: myRootView)
-            self.window = window
-            window.makeKeyAndVisible()
-        }
+</code></pre></li>
+<li><p>Because of the reference to the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> instance you need of couse to attach one as an environement object to the view hierachy, e.g. in the <code>SceneDelegate</code>:</p>
+<pre class="highlight plaintext"><code>func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
+    if let windowScene = scene as? UIWindowScene {
+        let window = UIWindow(windowScene: windowScene)
+        let myRootView = MyRootView()
+            .environmentObject(NavigationModel()) // 5
+        window.rootViewController = UIHostingController(rootView: myRootView)
+        self.window = window
+        window.makeKeyAndVisible()
     }
-</code></pre>
+}
+</code></pre></li>
+</ol>
 
 <p>That&rsquo;s all what&rsquo;s needed!</p>
-<h3 id='additional-information' class='heading'>Additional Information</h3>
+<h2 id='additional-information' class='heading'>Additional Information</h2>
+<h3 id='the-code-navigationstackview-code-39-s-identifier' class='heading'>The <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code>&rsquo;s Identifier</h3>
 
-<p>Every view which should provide a possibility to transition to a different view should contain a <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> with a unique name.</p>
+<p>Every view which should provide a possibility to transition to a different view needs to contain a <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> with a unique identifier.</p>
 
-<p>When a view where you navigated to now wants to navigate back to a specific view, just tell the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> to which one to navigate back:</p>
+<p>When a view where you navigated to now wants to navigate back to a specific view, just tell the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> to which one to navigate back:</p>
 <pre class="highlight plaintext"><code>import NavigationStack
 
 struct MyDetailView: View {
@@ -230,9 +237,34 @@ struct MyDetailView: View {
 }
 </code></pre>
 
-<p>Alternatively you can also use one of the other model methods which suit your current situation better, e.g. <code>hideTopViewWithReverseAnimation()</code>. There are many convenience methods, just look at the documentation for the <a href="the%20https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html">NavigationModel</a>.</p>
+<p>With the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code>&rsquo;s reference identifier you can also navigate back multiple screens at once, just provide the ID of one screen further down the hierarchy.</p>
 
-<p>The convenience methods all rely on the <code>hideView(_ name:, animation:)</code> method which takes an animation as argument. You can use this method to create own transition animations by providing different parameters:</p>
+<p>To avoid hard-coded strings for the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> IDs, just define a static constant in each view which then can be referenced instead.</p>
+<pre class="highlight plaintext"><code>struct ContentView1: View {
+    static let id = String(describing: Self.self)
+    @EnvironmentObject var navigationModel: NavigationModel
+
+    var body: some View {
+        NavigationStackView(ContentView1.id) {
+            Button(action: {
+                navigationModel.pushContent(ContentView1.id) {
+                    ContentView2()
+                }
+            }, label: {
+                Text("Push ContentView2")
+            })
+        }
+    }
+}   
+</code></pre>
+<h3 id='convenience-navigation-methods' class='heading'>Convenience Navigation Methods</h3>
+
+<p>You can also use one of the other model methods which might suit your current situation better, e.g. <code>hideTopViewWithReverseAnimation()</code> to just transition back to the previous screen with the reverse-animation provided when transitioning to the screen. </p>
+
+<p>There are some convenience methods to express specific transitions more appropriate, e.g. <code>pushContent</code>, <code>popContent</code>, <code>presentContent</code> and <code>dismissContent</code>. Just look at the documentation for the <a href="https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html">NavigationModel</a>.</p>
+<h3 id='transition-animations' class='heading'>Transition Animations</h3>
+
+<p>The convenience navigation methods all rely on the <code>showView(_ identifier:, animation:, alternativeView:)</code> and <code>hideView(_ identifier:, animation:)</code> methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. <code><a href="Structs/NavigationAnimation.html">NavigationAnimation</a></code>&rsquo;s <code>push</code>, <code>pop</code>, <code>present</code> and <code>dismiss</code>). However, you can also create your own transition animations by providing different parameters for the animation curve and the transitions types. Then you can use the show and hide methods to create transitions with your own animations:</p>
 <pre class="highlight plaintext"><code>let myAnimation = NavigationAnimation(
     animation: .easeOut,
     defaultViewTransition: .static,
@@ -241,10 +273,13 @@ struct MyDetailView: View {
 navigationModel.hideView("MyRootView", animation: myAnimation)
 </code></pre>
 
-<p>For views which shouldn&rsquo;t animate during a transition, e.g. staying statically visible while the other view does its animation, you have to provide a <code>.static</code> transition rather than SwiftUI&rsquo;s <code>.identity</code>.</p>
+<p>With &ldquo;defaultView&rdquo; the source view is meant, which is the one from which to navigate while &ldquo;alternativeView&rdquo; means the destination view, the one where to navigate to. By providing different transitions for both views it&rsquo;s possible to define one transition animation for the leaving view and a different one for the appearing view.</p>
+
+<p><strong>Important:</strong>
+For views which shouldn&rsquo;t animate during a transition, e.g. staying statically visible while the other view does its animation, you have to provide a <code>.static</code> transition rather than SwiftUI&rsquo;s <code>.identity</code>.</p>
 
 <p>A list of all provided transitions by the lib can be found in the lib&rsquo;s documentation for <a href="https://indiesoftware.github.io/NavigationStack/Extensions/AnyTransition.html">AnyTransition Extensions</a>.</p>
-<h3 id='own-transition-animations' class='heading'>Own Transition Animations</h3>
+<h3 id='custom-transitions' class='heading'>Custom Transitions</h3>
 
 <p>To create own transition animations simply create a custom <code>ViewModifier</code> and optionally extend <code>AnyTransition</code> for creating a convenience method:</p>
 <pre class="highlight plaintext"><code>public struct BrightnessModifier: ViewModifier {
@@ -261,20 +296,39 @@ public extension AnyTransition {
 }
 </code></pre>
 
-<p>Just keep in mind that SwiftUI will only animate transitions if any value changes, e.g. when providing a brightness transition with a brighness value of 0 you won&rsquo;t see any animation and the transition for that view gets skipped. That&rsquo;s because the identity has also a brightness value of 0 and thus both states the identity and the active state are equal.</p>
-<h3 id='documentation' class='heading'>Documentation</h3>
+<p><strong>Important</strong>
+Please keep in mind that SwiftUI will only animate transitions if a value changes, e.g. when providing a brightness transition with a brighness value of 0 you won&rsquo;t see any animation and the transition for that view gets skipped. That&rsquo;s because the identity has also a brightness value of 0 and thus both states, the identity and the active state, are equal.</p>
 
-<p>API: <a href="https://indiesoftware.github.io/NavigationStack">https://indiesoftware.github.io/NavigationStack</a></p>
-<h3 id='examples' class='heading'>Examples</h3>
+<p>For further information, please look at the lib&rsquo;s API documentation: <a href="https://indiesoftware.github.io/NavigationStack">https://indiesoftware.github.io/NavigationStack</a></p>
+<h3 id='example-code' class='heading'>Example Code</h3>
 
-<p>Clone the repo and open the workspace. The project includes an example target (<code>NavigationStackExample</code>) which shows how to use the library. The example app shows how to push multiple views, how to pop back even directly to the root, how simulate a modal presentation and shows the different transition animations available out-of-the-box. The example views are well commented and provided in the <code>NavigationStackExample/ExampleViews</code> group.</p>
+<p>The project includes an example target (<code>NavigationStackExample</code>) which shows how to use the library. Just clone the repo, open the workspace and switch to the same named scheme. The example app shows how to push multiple views, how to pop back even directly to the root, how to simulate a modal presentation and shows the different transition animations available out-of-the-box. The example views are well commented and provided in the <code>Sources/NavigationStackExample/ExampleViews</code> group.</p>
 
-<p>The example project also includes some experiments where each describes a problem or the attempt to solve a problem. They are kind of a documentation how to solve some strange behaviors of SwiftUI, but they are not important for users of the library, but maybe for those who want&rsquo;s to understand and improve it. To run the experiments simply pass the experiment&rsquo;s name as launch agrument, e.g. &ldquo;Experiment1&rdquo; to run <code>Experiment1.swift</code>.</p>
+<p>You can also run the example&rsquo;s UI tests to run sepcific or all transitions automatically.</p>
+
+<p>The example project includes some experiments where each describes a problem or the attempt to solve a problem. They are kind of a documentation how to solve some strange behaviors of SwiftUI. They are not important for users of the library, but maybe for those who want to understand and improve it. So, feel free to skip these. However, to run the experiments simply pass the experiment&rsquo;s name in the scheme as launch agrument, i.e. &ldquo;Experiment1&rdquo; to run <code>Experiment1.swift</code>.</p>
+<h2 id='known-limitations' class='heading'>Known limitations</h2>
+<h3 id='manual-full-screen' class='heading'>Manual full-screen</h3>
+
+<p><code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> is just another stack view. What you put into this stack view is up to you, however, you should make the content fill out the whole screen. Otherwise you might risk to trigger sub-view transitions, but even if not so it might look kind of awkward when the screen&rsquo;s transition is not full-screen.</p>
+<h3 id='no-sub-view-transitions' class='heading'>No sub-view transitions</h3>
+
+<p>Technically you are not forced to add the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> to the root level of your view&rsquo;s body. Even when added to the root of your custom view you might also add this custom view as a sub-view to a bigger view. This is actually unproblematic as long as the views are full-screen.</p>
+
+<p>However, when the views to navigate to are not full-screen the user might transition from one screen which already has transitioned to a different view. And that might lead to problems, because the lib uses a linear stack to keep the navigation transitions. When trying to branch off from the middle of the stack then this won&rsquo;t work as expected.</p>
+
+<p>There is a <code>SubviewExample</code> in the examples and a <code>SubviewExampleTests</code> to show this problem.</p>
+<h3 id='no-real-modal' class='heading'>No real modal</h3>
+
+<p>SwiftUI&rsquo;s <code>sheet</code> modifier actually triggers a real modal transition. This lib doesn&rsquo;t do this, instead the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> relies on a single-page architecture, meaning there is always only a single view visible, but its content will be replaced when transitioning. I&rsquo;m not sure if this is really a limitation but it&rsquo;s something to keep in mind.</p>
 <h2 id='trouble-shooting' class='heading'>Trouble shooting</h2>
 
 <p><strong>Fatal error: No ObservableObject of type NavigationModel found. A View.environmentObject(_:) for NavigationModel may be missing as an ancestor of this view.</strong></p>
 
 <p>Add a navigation model to the view hierarchy, e.g.  <code>MyRootView().environmentObject(NavigationModel())</code>.</p>
+<h2 id='changelog' class='heading'>Changelog</h2>
+
+<p>See <a href="Changelog.md">Changelog.md</a> </p>
 
           </div>
         </section>
@@ -283,7 +337,7 @@ public extension AnyTransition {
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2020-11-22)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2021-01-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

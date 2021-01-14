@@ -54,13 +54,16 @@
             <a class="nav-group-name-link" href="../NavigationStack.html">NavigationStack</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/NavigationModel.html">NavigationModel</a>
+                <a class="nav-group-task-link" href="../Structs/NavigationAnimation.html">NavigationAnimation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/NavigationStackModel.html">NavigationStackModel</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/NavigationStackView.html">NavigationStackView</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/NavigationAnimation.html">NavigationAnimation</a>
               </li>
             </ul>
           </li>
@@ -73,7 +76,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Modifier%20Structs.html">Modifier Structs</a>
+            <a class="nav-group-name-link" href="../ViewModifiers.html">ViewModifiers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/BlurModifier.html">BlurModifier</a>
@@ -96,7 +99,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Shapes%20usable%20by%20ClipShapeModifier.html">Shapes usable by ClipShapeModifier</a>
+            <a class="nav-group-name-link" href="../ClipShapeModifier%20Shapes.html">ClipShapeModifier Shapes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/CircleShape.html">CircleShape</a>
@@ -267,91 +270,6 @@ Defaults to 1. Should not be 0.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE14rectangleShapeACvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/rectangleShape" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE14rectangleShapeACvpZ">rectangleShape</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A custom transition using a scaling rectangle.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd"><a href="../Extensions/AnyTransition.html#/s:7SwiftUI13AnyTransitionV15NavigationStackE6staticACvpZ">static</a></span> <span class="k">var</span> <span class="nv">rectangleShape</span><span class="p">:</span> <span class="kt">AnyTransition</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE7stripesAE10horizontal8invertedACSi_S2btFZ"></a>
-                    <a name="//apple_ref/swift/Method/stripes(stripes:horizontal:inverted:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE7stripesAE10horizontal8invertedACSi_S2btFZ">stripes(stripes:<wbr>horizontal:<wbr>inverted:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A custom transition using horizontal or vertical stripes to blend over.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd"><a href="../Extensions/AnyTransition.html#/s:7SwiftUI13AnyTransitionV15NavigationStackE6staticACvpZ">static</a></span> <span class="kd">func</span> <span class="nf">stripes</span><span class="p">(</span><span class="nv">stripes</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">horizontal</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">inverted</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyTransition</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>stripes</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The number of stripes the view should be sliced into.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>horizontal</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Set to true to lay the stripes out horizontally, false for vertically.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE8contrastyACSdFZ"></a>
                     <a name="//apple_ref/swift/Method/contrast(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE8contrastyACSdFZ">contrast(_:<wbr>)</a>
@@ -458,6 +376,33 @@ Defaults to 180°. Should not be zero.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE14rectangleShapeACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/rectangleShape" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE14rectangleShapeACvpZ">rectangleShape</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A custom transition using a scaling rectangle.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd"><a href="../Extensions/AnyTransition.html#/s:7SwiftUI13AnyTransitionV15NavigationStackE6staticACvpZ">static</a></span> <span class="k">var</span> <span class="nv">rectangleShape</span><span class="p">:</span> <span class="kt">AnyTransition</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE10saturationyACSdFZ"></a>
                     <a name="//apple_ref/swift/Method/saturation(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE10saturationyACSdFZ">saturation(_:<wbr>)</a>
@@ -540,6 +485,64 @@ This should be used for one view to remain unchanged while the counter-part view
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE7stripesAE10horizontal8invertedACSi_S2btFZ"></a>
+                    <a name="//apple_ref/swift/Method/stripes(stripes:horizontal:inverted:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE7stripesAE10horizontal8invertedACSi_S2btFZ">stripes(stripes:<wbr>horizontal:<wbr>inverted:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A custom transition using horizontal or vertical stripes to blend over.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd"><a href="../Extensions/AnyTransition.html#/s:7SwiftUI13AnyTransitionV15NavigationStackE6staticACvpZ">static</a></span> <span class="kd">func</span> <span class="nf">stripes</span><span class="p">(</span><span class="nv">stripes</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">horizontal</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">inverted</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyTransition</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stripes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of stripes the view should be sliced into.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>horizontal</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Set to true to lay the stripes out horizontally, false for vertically.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:7SwiftUI13AnyTransitionV15NavigationStackE10tiltAndFlyACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/tiltAndFly" class="dashAnchor"></a>
                     <a class="token" href="#/s:7SwiftUI13AnyTransitionV15NavigationStackE10tiltAndFlyACvpZ">tiltAndFly</a>
@@ -574,7 +577,7 @@ This should be used for one view to remain unchanged while the counter-part view
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2020-11-22)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2021-01-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

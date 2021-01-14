@@ -2,26 +2,6 @@ import SwiftUI
 
 public extension AnyTransition {
 	/**
-	 A custom transition using a scaling circle.
-	 */
-	static var circleShape: AnyTransition {
-		.modifier(
-			active: ClipShapeModifier(shape: CircleShape(animatableData: 0), style: FillStyle()),
-			identity: ClipShapeModifier(shape: CircleShape(animatableData: 1), style: FillStyle())
-		)
-	}
-
-	/**
-	 A custom transition using a scaling rectangle.
-	 */
-	static var rectangleShape: AnyTransition {
-		AnyTransition.modifier(
-			active: ClipShapeModifier(shape: RectangleShape(animatableData: 1), style: FillStyle()),
-			identity: ClipShapeModifier(shape: RectangleShape(animatableData: 0), style: FillStyle())
-		)
-	}
-
-	/**
 	 A custom transition using horizontal or vertical stripes to blend over.
 
 	 - parameter stripes: The number of stripes the view should be sliced into.
@@ -50,61 +30,6 @@ public extension AnyTransition {
 				)
 			)
 		)
-	}
-}
-
-/**
- The modifier wrapper for the corresponding SwiftUI function.
-
- See: [SwiftUI doc for clipshape](https://developer.apple.com/documentation/swiftui/emptyview/clipshape(_:style:))
- */
-public struct ClipShapeModifier<S: Shape>: ViewModifier {
-	/// The clipping shape to use for this view. The shape fills the view’s frame, while maintaining its aspect ratio.
-	public let shape: S
-	/// The fill style to use when rasterizing shape.
-	public let style: FillStyle
-	public func body(content: Content) -> some View {
-		content.clipShape(shape, style: style)
-	}
-}
-
-/**
- A circle shape which size can be animated.
-
- Source inspired by
- - [Paul Hudson: Hacking with Swift](https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition)
- - [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
- */
-public struct CircleShape: Shape {
-	public var animatableData: CGFloat
-
-	public func path(in rect: CGRect) -> Path {
-		let maximumCircleDiameter = sqrt(rect.width * rect.width + rect.height * rect.height)
-		let circleDiameter = maximumCircleDiameter * animatableData
-
-		let posX = rect.midX - circleDiameter / 2.0
-		let posY = rect.midY - circleDiameter / 2.0
-
-		let circleRect = CGRect(x: posX, y: posY, width: circleDiameter, height: circleDiameter)
-
-		return Circle().path(in: circleRect)
-	}
-}
-
-/**
- A rectangle shape which size can be animated.
-
- Source inspired by [SwiftUI-Lab](https://swiftui-lab.com/advanced-transitions)
- */
-public struct RectangleShape: Shape {
-	public var animatableData: CGFloat
-
-	public func path(in rect: CGRect) -> Path {
-		var path = Path()
-
-		path.addRect(rect.insetBy(dx: animatableData * rect.width / 2.0, dy: animatableData * rect.height / 2.0))
-
-		return path
 	}
 }
 

@@ -21,13 +21,14 @@ xcodebuild_arguments:
 custom_categories: 
   - name: NavigationStack
     children:
-      - NavigationModel
-      - NavigationStackView
       - NavigationAnimation
+      - NavigationModel
+      - NavigationStackModel
+      - NavigationStackView
   - name: Transition Animations
     children:
       - AnyTransition
-  - name: Modifier Structs
+  - name: ViewModifiers
     children:
       - BlurModifier
       - BrightnessModifier
@@ -35,7 +36,7 @@ custom_categories:
       - ContrastModifier
       - HueRotationModifier
       - SaturationModifier
-  - name: Shapes usable by ClipShapeModifier
+  - name: ClipShapeModifier Shapes
     children:
       - CircleShape
       - RectangleShape

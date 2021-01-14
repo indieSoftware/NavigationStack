@@ -163,7 +163,7 @@ struct ContentView1: View {
 
 You can also use one of the other model methods which might suit your current situation better, e.g. `hideTopViewWithReverseAnimation()` to just transition back to the previous screen with the reverse-animation provided when transitioning to the screen. 
 
-There are some convenience methods to express specific transitions more appropriate, e.g. `pushContent`, `popContent`, `presentContent` and `dismissContent`. Just look at the documentation for the [NavigationModel](https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html).
+There are some convenience methods to express specific transitions more appropriate, e.g. `pushContent`, `popContent`, `presentContent` and `dismissContent`. Just look at the documentation for the [NavigationModel](https://indiesoftware.github.io/NavigationStack/Classes/NavigationStackModel.html).
 
 ### Transition Animations
 

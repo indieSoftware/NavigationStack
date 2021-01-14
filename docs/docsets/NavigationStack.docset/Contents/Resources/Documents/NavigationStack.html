@@ -54,13 +54,16 @@
             <a class="nav-group-name-link" href="NavigationStack.html">NavigationStack</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/NavigationModel.html">NavigationModel</a>
+                <a class="nav-group-task-link" href="Structs/NavigationAnimation.html">NavigationAnimation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/NavigationStackModel.html">NavigationStackModel</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/NavigationStackView.html">NavigationStackView</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/NavigationAnimation.html">NavigationAnimation</a>
               </li>
             </ul>
           </li>
@@ -73,7 +76,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Modifier%20Structs.html">Modifier Structs</a>
+            <a class="nav-group-name-link" href="ViewModifiers.html">ViewModifiers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/BlurModifier.html">BlurModifier</a>
@@ -96,7 +99,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Shapes%20usable%20by%20ClipShapeModifier.html">Shapes usable by ClipShapeModifier</a>
+            <a class="nav-group-name-link" href="ClipShapeModifier%20Shapes.html">ClipShapeModifier Shapes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/CircleShape.html">CircleShape</a>
@@ -127,77 +130,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15NavigationStack0A5ModelC"></a>
-                    <a name="//apple_ref/swift/Class/NavigationModel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15NavigationStack0A5ModelC">NavigationModel</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The underlying <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code>s model which can be manipulated to apply the navigation transitions.</p>
-
-<p>An instance of this model has to be injected into the view hierarchy as an environment object:
-<code>MyRootView().environmentObject(NavigationModel())</code>
-Even when using multiple navigation stack views in a view hierarchy there has to be always only one instance of <code>NavigationModel</code>.
-The model can be used with names/IDs to target specific navigation stack views.</p>
-
-                        <a href="Classes/NavigationModel.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NavigationModel</span> <span class="p">:</span> <span class="kt">ObservableObject</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:15NavigationStack0aB4ViewV"></a>
-                    <a name="//apple_ref/swift/Struct/NavigationStackView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15NavigationStack0aB4ViewV">NavigationStackView</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The navigation view used to switch content when applying a navigation transition.</p>
-
-<p>This view works similar to SwiftUI&rsquo;s <code>NavigationView</code>.
-Place it as the view&rsquo;s root and provide the default content to show when no navigation transition has been applied.
-Use the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> to provide a destination view and transition animation to navigate to.</p>
-<div class="aside aside-important">
-    <p class="aside-title">Important</p>
-    An single instance of the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> has to be injected into the view hierarchy as an environment object:
-<code>MyRootView().environmentObject(NavigationModel())</code>
-
-</div>
-
-                        <a href="Structs/NavigationStackView.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">NavigationStackView</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:15NavigationStack0A9AnimationV"></a>
                     <a name="//apple_ref/swift/Struct/NavigationAnimation" class="dashAnchor"></a>
                     <a class="token" href="#/s:15NavigationStack0A9AnimationV">NavigationAnimation</a>
@@ -223,6 +155,108 @@ Use the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> 
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0A5Modela"></a>
+                    <a name="//apple_ref/swift/Alias/NavigationModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A5Modela">NavigationModel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A concrete type of navigation model which uses strings as identifier.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">NavigationModel</span> <span class="o">=</span> <span class="kt"><a href="Classes/NavigationStackModel.html">NavigationStackModel</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0aB5ModelC"></a>
+                    <a name="//apple_ref/swift/Class/NavigationStackModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0aB5ModelC">NavigationStackModel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The underlying <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code>&lsquo;s model which can be manipulated to apply the navigation transitions.</p>
+
+<p>This class is generic to provide the possibility to use a different type as identifier.
+However, normally you want to bound the identifier&rsquo;s type simply to a string.
+For this you can also just use <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>.</p>
+
+<p>An instance of this model has to be injected into the view hierarchy as an environment object:
+<code>MyRootView().environmentObject(NavigationModel())</code>
+Even when using multiple navigation stack views in a view hierarchy there has to be always only one instance of <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>.
+The model can be used with identifiers to target specific navigation stack views.</p>
+
+                        <a href="Classes/NavigationStackModel.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NavigationStackModel</span><span class="o">&lt;</span><span class="kt">IdentifierType</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">ObservableObject</span> <span class="k">where</span> <span class="kt">IdentifierType</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15NavigationStack0aB4ViewV"></a>
+                    <a name="//apple_ref/swift/Struct/NavigationStackView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0aB4ViewV">NavigationStackView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The navigation view used to switch content when applying a navigation transition.</p>
+
+<p>This view works similar to SwiftUI&rsquo;s <code>NavigationView</code>.
+Place it as the view&rsquo;s root and provide the default content to show when no navigation transition has been applied.
+Use the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> to provide a destination view and transition animation to navigate to.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    A single instance of the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> has to be injected into the view hierarchy as an environment object:
+<code>MyRootView().environmentObject(NavigationModel())</code>
+
+</div>
+
+                        <a href="Structs/NavigationStackView.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">NavigationStackView</span><span class="o">&lt;</span><span class="kt">IdentifierType</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">View</span> <span class="k">where</span> <span class="kt">IdentifierType</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -231,7 +265,7 @@ Use the <code><a href="Classes/NavigationModel.html">NavigationModel</a></code> 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2020-11-22)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2021-01-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

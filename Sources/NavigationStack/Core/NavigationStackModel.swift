@@ -4,9 +4,9 @@ import SwiftUI
 /**
  The underlying `NavigationStackView`'s model which can be manipulated to apply the navigation transitions.
 
- This class is the generic version of a navigation model.
- Generally you want to bound its identifier type to a concrete equatable type like a string.
- For this just use `NavigationModel`.
+ This class is generic to provide the possibility to use a different type as identifier.
+ However, normally you want to bound the identifier's type simply to a string.
+ For this you can also just use `NavigationModel`.
 
  An instance of this model has to be injected into the view hierarchy as an environment object:
  `MyRootView().environmentObject(NavigationModel())`
@@ -14,6 +14,16 @@ import SwiftUI
  The model can be used with identifiers to target specific navigation stack views.
  */
 public class NavigationStackModel<IdentifierType>: ObservableObject where IdentifierType: Equatable {
+	/**
+	 Initializes the model.
+
+	 - parameter silenceErrors: When set to true each error will be silently ignored, when false each error will result in an exception thrown.
+	 Defaults to false.
+	 */
+	public init(silenceErrors: Bool = false) {
+		self.silenceErrors = silenceErrors
+	}
+
 	/// Flag used to determine if errors are thrown or silently ignored.
 	public let silenceErrors: Bool
 
@@ -28,16 +38,6 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 	}
 
 	private var navigationStackNodeChangeCanceller: AnyCancellable?
-
-	/**
-	 Initializes the model.
-
-	 - parameter silenceErrors: When set to true each error will be silently ignored, when false each error will result in an exception thrown.
-	 Defaults to false.
-	 */
-	public init(silenceErrors: Bool = false) {
-		self.silenceErrors = silenceErrors
-	}
 
 	/**
 	 Performs the navigation by showing a new view.

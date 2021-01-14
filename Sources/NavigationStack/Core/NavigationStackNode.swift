@@ -9,6 +9,17 @@ import SwiftUI
  Each node belongs to a navigation stack view, but a node only exists when that view also has a navigation applied.
  */
 class NavigationStackNode<IdentifierType>: ObservableObject where IdentifierType: Equatable {
+	/**
+	 Initializes the node.
+
+	 - parameter identifier: The representing navigation stack view's ID.
+	 - parameter alternativeView: The content to show when this node's navigation is active, meaning `isAlternativeViewShowing` is true.
+	 */
+	init(identifier: IdentifierType, alternativeView: @escaping AnyViewBuilder) {
+		identifer = identifier
+		self.alternativeView = alternativeView
+	}
+
 	/// The navigation stack view's ID which this node represents.
 	let identifer: IdentifierType
 	/// The content view which should be shown when the navigation is active.
@@ -33,17 +44,6 @@ class NavigationStackNode<IdentifierType>: ObservableObject where IdentifierType
 
 	/// Combine's sink bag for `nexNode`.
 	private var nextNodeChangeCanceller: AnyCancellable?
-
-	/**
-	 Initializes the node.
-
-	 - parameter identifier: The representing navigation stack view's ID.
-	 - parameter alternativeView: The content to show when this node's navigation is active, meaning `isAlternativeViewShowing` is true.
-	 */
-	init(identifier: IdentifierType, alternativeView: @escaping AnyViewBuilder) {
-		identifer = identifier
-		self.alternativeView = alternativeView
-	}
 
 	/**
 	 Retrieves recursively the node in the hiarachy with a given ID.

@@ -10,13 +10,6 @@ import SwiftUI
 /// A single instance of the `NavigationModel` has to be injected into the view hierarchy as an environment object:
 /// `MyRootView().environmentObject(NavigationModel())`
 public struct NavigationStackView<IdentifierType>: View where IdentifierType: Equatable {
-	@EnvironmentObject private var model: NavigationStackModel<IdentifierType>
-
-	/// This navigation stack view's ID.
-	let identifier: IdentifierType
-	/// The navigation stack view's default content to show when no navigation has been applied.
-	private let defaultView: AnyViewBuilder
-
 	/**
 	 Initializes the navigation stack view with a given ID and its default content.
 
@@ -28,6 +21,13 @@ public struct NavigationStackView<IdentifierType>: View where IdentifierType: Eq
 		self.identifier = identifier
 		self.defaultView = { AnyView(defaultView()) }
 	}
+
+	@EnvironmentObject private var model: NavigationStackModel<IdentifierType>
+
+	/// This navigation stack view's ID.
+	let identifier: IdentifierType
+	/// The navigation stack view's default content to show when no navigation has been applied.
+	private let defaultView: AnyViewBuilder
 
 	public var body: some View {
 		ZStack {

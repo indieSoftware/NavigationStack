@@ -38,3 +38,6 @@ xcuserdata/
 # CI
 reports
 build
+
+# Jazzy
+docs/undocumented.json
