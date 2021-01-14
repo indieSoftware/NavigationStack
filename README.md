@@ -242,3 +242,6 @@ SwiftUI's `sheet` modifier actually triggers a real modal transition. This lib d
 
 Add a navigation model to the view hierarchy, e.g.  `MyRootView().environmentObject(NavigationModel())`.
 
+## Changelog
+
+See [Changelog.md](Changelog.md) 
