@@ -346,3 +346,15 @@ extension NavigationStackModel {
 		navigationStackNode?.getNode(identifier)?.transitionAnimation?.alternativeViewZIndex ?? .zero
 	}
 }
+
+// MARK: - Debugging
+
+extension NavigationStackModel: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		if let node = navigationStackNode {
+			return "[\(String(describing: node))]"
+		} else {
+			return "[]"
+		}
+	}
+}

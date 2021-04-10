@@ -15,7 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		"Experiment6": AnyView(Experiment6()),
 		"Experiment7": AnyView(Experiment7()),
 		"Experiment8": AnyView(Experiment8()),
-		"Experiment9": AnyView(Experiment9())
+		"Experiment9": AnyView(Experiment9()),
+		"Experiment10": AnyView(Experiment10())
 	]
 
 	func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {

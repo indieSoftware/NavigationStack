@@ -80,6 +80,7 @@
 		2640287725B04BFA00BCF0C3 /* StripesShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2640287625B04BFA00BCF0C3 /* StripesShape.swift */; };
 		2640287D25B04C1E00BCF0C3 /* ClipShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2640287C25B04C1E00BCF0C3 /* ClipShapeModifier.swift */; };
 		2640288325B04CBE00BCF0C3 /* CircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2640288225B04CBE00BCF0C3 /* CircleShape.swift */; };
+		264CA81B262194B900F3178D /* Experiment10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CA81A262194B900F3178D /* Experiment10.swift */; };
 		26803884254D4503005FFB51 /* NavigationStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2680387B254D4503005FFB51 /* NavigationStack.framework */; };
 		26803890254D4503005FFB51 /* NavigationStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2680387B254D4503005FFB51 /* NavigationStack.framework */; };
 		26803891254D4503005FFB51 /* NavigationStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2680387B254D4503005FFB51 /* NavigationStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -190,6 +191,7 @@
 		2640287625B04BFA00BCF0C3 /* StripesShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripesShape.swift; sourceTree = "<group>"; };
 		2640287C25B04C1E00BCF0C3 /* ClipShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipShapeModifier.swift; sourceTree = "<group>"; };
 		2640288225B04CBE00BCF0C3 /* CircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShape.swift; sourceTree = "<group>"; };
+		264CA81A262194B900F3178D /* Experiment10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experiment10.swift; sourceTree = "<group>"; };
 		2680385C254D4275005FFB51 /* NavigationStackExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationStackExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2680387B254D4503005FFB51 /* NavigationStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NavigationStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26803883254D4503005FFB51 /* NavigationStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,6 +371,7 @@
 				2615D560256A79A70009A477 /* Experiment7.swift */,
 				2615D55B256A79A60009A477 /* Experiment8.swift */,
 				2615D55C256A79A60009A477 /* Experiment9.swift */,
+				264CA81A262194B900F3178D /* Experiment10.swift */,
 			);
 			path = Experiments;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				2615D581256A79A70009A477 /* Experiment6.swift in Sources */,
 				2615D582256A79A70009A477 /* Experiment4.swift in Sources */,
 				2615D578256A79A70009A477 /* Experiment8.swift in Sources */,
+				264CA81B262194B900F3178D /* Experiment10.swift in Sources */,
 				2615D58E256A79A70009A477 /* SceneDelegate.swift in Sources */,
 				2615D57B256A79A70009A477 /* Experiment1.swift in Sources */,
 				2615D58A256A79A70009A477 /* TransitionExamples.swift in Sources */,

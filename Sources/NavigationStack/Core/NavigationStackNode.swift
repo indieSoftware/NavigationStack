@@ -67,3 +67,15 @@ class NavigationStackNode<IdentifierType>: ObservableObject where IdentifierType
 		return nextNode?.getLeafNode() ?? self
 	}
 }
+
+// MARK: - Debugging
+
+extension NavigationStackNode: CustomDebugStringConvertible {
+	var debugDescription: String {
+		var description = "'\(identifer)'"
+		if let nextNode = nextNode {
+			description += "|\(nextNode)"
+		}
+		return description
+	}
+}
