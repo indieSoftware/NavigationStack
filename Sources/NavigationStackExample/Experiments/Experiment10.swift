@@ -1,4 +1,10 @@
 // Issue report: https://github.com/indieSoftware/NavigationStack/issues/1
+// With v1.0.2 the push is not visually executed sometimes.
+// When starting the app multiple times then sometimes the animation doesn't apply
+// and the pushed screen is not visible even when the nav stack is correclty set after the called push.
+// It seems this happens because of `isAlternativeViewShowingPrecede` is set to true in `NavigationStackModel`
+// and immediately after that `isAlternativeViewShowing` is also set to true within a `withAnimation` block.
+// When wrapping the last assignment inclusive the `withAnimation` block into a `DispatchQueue.main.asyncAfter(deadline: .now())` seems to solve this issue.
 
 import NavigationStack
 import SwiftUI
@@ -64,9 +70,9 @@ private struct ContentView: View {
 			}.edgesIgnoringSafeArea(.all)
 		}
 		.onAppear {
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // It seems with a higher delay the issue happens more often
 				print("Push executed")
-				self.navigationModel.pushContent(ContentView.id) {
+				self.navigationModel.showView(ContentView.id, animation: .push) { // When applying nil as animation this issue never happens
 					SecondScreen()
 				}
 			}
