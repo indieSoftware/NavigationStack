@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.0.3
+
+- Fixed an issue where the navigation wasn't visually applied sometimes
+
 ### v1.0.2
 
 - Renamed the internal property name `name` to `identifier` and made it of a generic type

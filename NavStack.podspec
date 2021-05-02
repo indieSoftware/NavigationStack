@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "NavStack"
-	spec.version = "1.0.2" # auto-generated
+	spec.version = "1.0.3" # auto-generated
 	spec.swift_version = "5.3.2" # auto-generated
   spec.summary      = "A custom SwiftUI navigation framework."
   spec.description  = <<-DESC
