@@ -7,22 +7,25 @@ class ContentViewTests: XCTestCase {
 		continueAfterFailure = false
 		app = XCUIApplication()
 		app.launch()
+		assureViewIsShowing("ContentView1")
 	}
 
-	private func pressButton(_ name: String) {
+	func pressButton(_ name: String) {
 		app.buttons[name].tap()
-		sleep(1)
 	}
 
-	private func assureViewIsShowing(_ name: String, invert expectedInvertedResult: Bool = false, file: StaticString = #filePath, line: UInt = #line) {
-		XCTAssertNotEqual(app.staticTexts[name].exists, expectedInvertedResult, file: file, line: line)
+	private func assureViewIsShowing(_ name: String, file _: StaticString = #filePath, line _: UInt = #line) {
+		wait(forElement: app.staticTexts[name], timeout: 5)
+	}
+
+	private func assureViewIsNotShowing(_ name: String, file _: StaticString = #filePath, line: UInt = #line) {
+		XCTAssertFalse(app.staticTexts[name].exists, line: line)
 	}
 
 	// MARK: - Tests
 
 	func testBackOnRoot() throws {
 		assureViewIsShowing("NotPossibleLabel")
-		assureViewIsShowing("ContentView1")
 		pressButton("Back")
 		assureViewIsShowing("ContentView1")
 	}
@@ -51,7 +54,7 @@ class ContentViewTests: XCTestCase {
 	func testPushAndPopShortcut() throws {
 		pressButton("PushView3")
 		assureViewIsShowing("ContentView3")
-		assureViewIsShowing("PopToView2Animated", invert: true)
+		assureViewIsNotShowing("PopToView2Animated")
 		pressButton("PopToView2NoAnimation")
 		assureViewIsShowing("ContentView3")
 		pressButton("Back")
