@@ -11,6 +11,12 @@ class NavigationModelPublishedTests: XCTestCase {
 		model = NavigationModel(silenceErrors: true)
 	}
 
+	override func tearDownWithError() throws {
+		weak var weakModel = model
+		model = nil
+		XCTAssertNil(weakModel)
+	}
+
 	private func setupModelPublishExpectation(inverted: Bool = false) {
 		let modelExpectation = expectation(description: "model")
 		modelExpectation.assertForOverFulfill = false
