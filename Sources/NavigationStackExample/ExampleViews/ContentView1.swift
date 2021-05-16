@@ -146,6 +146,9 @@ struct ContentView1: View {
 			}
 			.padding()
 			.background(Color.green.opacity(0.3))
+			.onDidAppear {
+				print("\(ContentView1.id) did appear")
+			}
 		}
 	}
 }

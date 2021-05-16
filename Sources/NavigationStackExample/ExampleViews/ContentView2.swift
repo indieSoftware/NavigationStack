@@ -87,6 +87,13 @@ struct ContentView2: View {
 			}
 			.padding()
 			.background(Color.yellow.opacity(0.3))
+			.onAppear {
+				// onAppear shouldn't be used for views in the navigation stack because it will be called too often!
+				print("\(ContentView2.id) onAppear (negative example)")
+			}
+			.onDidAppear {
+				print("\(ContentView2.id) did appear")
+			}
 		}
 	}
 }

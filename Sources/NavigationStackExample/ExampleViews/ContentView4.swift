@@ -31,6 +31,9 @@ struct ContentView4: View {
 		}
 		.padding()
 		.background(Color(UIColor.lightGray).opacity(1.0))
+		.onDidAppear {
+			print("\(String(describing: Self.self)) did appear")
+		}
 	}
 }
 

@@ -97,9 +97,11 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 		if let transitionAnimation = node.transitionAnimation {
 			withAnimation(transitionAnimation.animation) {
 				node.isAlternativeViewShowing = true
+				node.transitionProgress = .progressToAlternativeView
 			}
 		} else {
 			node.isAlternativeViewShowing = true
+			node.transitionProgress = .progressToAlternativeView
 		}
 	}
 
@@ -192,9 +194,11 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 		if let transitionAnimation = node.transitionAnimation {
 			withAnimation(transitionAnimation.animation) {
 				node.isAlternativeViewShowing = false
+				node.transitionProgress = .progressToDefaultView
 			}
 		} else {
 			node.isAlternativeViewShowing = false
+			node.transitionProgress = .progressToDefaultView
 		}
 	}
 
@@ -275,6 +279,7 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 				if !presenting {
 					node?.isAlternativeViewShowingPrecede = false // Keep this in sync with the showing flag.
 					node?.isAlternativeViewShowing = false
+					node?.transitionProgress = .progressToDefaultView
 				}
 			}
 		)
@@ -346,5 +351,19 @@ extension NavigationStackModel {
 	 */
 	func alternativeViewZIndex(_ identifier: IdentifierType) -> Double {
 		navigationStackNode?.getNode(identifier)?.transitionAnimation?.alternativeViewZIndex ?? .zero
+	}
+
+	/**
+	 The current transition animation progress used to determine when the animation has finished.
+
+	 - parameter identifier: The navigation stack view's ID.
+	 - returns: The current animation progress.
+	 0 means the default view is visible, 1 means the alternative view is visible and a value inbetween represents the progress.
+	 */
+	func transitionProgress(_ identifier: IdentifierType) -> Float {
+		guard let node = navigationStackNode?.getNode(identifier) else {
+			return .progressToDefaultView
+		}
+		return node.transitionProgress
 	}
 }
