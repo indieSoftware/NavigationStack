@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ClipShapeModifier Shapes  Reference</title>
+    <title>View Lifecycle  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/ClipShapeModifier Shapes" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/View Lifecycle" class="dashAnchor"></a>
 
-    <a title="ClipShapeModifier Shapes  Reference"></a>
+    <a title="View Lifecycle  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">NavigationStack Reference</a>
       <img class="carat" src="img/carat.png" />
-      ClipShapeModifier Shapes  Reference
+      View Lifecycle  Reference
     </p>
 
     <div class="content-wrapper">
@@ -129,7 +129,7 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>ClipShapeModifier Shapes</h1>
+            <h1>View Lifecycle</h1>
             
           </div>
         </section>
@@ -141,9 +141,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15NavigationStack11CircleShapeV"></a>
-                    <a name="//apple_ref/swift/Struct/CircleShape" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15NavigationStack11CircleShapeV">CircleShape</a>
+                    <a name="/s:15NavigationStack0A19ViewLifecycleActiona"></a>
+                    <a name="//apple_ref/swift/Alias/NavigationViewLifecycleAction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15NavigationStack0A19ViewLifecycleActiona">NavigationViewLifecycleAction</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -151,22 +151,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A circle shape which size can be animated.</p>
+                        <p>The type of action performed on lifecycle events of views embedded in a NavigationView.</p>
 
-<p>Source inspired by</p>
-
-<ul>
-<li><a href="https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition">Paul Hudson: Hacking with Swift</a></li>
-<li><a href="https://swiftui-lab.com/advanced-transitions">SwiftUI-Lab</a></li>
-</ul>
-
-                        <a href="Structs/CircleShape.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CircleShape</span> <span class="p">:</span> <span class="kt">Shape</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">NavigationViewLifecycleAction</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -176,9 +168,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15NavigationStack14RectangleShapeV"></a>
-                    <a name="//apple_ref/swift/Struct/RectangleShape" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15NavigationStack14RectangleShapeV">RectangleShape</a>
+                    <a name="/s:7SwiftUI4ViewP"></a>
+                    <a name="//apple_ref/swift/Extension/View" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI4ViewP">View</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -186,47 +178,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A rectangle shape which size can be animated.</p>
-
-<p>Source inspired by <a href="https://swiftui-lab.com/advanced-transitions">SwiftUI-Lab</a></p>
-
-                        <a href="Structs/RectangleShape.html" class="slightly-smaller">See more</a>
+                        
+                        <a href="Extensions/View.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RectangleShape</span> <span class="p">:</span> <span class="kt">Shape</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:15NavigationStack12StripesShapeV"></a>
-                    <a name="//apple_ref/swift/Struct/StripesShape" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15NavigationStack12StripesShapeV">StripesShape</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A slicing pattern consisting of multiple rectangle shapes.</p>
-
-<p>Source inspired by <a href="https://swiftui-lab.com/advanced-transitions">SwiftUI-Lab</a></p>
-
-                        <a href="Structs/StripesShape.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">StripesShape</span> <span class="p">:</span> <span class="kt">Shape</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">View</span></code></pre>
 
                         </div>
                       </div>

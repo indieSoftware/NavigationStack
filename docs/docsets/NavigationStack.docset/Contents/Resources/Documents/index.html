@@ -75,6 +75,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="View%20Lifecycle.html">View Lifecycle</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="View%20Lifecycle.html#/s:15NavigationStack0A19ViewLifecycleActiona">NavigationViewLifecycleAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/View.html">View</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="ViewModifiers.html">ViewModifiers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -136,7 +147,7 @@
 <p>NavigationStack is a custom SwiftUI solution for navigating between views. It&rsquo;s a more flexible alternative to SwiftUI&rsquo;s own navigation.</p>
 <h2 id='advantages' class='heading'>Advantages</h2>
 
-<p>Compared to SwiftUI&rsquo;s <code>NavigationView</code> / <code>NavigationLink</code> and the <code>.sheet</code>-Modifier:</p>
+<p>Advantages of this lib compared to SwiftUI&rsquo;s <code>NavigationView</code> / <code>NavigationLink</code> and the <code>.sheet</code>-Modifier:</p>
 
 <ul>
 <li>Use different transition animations (not only a horizontal push/pop or a vertical present/dismiss)</li>
@@ -146,6 +157,7 @@
 <li>Define the back transition animation right before transitioning back, not in advance when transitioning forward</li>
 <li>Navigate back multiple screens at once, not only to the previous one</li>
 <li>Use a full-screen present transition also on iOS 13</li>
+<li>Get notified when the transition animation has finished</li>
 </ul>
 <h3 id='transition-examples' class='heading'>Transition Examples</h3>
 
@@ -160,6 +172,8 @@
 <p>Or write your own custom transitions:</p>
 
 <p><img src="https://github.com/indieSoftware/NavigationStack/blob/master/img/customTransitions.gif?raw=true" alt="custom transitions"></p>
+
+<p>All of these are included in this lib!</p>
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
@@ -261,10 +275,10 @@ struct MyDetailView: View {
 
 <p>You can also use one of the other model methods which might suit your current situation better, e.g. <code>hideTopViewWithReverseAnimation()</code> to just transition back to the previous screen with the reverse-animation provided when transitioning to the screen. </p>
 
-<p>There are some convenience methods to express specific transitions more appropriate, e.g. <code>pushContent</code>, <code>popContent</code>, <code>presentContent</code> and <code>dismissContent</code>. Just look at the documentation for the <a href="https://indiesoftware.github.io/NavigationStack/Classes/NavigationModel.html">NavigationModel</a>.</p>
+<p>There are some convenience methods to express specific transitions more appropriate, e.g. <code>pushContent</code>, <code>popContent</code>, <code>presentContent</code> and <code>dismissContent</code>. Just look at the documentation for the <a href="https://indiesoftware.github.io/NavigationStack/Classes/NavigationStackModel.html">NavigationModel</a>.</p>
 <h3 id='transition-animations' class='heading'>Transition Animations</h3>
 
-<p>The convenience navigation methods all rely on the <code>showView(_ identifier:, animation:, alternativeView:)</code> and <code>hideView(_ identifier:, animation:)</code> methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. <code><a href="Structs/NavigationAnimation.html">NavigationAnimation</a></code>&rsquo;s <code>push</code>, <code>pop</code>, <code>present</code> and <code>dismiss</code>). However, you can also create your own transition animations by providing different parameters for the animation curve and the transitions types. Then you can use the show and hide methods to create transitions with your own animations:</p>
+<p>The convenience navigation methods all rely on the <code>showView(_ identifier:, animation:, alternativeView:)</code> and <code>hideView(_ identifier:, animation:)</code> methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. <code><a href="Structs/NavigationAnimation.html">NavigationAnimation</a></code>&rsquo;s <code>push</code>, <code>pop</code>, <code>present</code> and <code>dismiss</code>). However, you can also create your own transition animations by providing different parameters for the animation curve and the transition types. Then you can use the show and hide methods to create transitions with your own animations:</p>
 <pre class="highlight plaintext"><code>let myAnimation = NavigationAnimation(
     animation: .easeOut,
     defaultViewTransition: .static,
@@ -300,6 +314,38 @@ public extension AnyTransition {
 Please keep in mind that SwiftUI will only animate transitions if a value changes, e.g. when providing a brightness transition with a brighness value of 0 you won&rsquo;t see any animation and the transition for that view gets skipped. That&rsquo;s because the identity has also a brightness value of 0 and thus both states, the identity and the active state, are equal.</p>
 
 <p>For further information, please look at the lib&rsquo;s API documentation: <a href="https://indiesoftware.github.io/NavigationStack">https://indiesoftware.github.io/NavigationStack</a></p>
+<h3 id='ondidappear' class='heading'>OnDidAppear</h3>
+
+<p>To get informed when a transition animation for a view has completed use the <code>onDidAppear</code> modifier. However, this only works when there is really an animation executed with the transition and when showing and hinding views via the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>, not via SwiftUI&rsquo;s <code>NavigationView/Link</code>.</p>
+<pre class="highlight plaintext"><code>struct ContentView1: View {
+    static let id = String(describing: Self.self)
+    @EnvironmentObject var navigationModel: NavigationModel
+
+    var body: some View {
+        NavigationStackView(ContentView1.id) {
+            Button(action: {
+                navigationModel.pushContent(ContentView1.id) {
+                    ContentView2()
+                        .onDidAppear {
+                            print("ContentView2 did appear")
+                        }
+                }
+            }, label: {
+                Text("Push ContentView2")
+            })
+            .onDidAppear {
+                print("ContentView1 did appear")
+            }
+        }
+    }
+}
+</code></pre>
+
+<p><strong>Don&rsquo;t use <code>onAppear</code> because that won&rsquo;t work anymore as expected.</strong> See the chapter &ldquo;known limitations&rdquo; at the bottom for more information.</p>
+
+<p>To get generally informed when an animation has finished use the <code>onAnimationCompleted</code> modifier. This works independently from the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> and this lib&rsquo;s transitions, but you have to execute <code>withAnimation</code> by yourself and thus is not usable with the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>&rsquo;s transitions.</p>
+
+<p>See <a href="https://indiesoftware.github.io/NavigationStack/Extensions/View.html">View Extensions</a> for more information.</p>
 <h3 id='example-code' class='heading'>Example Code</h3>
 
 <p>The project includes an example target (<code>NavigationStackExample</code>) which shows how to use the library. Just clone the repo, open the workspace and switch to the same named scheme. The example app shows how to push multiple views, how to pop back even directly to the root, how to simulate a modal presentation and shows the different transition animations available out-of-the-box. The example views are well commented and provided in the <code>Sources/NavigationStackExample/ExampleViews</code> group.</p>
@@ -321,6 +367,9 @@ Please keep in mind that SwiftUI will only animate transitions if a value change
 <h3 id='no-real-modal' class='heading'>No real modal</h3>
 
 <p>SwiftUI&rsquo;s <code>sheet</code> modifier actually triggers a real modal transition. This lib doesn&rsquo;t do this, instead the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> relies on a single-page architecture, meaning there is always only a single view visible, but its content will be replaced when transitioning. I&rsquo;m not sure if this is really a limitation but it&rsquo;s something to keep in mind.</p>
+<h3 id='onappear-doesn-39-t-work' class='heading'>OnAppear doesn&rsquo;t work</h3>
+
+<p>For all views managed by the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> the SwiftUI&rsquo;s view modifier <code>onAppear</code> doesn&rsquo;t work anymore as expected. <code>onAppear</code> now will be triggered multiple times and even when the view is not appearing, but disappearing. This is because of how <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> internally exchanges the subviews. Therefore, don&rsquo;t use <code>onAppear</code> anymore, however, this shouldn&rsquo;t be necessary because you can call the code in <code>onAppear</code> directly when you also call <code>show</code> on the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>.</p>
 <h2 id='trouble-shooting' class='heading'>Trouble shooting</h2>
 
 <p><strong>Fatal error: No ObservableObject of type NavigationModel found. A View.environmentObject(_:) for NavigationModel may be missing as an ancestor of this view.</strong></p>
@@ -337,7 +386,7 @@ Please keep in mind that SwiftUI will only animate transitions if a value change
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2021-01-14)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/indieSoftware/NavigationStack" target="_blank" rel="external">Sven Korset</a>. All rights reserved. (Last updated: 2021-05-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CircleShape Structure Reference</title>
+    <title>View Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/CircleShape" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/View" class="dashAnchor"></a>
 
-    <a title="CircleShape Structure Reference"></a>
+    <a title="View Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">NavigationStack Reference</a>
       <img class="carat" src="../img/carat.png" />
-      CircleShape Structure Reference
+      View Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -129,23 +129,15 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>CircleShape</h1>
+            <h1>View</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CircleShape</span> <span class="p">:</span> <span class="kt">Shape</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">View</span></code></pre>
 
                 </div>
               </div>
-            <p>A circle shape which size can be animated.</p>
-
-<p>Source inspired by</p>
-
-<ul>
-<li><a href="https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-custom-transition">Paul Hudson: Hacking with Swift</a></li>
-<li><a href="https://swiftui-lab.com/advanced-transitions">SwiftUI-Lab</a></li>
-</ul>
-
+            
           </div>
         </section>
 
@@ -156,9 +148,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftUI10AnimatableP14animatableData0cE0Qzvp"></a>
-                    <a name="//apple_ref/swift/Property/animatableData" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftUI10AnimatableP14animatableData0cE0Qzvp">animatableData</a>
+                    <a name="/s:7SwiftUI4ViewP15NavigationStackE20onAnimationCompleted3for10completionQrqd___yqd__ctAA16VectorArithmeticRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/onAnimationCompleted(for:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI4ViewP15NavigationStackE20onAnimationCompleted3for10completionQrqd___yqd__ctAA16VectorArithmeticRd__lF">onAnimationCompleted(for:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -166,15 +158,64 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Calls the completion handler whenever an animation on the given value completes.
+For this the value has to be changed within a <code>withAnimation</code> block otherwise the completion block will not be called.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">animatableData</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">onAnimationCompleted</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span><span class="p">(</span><span class="k">for</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kd">some</span> <span class="kt">View</span> <span class="k">where</span> <span class="kt">Value</span> <span class="p">:</span> <span class="kt">VectorArithmetic</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The current value when the completion block is called.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion callback to call once the animation completes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The current value when the completion block is called.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A modified <code>View</code> instance with the observer attached.</p>
                       </div>
                     </section>
                   </div>
@@ -182,9 +223,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftUI5ShapeP4path2inAA4PathVSo6CGRectV_tF"></a>
-                    <a name="//apple_ref/swift/Method/path(in:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftUI5ShapeP4path2inAA4PathVSo6CGRectV_tF">path(in:<wbr>)</a>
+                    <a name="/s:7SwiftUI4ViewP15NavigationStackE11onDidAppearyQryycF"></a>
+                    <a name="//apple_ref/swift/Method/onDidAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI4ViewP15NavigationStackE11onDidAppearyQryycF">onDidAppear(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -192,15 +233,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Calls the action when the given view has fully transitioned in.
+The action will be performed after the transition animation has finished, but will only be performed when the transition is animated.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">path</span><span class="p">(</span><span class="k">in</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Path</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">onDidAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../View%20Lifecycle.html#/s:15NavigationStack0A19ViewLifecycleActiona">NavigationViewLifecycleAction</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kd">some</span> <span class="kt">View</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The action to perform after the animation has finished.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The modified view with the applied modifier.</p>
                       </div>
                     </section>
                   </div>
