@@ -6,7 +6,7 @@
 // It seems this happens because of `isAlternativeViewShowingPrecede` is set to true in `NavigationStackModel`
 // and immediately after that `isAlternativeViewShowing` is also set to true within a `withAnimation` block.
 // When wrapping the last assignment inclusive the `withAnimation` block into a `DispatchQueue.main.asyncAfter(deadline: .now())` seems to solve this issue.
-// It seems with iOS 14.5 it's also solved.
+// It seems with iOS 14.5 it's also solved, therefore, the applied changes for this were reverted.
 
 import NavigationStack
 import SwiftUI

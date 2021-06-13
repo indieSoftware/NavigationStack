@@ -215,7 +215,7 @@ For further information, please look at the lib's API documentation: [https://in
 
 ### OnDidAppear
 
-To get informed when a transition animation for a view has completed use the `onDidAppear` modifier. However, this only works when there is really an animation executed with the transition and when showing and hinding views via the `NavigationModel`, not via SwiftUI's `NavigationView/Link`.
+To get informed when a transition animation for a view has completed use the `onDidAppear` modifier. However, this only works when there is really an animation executed with the transition and when showing and hiding views via the `NavigationModel`, not via SwiftUI's `NavigationView/Link`.
 
 ```
 struct ContentView1: View {
@@ -244,7 +244,7 @@ struct ContentView1: View {
 
 **Don't use `onAppear` because that won't work anymore as expected.** See the chapter "known limitations" at the bottom for more information.
 
-To get generally informed when an animation has finished use the `onAnimationCompleted` modifier. This works independently from the `NavigationModel` and this lib's transitions, but you have to execute `withAnimation` by yourself and thus is not usable with the `NavigationModel`'s transitions.
+To get generally informed when an animation has finished use the `onAnimationCompleted` modifier. This works independently from the `NavigationModel` and the lib's transitions, but you have to execute `withAnimation` by yourself and thus is not usable with the `NavigationModel`'s transitions.
 
 See [View Extensions](https://indiesoftware.github.io/NavigationStack/Extensions/View.html) for more information.
 
@@ -276,13 +276,25 @@ SwiftUI's `sheet` modifier actually triggers a real modal transition. This lib d
 
 ### OnAppear doesn't work
 
-For all views managed by the `NavigationStackView` the SwiftUI's view modifier `onAppear` doesn't work anymore as expected. `onAppear` now will be triggered multiple times and even when the view is not appearing, but disappearing. This is because of how `NavigationStackView` internally exchanges the subviews. Therefore, don't use `onAppear` anymore, however, this shouldn't be necessary because you can call the code in `onAppear` directly when you also call `show` on the `NavigationModel`.
+For all views managed by the `NavigationStackView` the SwiftUI's view modifier `onAppear` doesn't work anymore as expected. `onAppear` now will be triggered multiple times and even when the view is not appearing, but disappearing. This is because of how `NavigationStackView` internally exchanges the subviews. Therefore, don't use `onAppear` anymore, however, this modifier shouldn't be necessary anymore because you can call the code in `onAppear` directly when you also call `show` on the `NavigationModel`.
 
 ## Trouble shooting
+
+### ObservableObject not injected
 
 **Fatal error: No ObservableObject of type NavigationModel found. A View.environmentObject(_:) for NavigationModel may be missing as an ancestor of this view.**
 
 Add a navigation model to the view hierarchy, e.g.  `MyRootView().environmentObject(NavigationModel())`.
+
+### View replacement not supported
+
+**Replacing showing navigation view 'XXX' not allowed**
+
+This error is thrown when trying to replace a current detail view with another detail view without first navigating back. Let's say you have an overview A and you are navigating to a detail view B and from detail view B you now try to replace view B with view C by telling view A to navigate to view C while it still shows view B. That doesn't work and leads to that exception. 
+
+Normally you want to navigate from view B to view C therefore you should tell view B rather than view A to show view C. That would then lead to a view hierarchy A-B-C. 
+
+If you really want to end with a view hierarchy like A-C then you have first to tell view A to dismiss view B before telling it to show view C.
 
 ## Changelog
 

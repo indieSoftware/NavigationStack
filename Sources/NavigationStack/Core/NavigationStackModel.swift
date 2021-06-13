@@ -95,11 +95,9 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 		node.isAlternativeViewShowingPrecede = true // Necessary, see Experiment7
 
 		if let transitionAnimation = node.transitionAnimation {
-			DispatchQueue.main.asyncAfter(deadline: .now()) { // Necessary, see Experiment10
-				withAnimation(transitionAnimation.animation) {
-					node.isAlternativeViewShowing = true
-					node.transitionProgress = .progressToAlternativeView
-				}
+			withAnimation(transitionAnimation.animation) {
+				node.isAlternativeViewShowing = true
+				node.transitionProgress = .progressToAlternativeView
 			}
 		} else {
 			node.isAlternativeViewShowing = true
@@ -194,11 +192,9 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 		node.isAlternativeViewShowingPrecede = false // Necessary, see Experiment7
 
 		if let transitionAnimation = node.transitionAnimation {
-			DispatchQueue.main.asyncAfter(deadline: .now()) { // Necessary, see Experiment10
-				withAnimation(transitionAnimation.animation) {
-					node.isAlternativeViewShowing = false
-					node.transitionProgress = .progressToDefaultView
-				}
+			withAnimation(transitionAnimation.animation) {
+				node.isAlternativeViewShowing = false
+				node.transitionProgress = .progressToDefaultView
 			}
 		} else {
 			node.isAlternativeViewShowing = false

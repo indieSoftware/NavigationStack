@@ -5,7 +5,7 @@
 - Introduced the `onDidAppear` view modifier to get informed when a view transition has finished.
 - Introduced the `onAnimationCompleted` view modifier to get informed when an animation in general has completed.
 - Fixed that the node was retained by the binding.
-- Fixed an issue where the navigation wasn't visually applied sometimes.
+- Added a UI test to confirm issue #1 was fixed by iOS 14.5.
 
 ### v1.0.2
 
