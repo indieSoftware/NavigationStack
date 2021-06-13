@@ -4,7 +4,7 @@ import SwiftUI
 struct ContentView3: View {
 	static let id = String(describing: Self.self)
 
-	@EnvironmentObject var navigationModel: NavigationModel
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	// Freezes the state of `navigationModel.isAlternativeViewShowing("ContentView2")` to prevent transition animation glitches.
 	let isView2Showing: Bool

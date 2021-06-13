@@ -4,7 +4,7 @@ import SwiftUI
 struct ContentView1: View {
 	static let id = String(describing: Self.self)
 
-	@EnvironmentObject var navigationModel: NavigationModel
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	var body: some View {
 		NavigationStackView(ContentView1.id) {
@@ -138,6 +138,15 @@ struct ContentView1: View {
 							Text("Show Subview Examples")
 						})
 							.accessibility(identifier: "SubviewExamplesButton")
+
+						Button(action: {
+							navigationModel.presentContent(ContentView1.id) {
+								OnDidAppearExample()
+							}
+						}, label: {
+							Text("Show OnDidAppear Examples")
+						})
+							.accessibility(identifier: "OnDidAppearExamplesButton")
 					}
 
 					Spacer()

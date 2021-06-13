@@ -4,7 +4,7 @@ import SwiftUI
 struct ContentView2: View {
 	static let id = String(describing: Self.self)
 
-	@EnvironmentObject var navigationModel: NavigationModel
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	var body: some View {
 		NavigationStackView(ContentView2.id) {

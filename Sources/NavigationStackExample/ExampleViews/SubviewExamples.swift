@@ -8,7 +8,7 @@ struct SubviewExamples: View {
 	let subview1Name = "Subview1"
 	let subview2Name = "Subview2"
 
-	@EnvironmentObject var navigationModel: NavigationModel
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	var body: some View {
 		HStack {
@@ -67,7 +67,7 @@ struct SubviewExamples_Previews: PreviewProvider {
 	}
 }
 
-struct ColoredSubview: View {
+private struct ColoredSubview: View {
 	let color: UIColor
 
 	var body: some View {
