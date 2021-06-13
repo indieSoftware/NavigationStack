@@ -316,7 +316,7 @@ Please keep in mind that SwiftUI will only animate transitions if a value change
 <p>For further information, please look at the lib&rsquo;s API documentation: <a href="https://indiesoftware.github.io/NavigationStack">https://indiesoftware.github.io/NavigationStack</a></p>
 <h3 id='ondidappear' class='heading'>OnDidAppear</h3>
 
-<p>To get informed when a transition animation for a view has completed use the <code>onDidAppear</code> modifier. However, this only works when there is really an animation executed with the transition and when showing and hinding views via the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>, not via SwiftUI&rsquo;s <code>NavigationView/Link</code>.</p>
+<p>To get informed when a transition animation for a view has completed use the <code>onDidAppear</code> modifier. However, this only works when there is really an animation executed with the transition and when showing and hiding views via the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>, not via SwiftUI&rsquo;s <code>NavigationView/Link</code>.</p>
 <pre class="highlight plaintext"><code>struct ContentView1: View {
     static let id = String(describing: Self.self)
     @EnvironmentObject var navigationModel: NavigationModel
@@ -343,7 +343,7 @@ Please keep in mind that SwiftUI will only animate transitions if a value change
 
 <p><strong>Don&rsquo;t use <code>onAppear</code> because that won&rsquo;t work anymore as expected.</strong> See the chapter &ldquo;known limitations&rdquo; at the bottom for more information.</p>
 
-<p>To get generally informed when an animation has finished use the <code>onAnimationCompleted</code> modifier. This works independently from the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> and this lib&rsquo;s transitions, but you have to execute <code>withAnimation</code> by yourself and thus is not usable with the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>&rsquo;s transitions.</p>
+<p>To get generally informed when an animation has finished use the <code>onAnimationCompleted</code> modifier. This works independently from the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code> and the lib&rsquo;s transitions, but you have to execute <code>withAnimation</code> by yourself and thus is not usable with the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>&rsquo;s transitions.</p>
 
 <p>See <a href="https://indiesoftware.github.io/NavigationStack/Extensions/View.html">View Extensions</a> for more information.</p>
 <h3 id='example-code' class='heading'>Example Code</h3>
@@ -369,12 +369,22 @@ Please keep in mind that SwiftUI will only animate transitions if a value change
 <p>SwiftUI&rsquo;s <code>sheet</code> modifier actually triggers a real modal transition. This lib doesn&rsquo;t do this, instead the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> relies on a single-page architecture, meaning there is always only a single view visible, but its content will be replaced when transitioning. I&rsquo;m not sure if this is really a limitation but it&rsquo;s something to keep in mind.</p>
 <h3 id='onappear-doesn-39-t-work' class='heading'>OnAppear doesn&rsquo;t work</h3>
 
-<p>For all views managed by the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> the SwiftUI&rsquo;s view modifier <code>onAppear</code> doesn&rsquo;t work anymore as expected. <code>onAppear</code> now will be triggered multiple times and even when the view is not appearing, but disappearing. This is because of how <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> internally exchanges the subviews. Therefore, don&rsquo;t use <code>onAppear</code> anymore, however, this shouldn&rsquo;t be necessary because you can call the code in <code>onAppear</code> directly when you also call <code>show</code> on the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>.</p>
+<p>For all views managed by the <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> the SwiftUI&rsquo;s view modifier <code>onAppear</code> doesn&rsquo;t work anymore as expected. <code>onAppear</code> now will be triggered multiple times and even when the view is not appearing, but disappearing. This is because of how <code><a href="Structs/NavigationStackView.html">NavigationStackView</a></code> internally exchanges the subviews. Therefore, don&rsquo;t use <code>onAppear</code> anymore, however, this modifier shouldn&rsquo;t be necessary anymore because you can call the code in <code>onAppear</code> directly when you also call <code>show</code> on the <code><a href="NavigationStack.html#/s:15NavigationStack0A5Modela">NavigationModel</a></code>.</p>
 <h2 id='trouble-shooting' class='heading'>Trouble shooting</h2>
+<h3 id='observableobject-not-injected' class='heading'>ObservableObject not injected</h3>
 
 <p><strong>Fatal error: No ObservableObject of type NavigationModel found. A View.environmentObject(_:) for NavigationModel may be missing as an ancestor of this view.</strong></p>
 
 <p>Add a navigation model to the view hierarchy, e.g.  <code>MyRootView().environmentObject(NavigationModel())</code>.</p>
+<h3 id='view-replacement-not-supported' class='heading'>View replacement not supported</h3>
+
+<p><strong>Replacing showing navigation view &#39;XXX&rsquo; not allowed</strong></p>
+
+<p>This error is thrown when trying to replace a current detail view with another detail view without first navigating back. Let&rsquo;s say you have an overview A and you are navigating to a detail view B and from detail view B you now try to replace view B with view C by telling view A to navigate to view C while it still shows view B. That doesn&rsquo;t work and leads to that exception. </p>
+
+<p>Normally you want to navigate from view B to view C therefore you should tell view B rather than view A to show view C. That would then lead to a view hierarchy A-B-C. </p>
+
+<p>If you really want to end with a view hierarchy like A-C then you have first to tell view A to dismiss view B before telling it to show view C.</p>
 <h2 id='changelog' class='heading'>Changelog</h2>
 
 <p>See <a href="Changelog.md">Changelog.md</a> </p>

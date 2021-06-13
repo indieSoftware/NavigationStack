@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "NavStack"
-	spec.version = "1.0.3" # auto-generated
-	spec.swift_version = "5.3.2" # auto-generated
+	spec.version = "1.1" # auto-generated
+	spec.swift_version = "5.4" # auto-generated
   spec.summary      = "A custom SwiftUI navigation framework."
   spec.description  = <<-DESC
   NavigationStack is a custom SwiftUI solution for navigating between views. It's a more flexible alternative to SwiftUI's own navigation.
