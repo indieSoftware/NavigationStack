@@ -28,6 +28,10 @@ custom_categories:
   - name: Transition Animations
     children:
       - AnyTransition
+  - name: View Lifecycle
+    children:
+      - NavigationViewLifecycleAction
+      - View
   - name: ViewModifiers
     children:
       - BlurModifier

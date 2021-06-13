@@ -9,6 +9,12 @@ class NavigationModelStateTests: XCTestCase {
 		model = NavigationModel(silenceErrors: true)
 	}
 
+	override func tearDownWithError() throws {
+		weak var weakModel = model
+		model = nil
+		XCTAssertNil(weakModel)
+	}
+
 	// MARK: - Tests
 
 	func testHasAlternativeViewShowingFalse() throws {
@@ -65,6 +71,36 @@ class NavigationModelStateTests: XCTestCase {
 		XCTAssertFalse(model.isAlternativeViewShowing("Foo"))
 	}
 
+	func testTopViewShowingBindingReflectsModelChange() throws {
+		model.showView("Foo") { EmptyView() }
+
+		let binding = model.topViewShowingBinding()
+
+		XCTAssertNotNil(binding)
+		XCTAssertTrue(binding.wrappedValue)
+		XCTAssertTrue(model.isAlternativeViewShowing("Foo"))
+
+		model.hideTopView()
+
+		XCTAssertFalse(binding.wrappedValue)
+		XCTAssertFalse(model.isAlternativeViewShowing("Foo"))
+	}
+
+	func testTopViewShowingBindingDoesNotRetainNode() throws {
+		model.showView("Foo") { EmptyView() }
+
+		let binding = model.topViewShowingBinding()
+		XCTAssertNotNil(binding)
+		weak var node = model.navigationStackNode
+		XCTAssertNotNil(node)
+		XCTAssertEqual("Foo", node?.identifer)
+
+		model.hideTopView()
+		model.cleanupNodeList()
+
+		XCTAssertNil(node)
+	}
+
 	func testViewShowingBindingFalse() throws {
 		model.showView("Foo") { EmptyView() }
 
@@ -91,5 +127,35 @@ class NavigationModelStateTests: XCTestCase {
 
 		XCTAssertFalse(binding.wrappedValue)
 		XCTAssertFalse(model.isAlternativeViewShowing("Foo"))
+	}
+
+	func testViewShowingBindingReflectsModelChange() throws {
+		model.showView("Foo") { EmptyView() }
+
+		let binding = model.viewShowingBinding("Foo")
+
+		XCTAssertNotNil(binding)
+		XCTAssertTrue(binding.wrappedValue)
+		XCTAssertTrue(model.isAlternativeViewShowing("Foo"))
+
+		model.hideTopView()
+
+		XCTAssertFalse(binding.wrappedValue)
+		XCTAssertFalse(model.isAlternativeViewShowing("Foo"))
+	}
+
+	func testViewShowingBindingDoesNotRetainNode() throws {
+		model.showView("Foo") { EmptyView() }
+
+		let binding = model.viewShowingBinding("Foo")
+		XCTAssertNotNil(binding)
+		weak var node = model.navigationStackNode
+		XCTAssertNotNil(node)
+		XCTAssertEqual("Foo", node?.identifer)
+
+		model.hideTopView()
+		model.cleanupNodeList()
+
+		XCTAssertNil(node)
 	}
 }

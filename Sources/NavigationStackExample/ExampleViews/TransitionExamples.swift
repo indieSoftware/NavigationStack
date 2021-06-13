@@ -5,7 +5,7 @@ struct TransitionExamples: View {
 	static let id = String(describing: Self.self)
 	static let transitionSpeed = 0.75
 
-	@EnvironmentObject var navigationModel: NavigationModel
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	var body: some View {
 		NavigationStackView(TransitionExamples.id) {
@@ -79,8 +79,8 @@ struct TransitionExamples: View {
 	}
 }
 
-struct TransitionDestinationView: View {
-	@EnvironmentObject var navigationModel: NavigationModel
+private struct TransitionDestinationView: View {
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	var body: some View {
 		Button(action: {

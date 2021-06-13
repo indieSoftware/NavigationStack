@@ -32,6 +32,10 @@ class NavigationStackNode<IdentifierType>: ObservableObject where IdentifierType
 	/// The transition animation to apply.
 	@Published var transitionAnimation: NavigationAnimation?
 
+	/// Keeps track of the current transition animation progress.
+	/// Animated to determine when an animation has completed.
+	@Published var transitionProgress: Float = .progressToDefaultView
+
 	/// The next navigation stack view's node in the hierarchy.
 	@Published var nextNode: NavigationStackNode? {
 		didSet {

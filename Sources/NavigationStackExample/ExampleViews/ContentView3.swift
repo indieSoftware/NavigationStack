@@ -4,7 +4,7 @@ import SwiftUI
 struct ContentView3: View {
 	static let id = String(describing: Self.self)
 
-	@EnvironmentObject var navigationModel: NavigationModel
+	@EnvironmentObject private var navigationModel: NavigationModel
 
 	// Freezes the state of `navigationModel.isAlternativeViewShowing("ContentView2")` to prevent transition animation glitches.
 	let isView2Showing: Bool
@@ -43,6 +43,8 @@ struct ContentView3: View {
 						Button(action: {
 							// Example of a simple hide transition without animation.
 							navigationModel.hideView(ContentView2.id)
+							// When no animation has to be played then `onDidAppear` will not be executed.
+							// This is not necessary because with no animation the follow-up logic in `onDidAppear` can be instead executed right here.
 						}, label: {
 							// Using isAlternativeViewShowing from the model to show different sub-views will lead to animation glitches,
 							// therefore use the frozen `isView2Showing` value.
@@ -71,6 +73,9 @@ struct ContentView3: View {
 			}
 			.padding()
 			.background(Color.orange.opacity(0.3))
+			.onDidAppear {
+				print("\(ContentView3.id) did appear")
+			}
 		}
 	}
 }

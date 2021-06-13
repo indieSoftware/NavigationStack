@@ -18,7 +18,7 @@ NavigationStack is a custom SwiftUI solution for navigating between views. It's 
 
 ## Advantages 
 
-Compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modifier:
+Advantages of this lib compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modifier:
 
 - Use different transition animations (not only a horizontal push/pop or a vertical present/dismiss)
 - Use one of the various transition animations included
@@ -27,6 +27,7 @@ Compared to SwiftUI's `NavigationView` / `NavigationLink` and the `.sheet`-Modif
 - Define the back transition animation right before transitioning back, not in advance when transitioning forward
 - Navigate back multiple screens at once, not only to the previous one
 - Use a full-screen present transition also on iOS 13
+- Get notified when the transition animation has finished
 
 ### Transition Examples
 
@@ -41,6 +42,8 @@ Or use some default view animations for transitioning:
 Or write your own custom transitions:
 
 ![custom transitions](https://github.com/indieSoftware/NavigationStack/blob/master/img/customTransitions.gif?raw=true)
+
+All of these are included in this lib!
 
 ## Installation
 
@@ -167,7 +170,7 @@ There are some convenience methods to express specific transitions more appropri
 
 ### Transition Animations
 
-The convenience navigation methods all rely on the `showView(_ identifier:, animation:, alternativeView:)` and `hideView(_ identifier:, animation:)` methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. `NavigationAnimation`'s `push`, `pop`, `present` and `dismiss`). However, you can also create your own transition animations by providing different parameters for the animation curve and the transitions types. Then you can use the show and hide methods to create transitions with your own animations:
+The convenience navigation methods all rely on the `showView(_ identifier:, animation:, alternativeView:)` and `hideView(_ identifier:, animation:)` methods which take an animation as argument. The convenience methods use pre-defined navigation animations (e.g. `NavigationAnimation`'s `push`, `pop`, `present` and `dismiss`). However, you can also create your own transition animations by providing different parameters for the animation curve and the transition types. Then you can use the show and hide methods to create transitions with your own animations:
 
 
 ```
@@ -210,6 +213,41 @@ Please keep in mind that SwiftUI will only animate transitions if a value change
 
 For further information, please look at the lib's API documentation: [https://indiesoftware.github.io/NavigationStack](https://indiesoftware.github.io/NavigationStack)
 
+### OnDidAppear
+
+To get informed when a transition animation for a view has completed use the `onDidAppear` modifier. However, this only works when there is really an animation executed with the transition and when showing and hinding views via the `NavigationModel`, not via SwiftUI's `NavigationView/Link`.
+
+```
+struct ContentView1: View {
+	static let id = String(describing: Self.self)
+	@EnvironmentObject var navigationModel: NavigationModel
+
+	var body: some View {
+		NavigationStackView(ContentView1.id) {
+			Button(action: {
+				navigationModel.pushContent(ContentView1.id) {
+					ContentView2()
+						.onDidAppear {
+							print("ContentView2 did appear")
+						}
+				}
+			}, label: {
+				Text("Push ContentView2")
+			})
+			.onDidAppear {
+				print("ContentView1 did appear")
+			}
+		}
+	}
+}
+```
+
+**Don't use `onAppear` because that won't work anymore as expected.** See the chapter "known limitations" at the bottom for more information.
+
+To get generally informed when an animation has finished use the `onAnimationCompleted` modifier. This works independently from the `NavigationModel` and this lib's transitions, but you have to execute `withAnimation` by yourself and thus is not usable with the `NavigationModel`'s transitions.
+
+See [View Extensions](https://indiesoftware.github.io/NavigationStack/Extensions/View.html) for more information.
+
 ### Example Code
 
 The project includes an example target (`NavigationStackExample`) which shows how to use the library. Just clone the repo, open the workspace and switch to the same named scheme. The example app shows how to push multiple views, how to pop back even directly to the root, how to simulate a modal presentation and shows the different transition animations available out-of-the-box. The example views are well commented and provided in the `Sources/NavigationStackExample/ExampleViews` group.
@@ -235,6 +273,10 @@ There is a `SubviewExample` in the examples and a `SubviewExampleTests` to show 
 ### No real modal
 
 SwiftUI's `sheet` modifier actually triggers a real modal transition. This lib doesn't do this, instead the `NavigationStackView` relies on a single-page architecture, meaning there is always only a single view visible, but its content will be replaced when transitioning. I'm not sure if this is really a limitation but it's something to keep in mind.
+
+### OnAppear doesn't work
+
+For all views managed by the `NavigationStackView` the SwiftUI's view modifier `onAppear` doesn't work anymore as expected. `onAppear` now will be triggered multiple times and even when the view is not appearing, but disappearing. This is because of how `NavigationStackView` internally exchanges the subviews. Therefore, don't use `onAppear` anymore, however, this shouldn't be necessary because you can call the code in `onAppear` directly when you also call `show` on the `NavigationModel`.
 
 ## Trouble shooting
 

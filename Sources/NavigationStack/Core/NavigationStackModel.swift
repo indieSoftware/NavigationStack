@@ -28,7 +28,7 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 	public let silenceErrors: Bool
 
 	/// The node list used as stack of navigation steps. Logically each navigation enques a new node and each back-navigation removes one.
-	@Published private var navigationStackNode: NavigationStackNode<IdentifierType>? {
+	@Published var navigationStackNode: NavigationStackNode<IdentifierType>? {
 		didSet {
 			// Propagates any published state changes from the node to observers of this node and not only whether the node has been set or deleted.
 			navigationStackNodeChangeCanceller = navigationStackNode?.objectWillChange.sink(receiveValue: { [weak self] _ in
@@ -98,10 +98,12 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 			DispatchQueue.main.asyncAfter(deadline: .now()) { // Necessary, see Experiment10
 				withAnimation(transitionAnimation.animation) {
 					node.isAlternativeViewShowing = true
+					node.transitionProgress = .progressToAlternativeView
 				}
 			}
 		} else {
 			node.isAlternativeViewShowing = true
+			node.transitionProgress = .progressToAlternativeView
 		}
 	}
 
@@ -110,7 +112,7 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 
 	 - Remark: This cannot be called in `resetContent(:animation:)` after `withAnimation` because that will lead to animation glitches.
 	 */
-	private func cleanupNodeList() {
+	func cleanupNodeList() {
 		guard let navigationStackNode = navigationStackNode else { return }
 
 		if !navigationStackNode.isAlternativeViewShowing {
@@ -195,10 +197,12 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 			DispatchQueue.main.asyncAfter(deadline: .now()) { // Necessary, see Experiment10
 				withAnimation(transitionAnimation.animation) {
 					node.isAlternativeViewShowing = false
+					node.transitionProgress = .progressToDefaultView
 				}
 			}
 		} else {
 			node.isAlternativeViewShowing = false
+			node.transitionProgress = .progressToDefaultView
 		}
 	}
 
@@ -263,20 +267,23 @@ public class NavigationStackModel<IdentifierType>: ObservableObject where Identi
 
 	/**
 	 Creates the navigation binding instance for a given node.
+	 The binding doesn't retain the node, but is still bound to it, meaning when the node is removed and then adding a new node with the same identifier
+	 won't make the binding work with that new node without. In that case a new binding for the new node has to be created.
 
 	 - parameter node: The navigation stack view's node for which to create the binding.
 	 - returns: The created binding ready to pass to a SwiftUI view.
 	 */
 	private func createBindingForNode(_ node: NavigationStackNode<IdentifierType>) -> Binding<Bool> {
 		Binding<Bool>(
-			get: {
-				node.isAlternativeViewShowing
+			get: { [weak node] in
+				node?.isAlternativeViewShowing == true
 			},
-			set: { presenting in
+			set: { [weak node] presenting in
 				// This is an one-way toggle, meaning it can be set to false, but not back to true.
 				if !presenting {
-					node.isAlternativeViewShowingPrecede = false // Keep this in sync with the showing flag.
-					node.isAlternativeViewShowing = false
+					node?.isAlternativeViewShowingPrecede = false // Keep this in sync with the showing flag.
+					node?.isAlternativeViewShowing = false
+					node?.transitionProgress = .progressToDefaultView
 				}
 			}
 		)
@@ -348,6 +355,20 @@ extension NavigationStackModel {
 	 */
 	func alternativeViewZIndex(_ identifier: IdentifierType) -> Double {
 		navigationStackNode?.getNode(identifier)?.transitionAnimation?.alternativeViewZIndex ?? .zero
+	}
+
+	/**
+	 The current transition animation progress used to determine when the animation has finished.
+
+	 - parameter identifier: The navigation stack view's ID.
+	 - returns: The current animation progress.
+	 0 means the default view is visible, 1 means the alternative view is visible and a value inbetween represents the progress.
+	 */
+	func transitionProgress(_ identifier: IdentifierType) -> Float {
+		guard let node = navigationStackNode?.getNode(identifier) else {
+			return .progressToDefaultView
+		}
+		return node.transitionProgress
 	}
 }
 

@@ -7,3 +7,10 @@ typealias AnyViewBuilder = () -> AnyView
 
 /// A concrete type of navigation model which uses strings as identifier.
 public typealias NavigationModel = NavigationStackModel<String>
+
+extension Float {
+	/// Progress towards the default view being fully visible, equals to 0.
+	static let progressToDefaultView: Float = 0
+	/// Progress towards the alternative view being fully visible, equals to 1
+	static let progressToAlternativeView: Float = 1
+}
