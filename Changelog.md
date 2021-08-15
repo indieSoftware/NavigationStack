@@ -1,6 +1,11 @@
 # Changelog
 
-### v1.1
+### v1.1.1
+
+- Added CocoaPods and SPM support for macOS projects.
+- Added `Experiment11` to prove that the navigation still works with a timed action.
+
+### v1.1.0
 
 - Introduced the `onDidAppear` view modifier to get informed when a view transition has finished.
 - Introduced the `onAnimationCompleted` view modifier to get informed when an animation in general has completed.

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "NavStack"
-	spec.version = "1.1" # auto-generated
+	spec.version = "1.1.1" # auto-generated
 	spec.swift_version = "5.4" # auto-generated
   spec.summary      = "A custom SwiftUI navigation framework."
   spec.description  = <<-DESC
@@ -12,6 +12,7 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author             = { "Sven Korset" => "sven.korset@indie-software.com" }
   spec.ios.deployment_target = "13.0"
+  spec.osx.deployment_target = "10.15"
   spec.source       = { :git => "https://github.com/indieSoftware/NavigationStack.git", :tag => "#{spec.version}" }
   spec.source_files  = "Sources/NavigationStack", "Sources/NavigationStack/**/*.{swift}"
   spec.module_name   = 'NavigationStack'

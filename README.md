@@ -1,5 +1,4 @@
-![iOS Version](https://img.shields.io/badge/iOS-13.0+-brightgreen)
-[![Build Status](https://travis-ci.com/indieSoftware/NavigationStack.svg?branch=master)](https://travis-ci.com/indieSoftware/NavigationStack)
+![iOS Version](https://img.shields.io/badge/iOS-13.0+-brightgreen) ![macOS Version](https://img.shields.io/badge/macOS-10.15%2B-brightgreen) [![Build Status](https://travis-ci.com/indieSoftware/NavigationStack.svg?branch=master)](https://travis-ci.com/indieSoftware/NavigationStack)
 [![Code Coverage](https://codecov.io/gh/indieSoftware/NavigationStack/branch/master/graph/badge.svg)](https://codecov.io/gh/indieSoftware/NavigationStack)
 [![Documentation Coverage](https://indiesoftware.github.io/NavigationStack/badge.svg)](https://indiesoftware.github.io/NavigationStack)
 [![License](https://img.shields.io/github/license/indieSoftware/NavigationStack)](https://github.com/indieSoftware/NavigationStack/blob/master/LICENSE)
@@ -26,7 +25,7 @@ Advantages of this lib compared to SwiftUI's `NavigationView` / `NavigationLink`
 - Navigate even without any transition animation at all if you want
 - Define the back transition animation right before transitioning back, not in advance when transitioning forward
 - Navigate back multiple screens at once, not only to the previous one
-- Use a full-screen present transition also on iOS 13
+- Use a full-screen present transition also on iOS 13 and macOS 10.15
 - Get notified when the transition animation has finished
 
 ### Transition Examples
