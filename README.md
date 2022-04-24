@@ -4,7 +4,6 @@
 [![License](https://img.shields.io/github/license/indieSoftware/NavigationStack)](https://github.com/indieSoftware/NavigationStack/blob/master/LICENSE)
 [![GitHub Tag](https://img.shields.io/github/v/tag/indieSoftware/NavigationStack?label=version)](https://github.com/indieSoftware/NavigationStack)
 [![CocoaPods](https://img.shields.io/cocoapods/v/NavStack.svg)](https://cocoapods.org/pods/NavStack)
-[![carthage compatible](https://img.shields.io/badge/carthage-compatible-success.svg)](https://github.com/Carthage/Carthage)
 [![SPM compatible](https://img.shields.io/badge/SPM-compatible-success.svg)](https://github.com/apple/swift-package-manager)
 
 [GitHub Page](https://github.com/indieSoftware/NavigationStack)
@@ -52,14 +51,6 @@ To include via [CocoaPods](https://cocoapods.org) add to the `Podfile`:
 
 ```
 pod 'NavStack'
-```
-
-### Carthage
-
-To include via [Carthage](https://github.com/Carthage/Carthage) add to the `Cartfile`:
-
-```
-github "indieSoftware/NavigationStack"
 ```
 
 ### SPM
